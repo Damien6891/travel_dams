@@ -1,0 +1,6 @@
+// Point d'entrée unique pour les abstracts.
+// Les autres partials font `@use '../abstracts' as *;` pour accéder
+// aux variables et mixins sans préfixe de namespace.
+
+@forward 'variables';
+@forward 'mixins';

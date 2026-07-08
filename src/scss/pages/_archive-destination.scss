@@ -1,0 +1,7 @@
+// Si tu as besoin des variables/mixins ici : @use '../abstracts' as *;
+// Styles spécifiques au template taxonomy-destination.php
+.destination-archive {
+  &__section {
+    // une section par catégorie (Carnets, Guides...)
+  }
+}

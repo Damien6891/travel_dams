@@ -1,0 +1,13 @@
+/*
+Theme Name: Travel Dams
+Theme URI:
+Author: Damien
+Author URI:
+Description: Thème sur mesure basé sur _underscores pour le blog de voyage.
+Version: 1.0.0
+Text Domain: travel-dams
+*/
+
+/* Ce fichier ne contient volontairement aucune règle CSS.
+   WordPress ne lit que le commentaire ci-dessus pour identifier le thème.
+   Le CSS réel est généré dans assets/css/style.css et chargé depuis functions.php. */

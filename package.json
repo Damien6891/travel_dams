@@ -1,0 +1,26 @@
+{
+  "name": "travel-dams-theme",
+  "version": "1.0.0",
+  "description": "Theme WordPress sur mesure pour le blog de voyage, base sur _underscores.",
+  "license": "GPL-2.0-or-later",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_EXTRA_CA_CERTS=C:/laragon/etc/ssl/laragon.crt gulp watch",
+    "build": "gulp build",
+    "lint:scss": "wp-scripts lint-style 'src/scss/**/*.scss'",
+    "lint:js": "wp-scripts lint-js 'src/js/**/*.js'"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^19.2.2",
+    "browser-sync": "^3.0.2",
+    "cross-env": "^7.0.3",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-terser": "^2.1.0",
+    "sass": "^1.77.0"
+  }
+}

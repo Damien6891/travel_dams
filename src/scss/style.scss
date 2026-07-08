@@ -1,0 +1,16 @@
+// Point d'entrée SCSS — compilé vers assets/css/style.css (voir gulpfile.js)
+// Le header WordPress requis vit maintenant dans /style.css à la racine,
+// en dehors du build : ce fichier ne contient que du vrai CSS.
+
+@use 'base/reset';
+@use 'base/typography';
+
+@use 'layout/header';
+@use 'layout/footer';
+@use 'layout/sidebar';
+
+@use 'components/buttons';
+@use 'components/cards';
+@use 'components/navigation';
+
+@use 'pages/archive-destination';

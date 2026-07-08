@@ -1,0 +1,1 @@
+{"version":3,"sources":["main.js"],"names":["document","addEventListener"],"mappings":"AAAAA,SAAAC,iBAAA,mBAAA","file":"main.js","sourcesContent":["document.addEventListener('DOMContentLoaded', () => {\n  // Ton JS ici. D'autres fichiers dans src/js/ seront concaténés\n  // automatiquement dans le même main.js (voir gulpfile.js).\n});\n"]}
