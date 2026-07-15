@@ -1,8 +1,12 @@
 {
     "extends": [
-        "plugin:@wordpress/eslint-plugin/esnext"
+        "plugin:@wordpress/eslint-plugin/esnext",
+        "prettier"
     ],
     "env": {
         "browser": true
+    },
+    "parserOptions": {
+        "requireConfigFile": false
     }
 }

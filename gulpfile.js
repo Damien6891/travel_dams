@@ -5,14 +5,10 @@ const sourcemaps = require('gulp-sourcemaps');
 const plumber = require('gulp-plumber');
 const concat = require('gulp-concat');
 const terser = require('gulp-terser');
+const merge = require('merge-stream');
 const browserSync = require('browser-sync').create();
 
-// Domaine Laragon de ton site
 const PROXY_URL = 'https://travel-dams.test';
-
-// Certificat Laragon (le même qu'Apache utilise déjà pour travel-dams.test).
-// On le réutilise ici pour que BrowserSync présente un certificat déjà
-// approuvé par Windows, au lieu d'en générer un nouveau, non reconnu.
 const LARAGON_SSL_KEY = 'C:/laragon/etc/ssl/laragon.key';
 const LARAGON_SSL_CERT = 'C:/laragon/etc/ssl/laragon.crt';
 
@@ -23,12 +19,19 @@ const paths = {
     dest: './assets/css'
   },
   js: {
-    src: 'src/js/**/*.js',
-    dest: './js'
+    watch: 'src/js/**/*.js',
+    dest: './assets/js'
   },
   php: {
     watch: ['./**/*.php', '!node_modules/**', '!vendor/**']
   }
+};
+
+// Un point d'entrée = un fichier de sortie, chargé uniquement où il est enqueue.
+// "navigation" est global (présent sur chaque page).
+// Ajoute une entrée par besoin ponctuel au fur et à mesure (ex: "gallery": [...]).
+const jsEntries = {
+  navigation: ['src/js/navigation.js'],
 };
 
 function styles() {
@@ -44,24 +47,24 @@ function styles() {
 }
 
 function scripts() {
-  return gulp
-    .src(paths.js.src)
-    .pipe(plumber())
-    .pipe(sourcemaps.init())
-    .pipe(concat('main.js'))
-    .pipe(terser())
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(paths.js.dest))
-    .pipe(browserSync.stream());
+  const streams = Object.entries(jsEntries).map(([name, files]) => {
+    return gulp
+      .src(files)
+      .pipe(plumber())
+      .pipe(sourcemaps.init())
+      .pipe(concat(`${name}.js`))
+      .pipe(terser())
+      .pipe(sourcemaps.write('.'))
+      .pipe(gulp.dest(paths.js.dest));
+  });
+
+  return merge(streams).pipe(browserSync.stream());
 }
 
 function serve(done) {
   browserSync.init({
     proxy: PROXY_URL,
-    https: {
-      key: LARAGON_SSL_KEY,
-      cert: LARAGON_SSL_CERT
-    },
+    https: { key: LARAGON_SSL_KEY, cert: LARAGON_SSL_CERT },
     open: false,
     notify: false
   });
@@ -75,7 +78,7 @@ function reload(done) {
 
 function watchFiles() {
   gulp.watch(paths.scss.watch, styles);
-  gulp.watch(paths.js.src, scripts);
+  gulp.watch(paths.js.watch, scripts);
   gulp.watch(paths.php.watch, reload);
 }
 
