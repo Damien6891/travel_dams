@@ -5,12 +5,8 @@
 @use 'base/reset';
 @use 'base/typography';
 
-@use 'layout/header';
-@use 'layout/footer';
-@use 'layout/sidebar';
+@use 'layout';
 
-@use 'components/buttons';
-@use 'components/cards';
-@use 'components/navigation';
+@use 'components';
 
 @use 'pages/archive-destination';

@@ -1,7 +1,161 @@
-// Couleurs, tailles, breakpoints — à adapter à ton identité visuelle
-$color-text: #1a1a1a;
-$color-background: #ffffff;
-$color-accent: #c1440e; // à ajuster selon ton branding
+// =============================================================================
+// VARIABLES SCSS — travel_dams
+// À placer dans assets/scss/abstracts/_variables.scss
+// Exposé via @forward dans abstracts/_index.scss, consommé avec @use
+// =============================================================================
 
-$breakpoint-tablet: 768px;
-$breakpoint-desktop: 1024px;
+
+// -----------------------------------------------------------------------------
+// 1. BREAKPOINTS
+// -----------------------------------------------------------------------------
+// Convention mobile-first, alignée sur les tailles standards (Bootstrap-like)
+$breakpoints: (
+    'sm': 576px,
+    // petits smartphones en paysage
+    'md': 768px,
+    // tablettes
+    'lg': 992px,
+    // petits laptops
+    'xl': 1200px,
+    // desktop
+    'xxl': 1400px // grands écrans
+);
+
+// -----------------------------------------------------------------------------
+// 2. CONTAINERS
+// -----------------------------------------------------------------------------
+// Largeur max du contenu à chaque breakpoint (pattern container fluide + max-width)
+$container-max-widths: (
+    'sm': 540px,
+    'md': 720px,
+    'lg': 960px,
+    'xl': 1140px,
+    'xxl': 1320px
+);
+
+// Padding horizontal du container (gouttières)
+$container-padding-x: 1rem; // mobile
+$container-padding-x-lg: 1.5rem; // desktop (à partir de lg)
+
+// Largeur max pour le contenu texte (articles) — lisibilité optimale ~65-75 caractères
+$content-width-narrow: 720px; // corps d'article
+$content-width-wide: 1140px; // galeries, grilles destination
+
+
+// -----------------------------------------------------------------------------
+// 3. SPACING SCALE
+// -----------------------------------------------------------------------------
+// Échelle basée sur un multiple de 8px (rem), cohérente pour marges/paddings
+$spacers: (
+    0: 0,
+    1: 0.25rem,
+    // 4px
+    2: 0.5rem,
+    // 8px
+    3: 1rem,
+    // 16px
+    4: 1.5rem,
+    // 24px
+    5: 2rem,
+    // 32px
+    6: 3rem,
+    // 48px
+    7: 4rem,
+    // 64px
+    8: 6rem,
+    // 96px
+    9: 8rem // 128px
+);
+
+
+// -----------------------------------------------------------------------------
+// 4. COULEURS
+// -----------------------------------------------------------------------------
+// Palette de base — à adapter à ton identité visuelle travel-dams
+$color-primary: #1b6b5f; // ex: vert profond (nature/voyage)
+$color-primary-light: #2f8c7d;
+$color-primary-dark: #124b42;
+
+$color-secondary: #d98e4a; // ex: ocre/terracotta (accent chaleureux)
+
+$color-text: #1a1a1a;
+$color-text-muted: #5f5f5f;
+$color-text-inverse: #ffffff;
+
+$color-bg: #ffffff;
+$color-bg-alt: #f7f5f2; // sections alternées, cartes
+
+$color-border: #e0ddd8;
+
+$color-success: #2e7d32;
+$color-error: #c62828;
+$color-warning: #ed6c02;
+
+// Map de couleurs pour itération / génération de classes utilitaires
+$theme-colors: (
+    'primary': $color-primary,
+    'secondary': $color-secondary,
+    'success': $color-success,
+    'error': $color-error,
+    'warning': $color-warning
+);
+
+
+// -----------------------------------------------------------------------------
+// 5. TYPOGRAPHIE
+// -----------------------------------------------------------------------------
+$font-family-base: 'system-ui', -apple-system, 'Segoe UI', Roboto, sans-serif;
+$font-family-heading: $font-family-base; // à remplacer si tu ajoutes une police custom
+
+$font-size-base: 1rem; // 16px
+$font-size-sm: 0.875rem; // 14px
+$font-size-lg: 1.125rem; // 18px
+
+// Échelle des titres (rapport ~1.25 - modular scale)
+$font-size-h1: 2.5rem;
+$font-size-h2: 2rem;
+$font-size-h3: 1.5rem;
+$font-size-h4: 1.25rem;
+$font-size-h5: 1.125rem;
+$font-size-h6: 1rem;
+
+$line-height-base: 1.6; // confortable pour du texte long (articles)
+$line-height-heading: 1.2;
+
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+
+// -----------------------------------------------------------------------------
+// 6. Z-INDEX SCALE
+// -----------------------------------------------------------------------------
+// Évite les guerres de z-index anarchiques — une seule échelle de référence
+$z-index: (
+    'dropdown': 1000,
+    'sticky-header': 1020,
+    'overlay': 1030,
+    'modal': 1040,
+    'toast': 1050
+);
+
+
+// -----------------------------------------------------------------------------
+// 7. BORDER-RADIUS & OMBRES
+// -----------------------------------------------------------------------------
+$border-radius-sm: 4px;
+$border-radius: 8px;
+$border-radius-lg: 16px;
+$border-radius-pill: 999px;
+
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+
+
+// -----------------------------------------------------------------------------
+// 8. TRANSITIONS
+// -----------------------------------------------------------------------------
+$transition-fast: 0.15s ease-in-out;
+$transition-base: 0.25s ease-in-out;
+$transition-slow: 0.4s ease-in-out;

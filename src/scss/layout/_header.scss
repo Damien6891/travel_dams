@@ -1,4 +1,115 @@
-// Si tu as besoin des variables/mixins ici : @use '../abstracts' as *;
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
 .site-header {
-  // styles du header
+  position: fixed;
+  // top: 0;
+  top: 32px; // remove later, because wpadminbar
+  left: 0;
+  right: 0;
+  z-index: m.z('sticky-header');
+  background-color: transparent;
+  transition: background-color v.$transition-base, box-shadow v.$transition-base;
+
+  &--solid {
+    background-color: v.$color-bg;
+    box-shadow: v.$shadow-sm;
+  }
+
+  // Overlay de contraste sur le hero, uniquement tant que le header est transparent
+  &:not(&--solid)::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), transparent);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  // Texte clair tant qu'on est superposé au hero.
+  // Restreint à desktop pour .mega-menu-trigger / .primary-menu > li > a :
+  // sur mobile ces liens vivent dans le tiroir opaque, jamais superposés
+  // au hero, donc ils doivent garder leur couleur de texte normale.
+  body.has-hero &:not(&--solid) {
+
+    .site-title a,
+    .site-description,
+    .menu-toggle {
+      color: v.$color-text-inverse;
+    }
+
+    @include m.mq('lg') {
+
+      .mega-menu-trigger,
+      .primary-menu>li>a {
+        color: v.$color-text-inverse;
+      }
+    }
+  }
+
+  &__inner {
+    @include m.container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: m.spacer(3);
+    padding-block: m.spacer(3);
+
+    @include m.mq('lg') {
+      padding-block: m.spacer(4);
+    }
+  }
+}
+
+// Pages sans hero : le header est solide immédiatement,
+// donc le contenu doit être poussé sous sa hauteur.
+body:not(.has-hero) #content {
+  padding-top: var(--header-height, 80px);
+}
+
+
+.site-branding {
+  display: flex;
+  align-items: center;
+  gap: m.spacer(2);
+  min-width: 0; // empêche site-title de forcer un overflow du flex
+
+  .custom-logo-link {
+    display: block;
+    line-height: 0;
+    flex-shrink: 0;
+  }
+
+  .site-title {
+    margin: 0;
+    font-size: v.$font-size-lg;
+    line-height: v.$line-height-heading;
+    @include m.truncate;
+
+    a {
+      text-decoration: none;
+      color: v.$color-text;
+    }
+  }
+
+  .site-description {
+    display: none;
+
+    @include m.mq('lg') {
+      display: block;
+      margin: 0;
+      font-size: v.$font-size-sm;
+      color: v.$color-text-muted;
+      white-space: nowrap;
+    }
+  }
+}
+
+.header-search {
+  flex-shrink: 0;
+  display: none;
+
+  @include m.mq('lg') {
+    display: block;
+  }
 }

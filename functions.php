@@ -33,6 +33,8 @@ function travel_dams_setup()
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support('automatic-feed-links');
 
+	add_theme_support('align-wide');
+
 	/*
 		* Let WordPress manage the document title.
 		* By adding theme support, we declare that this theme does not use a
@@ -51,7 +53,7 @@ function travel_dams_setup()
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__('Primary', 'travel_dams'),
+			'menu-1' => esc_html__('Primary', 'travel-dams'),
 		)
 	);
 
@@ -101,6 +103,9 @@ function travel_dams_setup()
 			'flex-height' => true,
 		)
 	);
+
+	add_image_size('travel-dams-card', 400, 300, true); // true = recadrage forcé
+
 }
 add_action('after_setup_theme', 'travel_dams_setup');
 
@@ -116,6 +121,45 @@ function travel_dams_content_width()
 	$GLOBALS['content_width'] = apply_filters('travel_dams_content_width', 640);
 }
 add_action('after_setup_theme', 'travel_dams_content_width', 0);
+
+add_filter('body_class', function ($classes) {
+	if (travel_dams_has_hero()) {
+		$classes[] = 'has-hero';
+	}
+	return $classes;
+});
+
+function travel_dams_has_hero()
+{
+	if (is_front_page()) {
+		return true;
+	}
+
+	if (is_singular('post') && has_post_thumbnail()) {
+		return true;
+	}
+
+	if (is_tax('destination')) {
+		return true;
+	}
+
+	return false;
+}
+
+/**
+ * Version d'un asset basée sur sa date de modification.
+ * clearstatcache() évite les faux négatifs dus au cache de stat de PHP
+ * (realpath_cache_ttl), notamment sous Apache/mod_php où les workers
+ * sont réutilisés entre requêtes.
+ */
+function travel_dams_asset_version($relative_path)
+{
+	$path = get_template_directory() . $relative_path;
+
+	clearstatcache(true, $path);
+
+	return file_exists($path) ? filemtime($path) : false;
+}
 
 /**
  * Register widget area.
@@ -147,11 +191,28 @@ function travel_dams_scripts()
 		'travel-dams-style',
 		get_template_directory_uri() . '/assets/css/style.css',
 		array(),
-		filemtime(get_template_directory() . '/assets/css/style.css')
+		// filemtime(get_template_directory() . '/assets/css/style.css')
+		travel_dams_asset_version('/assets/css/style.css')
 	);
 	wp_style_add_data('travel_dams-style', 'rtl', 'replace');
 
-	wp_enqueue_script('travel_dams-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
+	wp_enqueue_script(
+		'travel-dams-navigation',
+		get_template_directory_uri() . '/assets/js/navigation.js',
+		array(),
+		// filemtime(get_template_directory() . '/assets/js/navigation.js'),
+		travel_dams_asset_version('/assets/js/navigation.js'),
+		true
+	);
+
+	wp_enqueue_script(
+		'travel-dams-header',
+		get_template_directory_uri() . '/assets/js/header.js',
+		array(),
+		// filemtime(get_template_directory() . '/assets/js/header.js'),
+		travel_dams_asset_version('/assets/js/header.js'),
+		true
+	);
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
@@ -159,6 +220,60 @@ function travel_dams_scripts()
 }
 add_action('wp_enqueue_scripts', 'travel_dams_scripts');
 
+// Taille dédiée au hero — crop dur pour un ratio cohérent quelle que soit l'image source
+add_image_size('hero', 1600, 900, true);
+
+function travel_dams_get_hero_image_id()
+{
+	$image_id = 0;
+
+	if (is_singular() && has_post_thumbnail()) {
+		$image_id = get_post_thumbnail_id();
+	} elseif (is_front_page() && 'page' === get_option('show_on_front')) {
+		$front_page_id = (int) get_option('page_on_front');
+		if ($front_page_id && has_post_thumbnail($front_page_id)) {
+			$image_id = get_post_thumbnail_id($front_page_id);
+		}
+	}
+
+	// Taxonomie "destination" : pas d'image native pour l'instant (cf. limitation).
+	// À implémenter plus tard : term meta + uploader média sur l'écran d'édition du terme.
+
+	return apply_filters('travel_dams_hero_image_id', $image_id);
+}
+
+function travel_dams_get_hero_title()
+{
+	if (is_front_page()) {
+		return get_the_title();
+		// return get_bloginfo('description');
+	}
+
+	if (is_singular()) {
+		return get_the_title();
+	}
+
+	if (is_tax() || is_category() || is_tag()) {
+		return single_term_title('', false);
+	}
+
+	return '';
+}
+
+// h1 partout SAUF sur la home, où le h1 est déjà pris par le nom du site dans le header
+function travel_dams_get_hero_title_tag()
+{
+	return is_front_page() ? 'h2' : 'h1';
+}
+
+
+require get_template_directory() . '/inc/taxonomies.php';
+
+/**
+ *  NAVIGATION 
+ */
+require get_template_directory() . '/inc/navigation.php';
+require get_template_directory() . '/inc/class-travel-dams-nav-walker.php';
 /**
  * Implement the Custom Header feature.
  */
@@ -178,6 +293,14 @@ require get_template_directory() . '/inc/template-functions.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+
+// function travel_dams_flush_rewrites()
+// {
+// 	travel_dams_register_taxonomies();
+// 	flush_rewrite_rules();
+// }
+// add_action('after_switch_theme', 'travel_dams_flush_rewrites');
 
 /**
  * Load Jetpack compatibility file.

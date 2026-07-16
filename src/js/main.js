@@ -1,4 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("hello main");
+
   // Ton JS ici. D'autres fichiers dans src/js/ seront concaténés
   // automatiquement dans le même main.js (voir gulpfile.js).
 });

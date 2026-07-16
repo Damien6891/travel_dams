@@ -32,6 +32,7 @@ const paths = {
 // Ajoute une entrée par besoin ponctuel au fur et à mesure (ex: "gallery": [...]).
 const jsEntries = {
   navigation: ['src/js/navigation.js'],
+  header: ['src/js/header.js'],
 };
 
 function styles() {

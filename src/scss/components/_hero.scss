@@ -1,0 +1,57 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+.hero {
+    position: relative;
+    isolation: isolate;
+    min-height: 60vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background-color: v.$color-bg-alt; // évite un flash de fond blanc pendant le chargement
+
+    @include m.mq('lg') {
+        min-height: 70vh;
+    }
+
+    &__image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -2;
+    }
+
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top,
+                rgba(0, 0, 0, 0.55) 0%,
+                rgba(0, 0, 0, 0.15) 45%,
+                rgba(0, 0, 0, 0.35) 100%);
+        z-index: -1;
+    }
+
+    &__inner {
+        @include m.container;
+        padding-top: calc(var(--header-height, 80px) + #{m.spacer(5)});
+        padding-bottom: m.spacer(6);
+
+        @include m.mq('lg') {
+            padding-bottom: m.spacer(7);
+        }
+    }
+
+    &__title {
+        margin: 0;
+        color: v.$color-text-inverse;
+        font-size: v.$font-size-h3;
+        line-height: v.$line-height-heading;
+        max-width: v.$content-width-narrow;
+
+        @include m.mq('lg') {
+            font-size: v.$font-size-h1;
+        }
+    }
+}

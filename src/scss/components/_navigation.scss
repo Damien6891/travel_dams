@@ -1,4 +1,222 @@
-// Si tu as besoin des variables/mixins ici : @use '../abstracts' as *;
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
 .main-navigation {
-  // styles du menu principal
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: v.$color-text;
+  z-index: m.z('overlay');
+
+  @include m.mq('lg') {
+    display: none;
+  }
+
+  .icon-close {
+    display: none;
+  }
+
+  &[aria-expanded="true"] {
+    .icon-menu {
+      display: none;
+    }
+
+    .icon-close {
+      display: block;
+    }
+  }
+}
+
+.mobile-nav-overlay-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity v.$transition-base;
+  z-index: calc(m.z('overlay') - 1);
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @include m.mq('lg') {
+    display: none;
+  }
+}
+
+.primary-menu-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: min(85vw, 360px);
+  background: v.$color-bg;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform v.$transition-base;
+  z-index: m.z('overlay');
+  padding: m.spacer(7) m.spacer(4) m.spacer(5);
+
+  &.is-open {
+    transform: translateX(0);
+  }
+
+  @include m.mq('lg') {
+    position: static;
+    height: auto;
+    width: auto;
+    background: none;
+    overflow: visible;
+    transform: none;
+    transition: none;
+    z-index: auto;
+    padding: 0;
+  }
+}
+
+.primary-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+
+  @include m.mq('lg') {
+    flex-direction: row;
+    gap: m.spacer(5);
+  }
+
+  >li>a {
+    display: block;
+    padding: m.spacer(3) 0;
+
+    @include m.mq('lg') {
+      padding: m.spacer(4) 0;
+    }
+  }
+}
+
+.mega-menu-trigger {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  font: inherit;
+  color: v.$color-text;
+  cursor: pointer;
+  padding: m.spacer(3) 0;
+
+  @include m.mq('lg') {
+    width: auto;
+    padding: m.spacer(4) 0;
+  }
+}
+
+.has-megamenu {
+  position: relative;
+
+  >.mega-menu {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height v.$transition-base;
+
+
+    @include m.mq('lg') {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translate(-50%, 8px);
+      min-width: 640px;
+      max-width: 90vw;
+      max-height: none;
+      overflow: visible;
+      background: v.$color-bg;
+      box-shadow: v.$shadow-lg;
+      border-radius: v.$border-radius;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity v.$transition-base, transform v.$transition-base;
+      z-index: m.z('dropdown');
+
+      display: flex;
+      padding: m.spacer(3);
+      gap: m.spacer(3);
+
+      .mega-menu__column {
+        flex: 1;
+      }
+    }
+  }
+
+  &.is-open>.mega-menu {
+    max-height: 1000px;
+
+    @include m.mq('lg') {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translate(-50%, 0);
+    }
+  }
+}
+
+.mega-menu {
+  &__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: m.spacer(3);
+    padding: 0 0 m.spacer(3) m.spacer(4);
+
+    @include m.mq('lg') {
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: m.spacer(5) m.spacer(6);
+      padding: m.spacer(5);
+    }
+  }
+
+  &__continent {
+    display: block;
+    margin: 0 0 m.spacer(2);
+    font-size: v.$font-size-sm;
+    font-weight: v.$font-weight-medium;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: v.$color-text;
+    text-decoration: none;
+  }
+
+  &__countries {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li+li {
+      margin-top: m.spacer(1);
+    }
+
+    a {
+      color: v.$color-text-muted;
+      text-decoration: none;
+
+      &:hover {
+        color: v.$color-primary;
+      }
+    }
+  }
 }
