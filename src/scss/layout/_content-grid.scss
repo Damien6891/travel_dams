@@ -1,0 +1,63 @@
+// =============================================================================
+// CONTENT GRID — travel_dams
+// Gère les 3 niveaux de largeur : content (narrow) / wide / full
+// Compatible avec les classes Gutenberg .alignwide / .alignfull / .aligncenter
+//
+// Les largeurs ne sont PAS dupliquées ici : on consomme les custom properties
+// générées automatiquement par theme.json (--wp--style--global--content-size
+// et --wp--style--global--wide-size), avec un fallback sur les variables Sass
+// existantes au cas où theme.json ne serait pas chargé (sécurité).
+//
+// À placer dans assets/scss/layout/_content-grid.scss
+// =============================================================================
+
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+// Valeurs avec fallback : si la custom property n'existe pas (theme.json absent,
+// erreur de cache...), on retombe sur les valeurs Sass définies dans _variables.scss
+$content-size: var(--wp--style--global--content-size, #{v.$content-width-narrow});
+$wide-size: var(--wp--style--global--wide-size, #{v.$content-width-wide});
+
+// Écart entre wide et content, calculé au runtime en CSS (pas à la compilation)
+$wide-gap: calc((#{$wide-size} - #{$content-size}) / 2);
+
+// Génère les colonnes de la grille pour une valeur de gouttière donnée
+@mixin content-grid-columns($gutter) {
+    grid-template-columns: [full-start] minmax($gutter, 1fr) [wide-start] minmax(0, $wide-gap) [content-start] min(#{$content-size}, 100% - #{$gutter * 2}) [content-end] minmax(0, $wide-gap) [wide-end] minmax($gutter, 1fr) [full-end];
+}
+
+.content-grid,
+.entry-content {
+    display: grid;
+    @include content-grid-columns(v.$container-padding-x);
+
+    @include m.mq('lg') {
+        @include content-grid-columns(v.$container-padding-x-lg);
+    }
+
+    // Par défaut, tout enfant direct reste dans la piste "content" (narrow)
+    >* {
+        grid-column: content;
+    }
+
+    >.alignwide {
+        grid-column: wide;
+    }
+
+    >.alignfull {
+        grid-column: full;
+
+        >img,
+        >video,
+        >iframe {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    >.aligncenter {
+        grid-column: content;
+        margin-inline: auto;
+    }
+}
