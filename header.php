@@ -81,7 +81,3 @@
 			</div>
 
 		</header>
-
-		<?php if (travel_dams_has_hero()) : ?>
-			<?php get_template_part('template-parts/hero'); ?>
-		<?php endif; ?>
