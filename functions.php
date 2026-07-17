@@ -279,6 +279,8 @@ require get_template_directory() . '/inc/class-travel-dams-nav-walker.php';
  */
 require get_template_directory() . '/inc/custom-header.php';
 
+require get_template_directory() . '/inc/helpers.php';
+
 /**
  * Custom template tags for this theme.
  */
