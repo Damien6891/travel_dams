@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Travel Dams\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-15 12:04+0000\n"
-"PO-Revision-Date: 2026-07-17 15:45+0000\n"
+"PO-Revision-Date: 2026-07-17 15:43+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -40,7 +40,7 @@ msgstr "Damien"
 
 #: template-parts/front-page/carnets.php:27
 msgid "Derniers carnets de voyage"
-msgstr "Latest travel journals"
+msgstr ""
 
 #: inc/taxonomies.php:12
 msgid "Destination"

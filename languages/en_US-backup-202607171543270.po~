@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Travel Dams\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-15 12:04+0000\n"
-"PO-Revision-Date: 2026-07-17 15:45+0000\n"
+"PO-Revision-Date: 2026-07-15 12:13+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -38,10 +38,6 @@ msgstr "Travel journals"
 msgid "Damien"
 msgstr "Damien"
 
-#: template-parts/front-page/carnets.php:27
-msgid "Derniers carnets de voyage"
-msgstr "Latest travel journals"
-
 #: inc/taxonomies.php:12
 msgid "Destination"
 msgstr ""
@@ -50,25 +46,13 @@ msgstr ""
 msgid "Destinations"
 msgstr ""
 
-#: template-parts/front-page/about-teaser.php:17
-msgid "Deux ou trois lignes de présentation ici."
-msgstr ""
-
-#: template-parts/front-page/about-teaser.php:21
-msgid "En savoir plus"
-msgstr ""
-
 #: taxonomy-destination.php:34
 msgid "Guides destination"
 msgstr "Destination guide"
 
-#: taxonomy-destination.php:35 template-parts/front-page/guides.php:26
+#: taxonomy-destination.php:35
 msgid "Guides pratiques"
 msgstr "Practical guide"
-
-#: header.php:60
-msgid "Menu"
-msgstr ""
 
 #: inc/taxonomies.php:18
 msgid "Mettre à jour la destination"
@@ -82,12 +66,8 @@ msgstr ""
 msgid "Nom de la nouvelle destination"
 msgstr ""
 
-#: functions.php:56
+#: functions.php:54
 msgid "Primary"
-msgstr ""
-
-#: template-parts/front-page/about-teaser.php:16
-msgid "Qui suis-je ?"
 msgstr ""
 
 #: inc/taxonomies.php:13
@@ -100,19 +80,11 @@ msgstr ""
 
 #: inc/taxonomies.php:14
 msgid "Toutes les destinations"
-msgstr "All destinations"
+msgstr ""
 
 #. Name of the theme
 msgid "Travel Dams"
 msgstr ""
-
-#: template-parts/front-page/carnets.php:47
-msgid "Voir tous les carnets"
-msgstr "See all notebooks"
-
-#: template-parts/front-page/guides.php:45
-msgid "Voir tous les guides"
-msgstr "See all guides"
 
 #: inc/taxonomies.php:15
 msgid "Zone parente"

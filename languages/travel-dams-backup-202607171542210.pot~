@@ -1,13 +1,14 @@
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Travel Dams\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-15 12:04+0000\n"
-"PO-Revision-Date: 2026-07-17 15:45+0000\n"
-"Last-Translator: \n"
-"Language-Team: English (United States)\n"
-"Language: en_US\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"POT-Creation-Date: 2026-07-17 15:41+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,23 +25,23 @@ msgstr[1] ""
 
 #: inc/taxonomies.php:19
 msgid "Ajouter une destination"
-msgstr "Add destination"
+msgstr ""
 
 #: template-parts/destination/countries-grid.php:21
 msgid "Aucune destination pour le moment dans cette zone."
-msgstr "No destination for this zone"
+msgstr ""
 
 #: taxonomy-destination.php:33
 msgid "Carnets de voyage"
-msgstr "Travel journals"
+msgstr ""
 
 #. Author of the theme
 msgid "Damien"
-msgstr "Damien"
+msgstr ""
 
 #: template-parts/front-page/carnets.php:27
 msgid "Derniers carnets de voyage"
-msgstr "Latest travel journals"
+msgstr ""
 
 #: inc/taxonomies.php:12
 msgid "Destination"
@@ -60,11 +61,11 @@ msgstr ""
 
 #: taxonomy-destination.php:34
 msgid "Guides destination"
-msgstr "Destination guide"
+msgstr ""
 
 #: taxonomy-destination.php:35 template-parts/front-page/guides.php:26
 msgid "Guides pratiques"
-msgstr "Practical guide"
+msgstr ""
 
 #: header.php:60
 msgid "Menu"
@@ -94,13 +95,17 @@ msgstr ""
 msgid "Rechercher une destination"
 msgstr ""
 
+#: template-parts/front-page/guides.php:48
+msgid "test"
+msgstr ""
+
 #. Description of the theme
 msgid "Thème sur mesure basé sur _underscores pour le blog de voyage."
 msgstr ""
 
 #: inc/taxonomies.php:14
 msgid "Toutes les destinations"
-msgstr "All destinations"
+msgstr ""
 
 #. Name of the theme
 msgid "Travel Dams"
@@ -108,11 +113,11 @@ msgstr ""
 
 #: template-parts/front-page/carnets.php:47
 msgid "Voir tous les carnets"
-msgstr "See all notebooks"
+msgstr ""
 
 #: template-parts/front-page/guides.php:45
 msgid "Voir tous les guides"
-msgstr "See all guides"
+msgstr ""
 
 #: inc/taxonomies.php:15
 msgid "Zone parente"
