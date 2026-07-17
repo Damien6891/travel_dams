@@ -1,4 +1,59 @@
-// Si tu as besoin des variables/mixins ici : @use '../abstracts' as *;
+@use '../abstracts/' as abs;
+
 .card {
   // styles des cartes (ex : preview d'articles)
+}
+
+
+.post-card {
+  background-color: abs.$color-bg;
+  border-radius: abs.$border-radius;
+  overflow: hidden;
+  box-shadow: abs.$shadow-sm;
+  transition: box-shadow abs.$transition-base, transform abs.$transition-base;
+
+  &:hover,
+  &:focus-within {
+    box-shadow: abs.$shadow-md;
+    transform: translateY(-2px);
+  }
+
+  &__link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &__thumbnail {
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    background-color: abs.$color-bg-alt; // fallback si pas d'image
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform abs.$transition-slow;
+    }
+  }
+
+  &:hover &__thumbnail img {
+    transform: scale(1.05);
+  }
+
+  &__title {
+    font-size: abs.$font-size-lg;
+    font-weight: abs.$font-weight-bold;
+    line-height: abs.$line-height-heading;
+    color: abs.$color-text;
+    margin: abs.spacer(3) abs.spacer(3) abs.spacer(2);
+  }
+
+  &__excerpt {
+    font-size: abs.$font-size-sm;
+    color: abs.$color-text-muted;
+    line-height: abs.$line-height-base;
+    margin: 0 abs.spacer(3) abs.spacer(3);
+  }
 }

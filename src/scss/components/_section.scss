@@ -1,0 +1,20 @@
+@use '../abstracts' as abs;
+
+.section-title {
+    font-size: abs.$font-size-h2;
+    font-weight: abs.$font-weight-bold;
+    margin-bottom: abs.spacer(4);
+}
+
+.section-link {
+    display: inline-block;
+    margin-top: abs.spacer(4);
+    color: abs.$color-primary;
+    font-weight: abs.$font-weight-medium;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+        color: abs.$color-primary-dark;
+    }
+}

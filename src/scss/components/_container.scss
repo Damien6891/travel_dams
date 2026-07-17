@@ -1,0 +1,17 @@
+@use '../abstracts' as abs;
+
+.container {
+    @include abs.container;
+
+    &--fluid {
+        max-width: 100%;
+    }
+
+    &--narrow {
+        max-width: abs.content-size();
+    }
+
+    &--wide {
+        max-width: abs.wide-size();
+    }
+}

@@ -21,7 +21,7 @@
 // Container fluide avec max-width responsive
 // Usage : .site-content { @include container; }
 // -----------------------------------------------------------------------------
-@mixin container($narrow: false) {
+@mixin container {
   width: 100%;
   margin-inline: auto;
   padding-inline: v.$container-padding-x;
@@ -32,8 +32,7 @@
 
   @each $bp, $width in v.$container-max-widths {
     @include mq($bp) {
-      max-width: if(sass($narrow): v.$content-width-narrow; else: $width);
-      // max-width: if($narrow, v.$content-width-narrow, $width);
+      max-width: $width;
     }
   }
 }

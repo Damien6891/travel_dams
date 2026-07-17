@@ -1,0 +1,10 @@
+@use 'variables' as v;
+
+// Sources de vérité partagées avec theme.json (fallback si absent)
+@function content-size() {
+    @return var(--wp--style--global--content-size, #{v.$content-width-narrow});
+}
+
+@function wide-size() {
+    @return var(--wp--style--global--wide-size, #{v.$content-width-wide});
+}

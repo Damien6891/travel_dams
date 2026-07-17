@@ -8,7 +8,6 @@
 // et --wp--style--global--wide-size), avec un fallback sur les variables Sass
 // existantes au cas où theme.json ne serait pas chargé (sécurité).
 //
-// À placer dans assets/scss/layout/_content-grid.scss
 // =============================================================================
 
 @use '../abstracts/variables' as v;

@@ -3,8 +3,8 @@
 
 .site-header {
   position: fixed;
-  // top: 0;
-  top: 32px; // remove later, because wpadminbar
+  top: 0;
+  // top: 32px; // remove later, because wpadminbar
   left: 0;
   right: 0;
   z-index: m.z('sticky-header');
@@ -53,10 +53,10 @@
     align-items: center;
     justify-content: space-between;
     gap: m.spacer(3);
-    padding-block: m.spacer(3);
+    // padding-block: m.spacer(3);
 
     @include m.mq('lg') {
-      padding-block: m.spacer(4);
+      // padding-block: m.spacer(4);
     }
   }
 }
@@ -111,5 +111,14 @@ body:not(.has-hero) #content {
 
   @include m.mq('lg') {
     display: block;
+  }
+}
+
+/** FIX FOR ADMIN BAR */
+body.admin-bar .site-header {
+  top: 32px;
+
+  @media screen and (max-width: 782px) {
+    top: 46px;
   }
 }
