@@ -9,9 +9,20 @@ get_header();
 
 $current_term = get_queried_object();
 $is_zone      = (0 === $current_term->parent); // pas de parent = c'est une zone
+$image_id = carbon_get_term_meta($current_term->term_id, 'zone_image_id');
+
 ?>
 
 <main id="primary" class="site-main destination-archive">
+
+    <?php
+    get_template_part('template-parts/hero', null, array(
+        'context' => 'destination',
+        'title' => $current_term->name,
+        'subtitle' => $current_term->description,
+        'image_id' => $image_id ? absint($image_id) : 0
+    ))
+    ?>
 
     <header class="destination-archive__header">
         <h1><?php echo esc_html($current_term->name); ?></h1>
@@ -36,6 +47,7 @@ $is_zone      = (0 === $current_term->parent); // pas de parent = c'est une zone
         );
 
         foreach ($pillars as $category_slug => $section_title) :
+
             get_template_part(
                 'template-parts/destination/content-section',
                 null,

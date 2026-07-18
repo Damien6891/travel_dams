@@ -296,6 +296,9 @@ require get_template_directory() . '/inc/template-functions.php';
  */
 require get_template_directory() . '/inc/customizer.php';
 
+/** CARBON FIELDS */
+require get_template_directory() . '/inc/carbon-fields.php';
+
 
 // function travel_dams_flush_rewrites()
 // {
