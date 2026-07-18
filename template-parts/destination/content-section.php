@@ -35,7 +35,7 @@ if (! $query->have_posts()) {
 <section class="destination-section destination-section--<?php echo esc_attr($category_slug); ?>">
 
     <h2 class="destination-section__title"><?php echo esc_html($section_title); ?></h2>
-    <div class="destination-section__grid">
+    <div class="post-grid">
         <?php while ($query->have_posts()) : $query->the_post(); ?>
             <?php get_template_part('template-parts/content', 'card', array('show_category_badge' => false)); ?>
         <?php endwhile; ?>

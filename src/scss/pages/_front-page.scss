@@ -14,19 +14,19 @@
     }
 }
 
-.post-grid {
-    display: grid;
-    gap: abs.spacer(5);
-    grid-template-columns: 1fr;
+// .post-grid {
+//     display: grid;
+//     gap: abs.spacer(5);
+//     grid-template-columns: 1fr;
 
-    @include abs.mq('sm') {
-        grid-template-columns: repeat(2, 1fr);
-    }
+//     @include abs.mq('sm') {
+//         grid-template-columns: repeat(2, 1fr);
+//     }
 
-    @include abs.mq('lg') {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
+//     @include abs.mq('lg') {
+//         grid-template-columns: repeat(3, 1fr);
+//     }
+// }
 
 .destinations-section,
 .carnets-section,

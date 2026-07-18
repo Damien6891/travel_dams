@@ -24,43 +24,45 @@ $image_id = carbon_get_term_meta($current_term->term_id, 'zone_image_id');
     ))
     ?>
 
-    <header class="destination-archive__header">
-        <h1><?php echo esc_html($current_term->name); ?></h1>
-        <?php if (! empty($current_term->description)) : ?>
+    <?php if (! empty($current_term->description)) : ?>
+        <div class="container container--narrow">
             <div class="destination-archive__description">
                 <?php echo wp_kses_post(wpautop($current_term->description)); ?>
             </div>
-        <?php endif; ?>
-    </header>
-
-    <?php if ($is_zone) : ?>
-
-        <?php get_template_part('template-parts/destination/countries-grid', null, array('zone' => $current_term)); ?>
-
-    <?php else : ?>
-
-        <?php
-        $pillars = array(
-            'carnets-de-voyage'   => __('Carnets de voyage', 'travel-dams'),
-            'guides-destinations' => __('Guides destination', 'travel-dams'),
-            'guides-pratiques'    => __('Guides pratiques', 'travel-dams'),
-        );
-
-        foreach ($pillars as $category_slug => $section_title) :
-
-            get_template_part(
-                'template-parts/destination/content-section',
-                null,
-                array(
-                    'destination_term' => $current_term,
-                    'category_slug'    => $category_slug,
-                    'section_title'    => $section_title,
-                )
-            );
-        endforeach;
-        ?>
-
+        </div>
     <?php endif; ?>
+
+    <div class="container ">
+
+        <?php if ($is_zone) : ?>
+
+            <?php get_template_part('template-parts/destination/countries-grid', null, array('zone' => $current_term)); ?>
+
+        <?php else : ?>
+
+            <?php
+            $pillars = array(
+                'carnets-de-voyage'   => __('Carnets de voyage', 'travel-dams'),
+                'guides-destinations' => __('Guides destination', 'travel-dams'),
+                'guides-pratiques'    => __('Guides pratiques', 'travel-dams'),
+            );
+
+            foreach ($pillars as $category_slug => $section_title) :
+
+                get_template_part(
+                    'template-parts/destination/content-section',
+                    null,
+                    array(
+                        'destination_term' => $current_term,
+                        'category_slug'    => $category_slug,
+                        'section_title'    => $section_title,
+                    )
+                );
+            endforeach;
+            ?>
+
+        <?php endif; ?>
+    </div>
 
 </main>
 

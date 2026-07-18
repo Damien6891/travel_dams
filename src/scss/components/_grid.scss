@@ -1,0 +1,16 @@
+@use '../abstracts' as abs;
+
+// Grille responsive pour toute grille de content-card
+.post-grid {
+    display: grid;
+    gap: abs.spacer(5);
+    grid-template-columns: 1fr;
+
+    @include abs.mq('sm') {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include abs.mq('lg') {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

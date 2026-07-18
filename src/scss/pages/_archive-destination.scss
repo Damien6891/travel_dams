@@ -1,7 +1,71 @@
-// Si tu as besoin des variables/mixins ici : @use '../abstracts' as *;
-// Styles spécifiques au template taxonomy-destination.php
-.destination-archive {
-  &__section {
-    // une section par catégorie (Carnets, Guides...)
+@use '../abstracts' as abs;
+
+.destination-archive__description {
+  color: abs.$color-text-muted;
+  line-height: abs.$line-height-base;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.destination-section {
+  margin-block: abs.spacer(7);
+
+  @include abs.mq('lg') {
+    margin-block: abs.spacer(8);
+  }
+
+  &__title {
+    font-size: abs.$font-size-h2;
+    font-weight: abs.$font-weight-bold;
+    margin: 0 0 abs.spacer(4);
+    padding-bottom: abs.spacer(2);
+    border-bottom: 2px solid abs.$color-border;
+  }
+}
+
+.countries-grid {
+  display: grid;
+  gap: abs.spacer(4);
+  grid-template-columns: repeat(2, 1fr);
+  margin-block: abs.spacer(6);
+
+  @include abs.mq('sm') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include abs.mq('lg') {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+
+  &__item {
+    display: block;
+    padding: abs.spacer(4);
+    background-color: abs.$color-bg-alt;
+    border: 1px solid abs.$color-border;
+    border-radius: abs.$border-radius;
+    text-decoration: none;
+    color: abs.$color-text;
+    transition: box-shadow abs.$transition-base, transform abs.$transition-base, border-color abs.$transition-base;
+
+    &:hover,
+    &:focus-visible {
+      box-shadow: abs.$shadow-md;
+      border-color: abs.$color-primary;
+      transform: translateY(-2px);
+    }
+
+    h2 {
+      font-size: abs.$font-size-h4;
+      font-weight: abs.$font-weight-bold;
+      color: abs.$color-primary-dark;
+      margin: 0 0 abs.spacer(1);
+    }
+  }
+
+  &__count {
+    font-size: abs.$font-size-sm;
+    color: abs.$color-text-muted;
   }
 }

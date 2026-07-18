@@ -261,6 +261,81 @@ body.admin-bar .site-header {
   margin: 0 1rem 1rem;
 }
 
+.content-card {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+.content-card:hover, .content-card:focus-within {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+.content-card__thumbnail-link {
+  position: relative;
+  display: block;
+}
+.content-card__thumbnail, .content-card__thumbnail--placeholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4/3;
+}
+.content-card__thumbnail {
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.content-card__thumbnail--placeholder {
+  background-color: #f7f5f2;
+}
+.content-card__badge {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  background-color: #1b6b5f;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 999px;
+}
+.content-card__body {
+  padding: 1rem;
+}
+.content-card__destination {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #d98e4a;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.25rem;
+}
+.content-card__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.5rem;
+}
+.content-card__title a {
+  color: #1a1a1a;
+  text-decoration: none;
+}
+.content-card__title a:hover {
+  color: #1b6b5f;
+}
+.content-card__excerpt {
+  font-size: 0.875rem;
+  color: #5f5f5f;
+  line-height: 1.6;
+  margin: 0 0 0.5rem;
+}
+.content-card__date {
+  display: block;
+  font-size: 0.875rem;
+  color: #5f5f5f;
+}
+
 .hero {
   position: relative;
   display: flex;
@@ -641,22 +716,6 @@ body.admin-bar .site-header {
   color: #124b42;
 }
 
-.destinations-grid {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(2, 1fr);
-}
-@media (min-width: 768px) {
-  .destinations-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-@media (min-width: 992px) {
-  .destinations-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-}
-
 .post-grid {
   display: grid;
   gap: 2rem;
@@ -670,6 +729,88 @@ body.admin-bar .site-header {
 @media (min-width: 992px) {
   .post-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.destination-archive__description {
+  color: #5f5f5f;
+  line-height: 1.6;
+}
+.destination-archive__description p:last-child {
+  margin-bottom: 0;
+}
+
+.destination-section {
+  margin-block: 4rem;
+}
+@media (min-width: 992px) {
+  .destination-section {
+    margin-block: 6rem;
+  }
+}
+.destination-section__title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e0ddd8;
+}
+
+.countries-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  margin-block: 3rem;
+}
+@media (min-width: 576px) {
+  .countries-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 992px) {
+  .countries-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
+.countries-grid__item {
+  display: block;
+  padding: 1.5rem;
+  background-color: #f7f5f2;
+  border: 1px solid #e0ddd8;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #1a1a1a;
+  transition: box-shadow 0.25s ease-in-out, transform 0.25s ease-in-out, border-color 0.25s ease-in-out;
+}
+.countries-grid__item:hover, .countries-grid__item:focus-visible {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: #1b6b5f;
+  transform: translateY(-2px);
+}
+.countries-grid__item h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #124b42;
+  margin: 0 0 0.25rem;
+}
+.countries-grid__count {
+  font-size: 0.875rem;
+  color: #5f5f5f;
+}
+
+.destinations-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 768px) {
+  .destinations-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 992px) {
+  .destinations-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
 

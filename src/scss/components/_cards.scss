@@ -57,3 +57,93 @@
     margin: 0 abs.spacer(3) abs.spacer(3);
   }
 }
+
+// Content card
+.content-card {
+  position: relative;
+  background-color: abs.$color-bg;
+  border-radius: abs.$border-radius;
+  overflow: hidden;
+  box-shadow: abs.$shadow-sm;
+  transition: box-shadow abs.$transition-base, transform abs.$transition-base;
+
+  &:hover,
+  &:focus-within {
+    box-shadow: abs.$shadow-md;
+    transform: translateY(-2px);
+  }
+
+  &__thumbnail-link {
+    position: relative;
+    display: block;
+  }
+
+  &__thumbnail,
+  &__thumbnail--placeholder {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3; // aligné sur la taille travel-dams-card (400×300)
+  }
+
+  &__thumbnail {
+    object-fit: cover;
+  }
+
+  &__thumbnail--placeholder {
+    background-color: abs.$color-bg-alt;
+  }
+
+  &__badge {
+    position: absolute;
+    top: abs.spacer(2);
+    left: abs.spacer(2);
+    padding: abs.spacer(1) abs.spacer(2);
+    background-color: abs.$color-primary;
+    color: abs.$color-text-inverse;
+    font-size: abs.$font-size-sm;
+    font-weight: abs.$font-weight-medium;
+    border-radius: abs.$border-radius-pill;
+  }
+
+  &__body {
+    padding: abs.spacer(3);
+  }
+
+  &__destination {
+    font-size: abs.$font-size-sm;
+    font-weight: abs.$font-weight-medium;
+    color: abs.$color-secondary;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: abs.spacer(1);
+  }
+
+  &__title {
+    font-size: abs.$font-size-lg;
+    font-weight: abs.$font-weight-bold;
+    line-height: abs.$line-height-heading;
+    margin: 0 0 abs.spacer(2);
+
+    a {
+      color: abs.$color-text;
+      text-decoration: none;
+
+      &:hover {
+        color: abs.$color-primary;
+      }
+    }
+  }
+
+  &__excerpt {
+    font-size: abs.$font-size-sm;
+    color: abs.$color-text-muted;
+    line-height: abs.$line-height-base;
+    margin: 0 0 abs.spacer(2);
+  }
+
+  &__date {
+    display: block;
+    font-size: abs.$font-size-sm;
+    color: abs.$color-text-muted;
+  }
+}
