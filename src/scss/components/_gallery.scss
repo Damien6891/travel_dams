@@ -1,0 +1,35 @@
+// components/_gallery.scss
+@use '../abstracts/mixins' as m;
+@use '../abstracts/variables' as v;
+@use 'sass:math';
+
+
+// WordPress ne prévoit un repli mobile automatique QUE pour .columns-default
+// à exactement 2 ou 1 image (via nth-last-child). Pour tout choix de colonnes
+// explicite (.columns-2 et au-delà), aucune règle de secours n'existe dans le
+// core — on force donc l'empilement mobile et on restaure nous-mêmes la valeur
+// desktop native de WordPress, plutôt que de dépendre d'une spécificité
+// coïncidente qui ne couvre pas tous les cas.
+
+.wp-block-gallery.has-nested-images {
+    figure.wp-block-image:not(#individual-image) {
+        width: 100%; // mobile-first : toutes les galeries s'empilent par défaut
+    }
+
+    @include m.mq('sm') {
+        @for $i from 2 through 8 {
+            &.columns-#{$i} figure.wp-block-image:not(#individual-image) {
+                width: calc(#{math.div(100%, $i)} - (var(--wp--style--unstable-gallery-gap, 16px) * #{math.div($i - 1, $i)}));
+            }
+        }
+
+        &.columns-default figure.wp-block-image:not(#individual-image) {
+            width: calc(33.33% - (var(--wp--style--unstable-gallery-gap, 16px) * 0.6667));
+        }
+
+        &.columns-default figure.wp-block-image:not(#individual-image):first-child:nth-last-child(2),
+        &.columns-default figure.wp-block-image:not(#individual-image):first-child:nth-last-child(2)~figure.wp-block-image:not(#individual-image) {
+            width: calc(50% - (var(--wp--style--unstable-gallery-gap, 16px) * 0.5));
+        }
+    }
+}
