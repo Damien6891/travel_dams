@@ -1,0 +1,21 @@
+@use '../abstracts/variables' as v;
+
+$u-max-heights: (
+    sm: 320px,
+    md: 480px,
+    lg: 640px,
+    xl: 800px,
+);
+
+@each $name, $value in $u-max-heights {
+    .u-max-h-#{$name} {
+
+        img,
+        video {
+            width: 100%;
+            height: auto;
+            max-height: $value;
+            object-fit: cover;
+        }
+    }
+}
