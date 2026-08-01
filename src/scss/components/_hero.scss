@@ -130,8 +130,11 @@
     }
 
     &--archive {
-        min-height: 25vh;
-        background-color: abs.$color-bg-alt;
-        color: abs.$color-text;
+        min-height: 50vh;
+
+        &:not(.hero--has-image) {
+            background-color: abs.$color-bg-alt;
+            color: abs.$color-text;
+        }
     }
 }

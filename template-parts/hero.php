@@ -10,10 +10,16 @@ $hero_title    = $args['title'] ?? travel_dams_get_hero_title();
 $hero_subtitle    = $args['subtitle'] ?? travel_dams_get_hero_title();
 $hero_tag      = tag_escape(travel_dams_get_hero_title_tag());
 $context = $args['context'] ?? 'default'; // for modiying class
+
+$classes = array('hero', 'hero--' . $context);
+if ($hero_image_id) {
+    $classes[] = 'hero--has-image';
+}
 ?>
 
 
-<section class="hero hero--<?php echo esc_attr($context); ?>">
+<!-- <section class="hero hero--<?php echo esc_attr($context); ?>"> -->
+<section class="hero hero--<?php echo esc_attr(implode(' ', $classes)); ?>">
     <?php if ($hero_image_id) : ?>
         <div class="hero__background">
             <?php echo wp_get_attachment_image($hero_image_id, 'full'); ?>
