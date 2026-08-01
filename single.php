@@ -35,7 +35,7 @@ $hero_image = carbon_get_post_meta(get_the_ID(), 'hero_image');
 	?>
 
 	<?php if ($start && $end) : ?>
-		HERE
+
 		<div class="container">
 			<p>Du <?= esc_html(date_i18n('j F Y', strtotime($start))) ?> au <?= esc_html(date_i18n('j F Y', strtotime($end))) ?></p>
 		</div>

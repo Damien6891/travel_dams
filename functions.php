@@ -182,11 +182,37 @@ function travel_dams_widgets_init()
 }
 add_action('widgets_init', 'travel_dams_widgets_init');
 
+// function td_remove_global_styles()
+// {
+// 	wp_dequeue_style('global-styles');
+// 	wp_deregister_style('global-styles');
+// }
+// add_action('wp_enqueue_scripts', 'td_remove_global_styles', 100);
+// add_action('wp_footer', 'td_remove_global_styles', 20);
+
+
+// Empêche l'enregistrement initial de la feuille globale
+// remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
+// remove_action('wp_footer', 'wp_enqueue_global_styles', 1);
+
+// Empêche la réinjection par bloc pendant le rendu (le vrai coupable)
+// add_filter('wp_theme_json_get_style_nodes', '__return_empty_array');
+// add_filter('should_load_separate_core_block_assets', '__return_false');
+
+
 /**
  * Enqueue scripts and styles.
  */
 function travel_dams_scripts()
 {
+
+	// Remove all WordPress block styles
+	// wp_dequeue_style('wp-block-library');
+	// wp_dequeue_style('wp-block-library-theme');
+	// wp_dequeue_style('wc-blocks-style'); // WooCommerce blocks
+	// wp_dequeue_style('classic-theme-styles');
+	// wp_dequeue_style('global-styles');
+
 	wp_enqueue_style(
 		'travel-dams-style',
 		get_template_directory_uri() . '/assets/css/style.css',
@@ -280,6 +306,7 @@ require get_template_directory() . '/inc/class-travel-dams-nav-walker.php';
 require get_template_directory() . '/inc/custom-header.php';
 
 require get_template_directory() . '/inc/helpers.php';
+require get_template_directory() . '/inc/related-content.php';
 
 /**
  * Custom template tags for this theme.
@@ -310,6 +337,9 @@ add_filter('block_editor_settings_all', function ($settings) {
 	$settings['disableContentOnlyForUnsyncedPatterns'] = true;
 	return $settings;
 });
+
+
+
 
 // add_action('admin_notices', function () {
 // 	if (! current_user_can('manage_options')) return;

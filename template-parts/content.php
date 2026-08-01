@@ -42,6 +42,30 @@
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<?php travel_dams_entry_footer(); ?>
+		<div class="container">
+
+			<?php
+			$post_id = get_the_ID();
+
+			$pillar_narratif = array_filter([
+				travel_dams_get_pillar_term_id('carnets-de-voyage'),
+				travel_dams_get_pillar_term_id('guides-destinations'),
+			]);
+			$pillar_pratique = travel_dams_get_pillar_term_id('guides-pratiques');
+
+			if (has_category($pillar_narratif, $post_id)) {
+				$related = travel_dams_get_related_posts($post_id);
+			} elseif ($pillar_pratique && has_category($pillar_pratique, $post_id)) {
+				$related = travel_dams_get_related_by_category($post_id);
+			} else {
+				$related = [];
+			}
+
+			if (! empty($related)) {
+				get_template_part('template-parts/related-posts', null, ['posts' => $related]);
+			}
+			?>
+		</div>
+		<!-- <?php travel_dams_entry_footer(); ?> -->
 	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->
