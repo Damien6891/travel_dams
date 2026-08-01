@@ -12,6 +12,8 @@ get_header();
 
 $start = carbon_get_post_meta(get_the_ID(), 'trip_start_date');
 $end   = carbon_get_post_meta(get_the_ID(), 'trip_end_date');
+$hero_image = carbon_get_post_meta(get_the_ID(), 'hero_image');
+
 
 // if ($start && $end) {
 // 	// format brut Y-m-d, à reformater selon l'affichage voulu (ex: date_i18n)
@@ -28,12 +30,12 @@ $end   = carbon_get_post_meta(get_the_ID(), 'trip_end_date');
 	get_template_part('template-parts/hero', null, array(
 		'context' => 'single',
 		'title' => get_the_title(),
-		'image_id' => get_post_thumbnail_id()
+		'image_id' => $hero_image ?? get_post_thumbnail_id()
 	))
 	?>
 
 	<?php if ($start && $end) : ?>
-
+		HERE
 		<div class="container">
 			<p>Du <?= esc_html(date_i18n('j F Y', strtotime($start))) ?> au <?= esc_html(date_i18n('j F Y', strtotime($end))) ?></p>
 		</div>

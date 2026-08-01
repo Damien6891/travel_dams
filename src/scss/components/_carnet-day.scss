@@ -1,17 +1,18 @@
 // components/_carnet-day.scss
 @use '../abstracts/mixins' as m;
+@use '../abstracts/variables' as v;
 
 .carnet-day {
     display: contents;
 
-    &__title {
-        // margin-block: m.spacer(3) m.spacer(2);
-        margin-bottom: m.spacer(0);
-    }
+    &__title {}
 
     &__date {
-        // styles de la date
-        margin-top: m.spacer(1);
         margin-top: 0;
+        color: v.$color-text-muted;
     }
+}
+
+:root .carnet-day__title {
+    margin-block-start: m.spacer(6);
 }

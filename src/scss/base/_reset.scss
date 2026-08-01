@@ -47,3 +47,11 @@ button {
   border: 0;
   padding: 0;
 }
+
+:root :where(.is-layout-flow)> :first-child {
+  margin-block-start: 0;
+}
+
+:root :where(.is-layout-constrained)> :first-child {
+  margin-block-start: 0;
+}
