@@ -62,5 +62,6 @@ if (! empty($carnets_term_ids)) {
             ->set_width(50),
         Field::make('date', 'trip_end_date', __('Date de fin', 'travel-dams'))
             ->set_width(50),
+        Field::make('image', 'hero_image', __('Image de couverture'))
     ));
 }
