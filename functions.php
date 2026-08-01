@@ -299,6 +299,50 @@ require get_template_directory() . '/inc/customizer.php';
 /** CARBON FIELDS */
 require get_template_directory() . '/inc/carbon-fields.php';
 
+// Contourne un changement de comportement de Gutenberg (~2026) qui verrouille
+// automatiquement les patterns non synchronisés en mode "contenu seul" à l'insertion,
+// empêchant l'ajout de nouveaux blocs (ex: images) dans le pattern "Jour de carnet".
+// Réf: https://github.com/WordPress/gutenberg/pull/75457
+// Si ce filtre cesse de fonctionner après une mise à jour WordPress/Gutenberg,
+// vérifier le nom de l'option dans ce ticket (le nom était encore en discussion
+// au moment de l'écriture) et l'ajuster ici en conséquence.
+add_filter('block_editor_settings_all', function ($settings) {
+	$settings['disableContentOnlyForUnsyncedPatterns'] = true;
+	return $settings;
+});
+
+// add_action('admin_notices', function () {
+// 	if (! current_user_can('manage_options')) return;
+
+// 	global $wp_version;
+// 	$theme = wp_get_theme();
+// 	$dirpath = get_stylesheet_directory() . '/patterns/';
+
+// 	echo '<div class="notice notice-info"><pre>';
+// 	echo 'WP version : ' . esc_html($wp_version) . "\n";
+// 	echo 'Thème actif (stylesheet) : ' . esc_html(get_stylesheet()) . "\n";
+// 	echo 'Thème actif (template) : ' . esc_html(get_template()) . "\n";
+// 	echo 'Dossier stylesheet : ' . esc_html(get_stylesheet_directory()) . "\n";
+// 	echo 'Chemin patterns attendu : ' . esc_html($dirpath) . "\n";
+// 	echo 'Dossier existe : ' . (is_dir($dirpath) ? 'oui' : 'NON') . "\n";
+// 	echo 'Dossier lisible : ' . (is_readable($dirpath) ? 'oui' : 'NON') . "\n";
+// 	echo 'Fichiers trouvés (glob) : ' . print_r(glob($dirpath . '*.php'), true) . "\n";
+
+// 	$patterns = WP_Block_Patterns_Registry::get_instance()->get_all_registered();
+// 	echo "Patterns enregistrés :\n" . print_r(wp_list_pluck($patterns, 'title', 'name'), true) . "\n";
+
+// 	$cats = WP_Block_Pattern_Categories_Registry::get_instance()->get_all_registered();
+// 	echo "Catégories enregistrées :\n" . print_r(wp_list_pluck($cats, 'label', 'name'), true);
+// 	echo '</pre></div>';
+// });
+
+add_action('init', function () {
+	register_block_pattern_category(
+		'travel_dams',
+		array('label' => __('Carnet de voyage', 'travel-dams'))
+	);
+});
+
 
 // function travel_dams_flush_rewrites()
 // {
