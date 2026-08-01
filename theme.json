@@ -4,6 +4,16 @@
     "layout": {
       "contentSize": "720px",
       "wideSize": "1140px"
+    },
+    "appearanceTools" : true
+  },
+  "styles" : {
+    "blocks": {
+      "core/paragraph" : {
+        "spacing" : {
+          "margin" : { "bottom" : "1rem", "top": 0}
+        }
+      }
     }
   }
 }
