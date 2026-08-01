@@ -36,15 +36,18 @@ $wide-gap: calc((#{$wide-size} - #{$content-size}) / 2);
     }
 
     // Par défaut, tout enfant direct reste dans la piste "content" (narrow)
-    >* {
+    >*,
+    >.carnet-day>* {
         grid-column: content;
     }
 
-    >.alignwide {
+    >.alignwide,
+    >.carnet-day>.alignwide {
         grid-column: wide;
     }
 
-    >.alignfull {
+    >.alignfull,
+    >.carnet-day>.alignfull {
         grid-column: full;
 
         >img,
@@ -55,7 +58,8 @@ $wide-gap: calc((#{$wide-size} - #{$content-size}) / 2);
         }
     }
 
-    >.aligncenter {
+    >.aligncenter,
+    >.carnet-day>.aligncenter {
         grid-column: content;
         margin-inline: auto;
     }
