@@ -2,16 +2,20 @@
 
 .container {
     @include abs.container;
+    // background: lightcyan;
 
     &--fluid {
         max-width: 100%;
+        // background: orange;
     }
 
     &--narrow {
         max-width: abs.content-size();
+        // background: pink;
     }
 
     &--wide {
         max-width: abs.wide-size();
+        // background: red;
     }
 }

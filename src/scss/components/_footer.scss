@@ -1,0 +1,153 @@
+@use '../abstracts/' as abs;
+
+.site-footer {
+    background-color: abs.$color-primary-dark;
+    color: var(--color-white, #fff);
+    padding-block: spacer(xl);
+
+    &__container {
+        @include abs.container();
+    }
+}
+
+.footer-widgets {
+    display: grid;
+    gap: spacer(l);
+    grid-template-columns: 1fr;
+
+    @include abs.mq('md') {
+        grid-template-columns: repeat(3, 1fr);
+        gap: spacer(xl);
+    }
+}
+
+.footer-widgets__column {
+    min-width: 0;
+}
+
+// Titres communs aux 3 colonnes
+.footer-nav__title,
+.footer-destinations__title,
+.footer-about__title {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: spacer(s);
+}
+
+// Listes communes nav / destinations
+.footer-nav__list,
+.footer-destinations__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: spacer(xs);
+}
+
+.footer-nav__link,
+.footer-destinations__link {
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+        opacity: 1;
+        text-decoration: underline;
+    }
+}
+
+.footer-about__text {
+    opacity: 0.8;
+    margin-bottom: spacer(s);
+}
+
+.footer-about__socials {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: spacer(s);
+}
+
+.footer-about__social-link {
+    display: inline-flex;
+    color: inherit;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+        opacity: 1;
+    }
+}
+
+.footer-bottom {
+    margin-top: spacer(xl);
+    padding-top: spacer(m);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: spacer(s);
+
+    @include abs.mq('md') {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.footer-bottom__copyright {
+    opacity: 0.6;
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.footer-bottom__legal {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: spacer(m);
+    font-size: 0.875rem;
+}
+
+.footer-bottom__legal-link {
+    color: inherit;
+    opacity: 0.8;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+        opacity: 1;
+        text-decoration: underline;
+    }
+}
+
+.footer-bottom__lang-switcher {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: spacer(xs);
+}
+
+.footer-bottom__lang-link {
+    color: inherit;
+    opacity: 0.6;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+        opacity: 1;
+    }
+}
+
+.footer-bottom__lang-item--current .footer-bottom__lang-link {
+    opacity: 1;
+    font-weight: 700;
+}
