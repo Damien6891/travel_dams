@@ -292,6 +292,11 @@ function travel_dams_get_hero_title_tag()
 	return is_front_page() ? 'h2' : 'h1';
 }
 
+function enqueue_dashicons_front()
+{
+	wp_enqueue_style('dashicons');
+}
+add_action('wp_enqueue_scripts', 'enqueue_dashicons_front');
 
 require get_template_directory() . '/inc/taxonomies.php';
 
