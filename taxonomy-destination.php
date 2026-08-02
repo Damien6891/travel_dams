@@ -42,9 +42,9 @@ $image_id = carbon_get_term_meta($current_term->term_id, 'zone_image_id');
 
             <?php
             $pillars = array(
-                'carnets-de-voyage'   => __('Carnets de voyage', 'travel-dams'),
-                'guides-destinations' => __('Guides destination', 'travel-dams'),
-                'guides-pratiques'    => __('Guides pratiques', 'travel-dams'),
+                TD_SLUG_CARNETS   => __('Carnets de voyage', 'travel-dams'),
+                TD_SLUG_DESTINATIONS_GUIDES => __('Guides destinations', 'travel-dams'),
+                TD_SLUG_GUIDES    => __('Guides pratiques', 'travel-dams'),
             );
 
             foreach ($pillars as $category_slug => $section_title) :
