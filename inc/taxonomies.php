@@ -29,9 +29,9 @@ function travel_dams_register_taxonomies()
         'show_in_rest'      => true, // nécessaire pour Gutenberg + API REST
         'query_var'         => true,
         'rewrite'           => array(
-            'slug'         => 'destination',
+            'slug'         => 'destinations',
             'with_front'   => false,
-            'hierarchical' => true, // permet des URLs du type /destination/europe/georgie/
+            'hierarchical' => true, // permet des URLs du type /destinations/europe/georgie/
         ),
     );
 
