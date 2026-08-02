@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Travel Dams\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-15 12:04+0000\n"
-"PO-Revision-Date: 2026-07-17 15:45+0000\n"
+"PO-Revision-Date: 2026-08-02 08:24+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -26,17 +26,37 @@ msgstr[1] ""
 msgid "Ajouter une destination"
 msgstr "Add destination"
 
+#: category.php:44
+msgid "Aucun article pour le moment."
+msgstr ""
+
 #: template-parts/destination/countries-grid.php:21
 msgid "Aucune destination pour le moment dans cette zone."
 msgstr "No destination for this zone"
 
-#: taxonomy-destination.php:33
+#: functions.php:377
+msgid "Carnet de voyage"
+msgstr ""
+
+#: footer.php:12 taxonomy-destination.php:45
 msgid "Carnets de voyage"
 msgstr "Travel journals"
 
 #. Author of the theme
 msgid "Damien"
 msgstr "Damien"
+
+#: inc/carbon-fields/post-meta-carnets.php:61
+msgid "Date de début"
+msgstr ""
+
+#: inc/carbon-fields/post-meta-carnets.php:63
+msgid "Date de fin"
+msgstr ""
+
+#: inc/carbon-fields/post-meta-carnets.php:48
+msgid "Dates du voyage"
+msgstr ""
 
 #: template-parts/front-page/carnets.php:27
 msgid "Derniers carnets de voyage"
@@ -46,7 +66,7 @@ msgstr "Latest travel journals"
 msgid "Destination"
 msgstr ""
 
-#: inc/taxonomies.php:11 inc/taxonomies.php:21
+#: footer.php:56 footer.php:57 inc/taxonomies.php:11 inc/taxonomies.php:21
 msgid "Destinations"
 msgstr ""
 
@@ -54,17 +74,45 @@ msgstr ""
 msgid "Deux ou trois lignes de présentation ici."
 msgstr ""
 
+#: inc/carbon-fields/term-meta-destination.php:12
+msgid "Détails destination"
+msgstr ""
+
+#: footer.php:99
+msgid "Email"
+msgstr ""
+
 #: template-parts/front-page/about-teaser.php:21
 msgid "En savoir plus"
 msgstr ""
 
-#: taxonomy-destination.php:34
-msgid "Guides destination"
+#: footer.php:13 taxonomy-destination.php:46
+#, fuzzy
+#| msgid "Guides destination"
+msgid "Guides destinations"
 msgstr "Destination guide"
 
-#: taxonomy-destination.php:35 template-parts/front-page/guides.php:26
+#: footer.php:14 taxonomy-destination.php:47
+#: template-parts/front-page/guides.php:26
 msgid "Guides pratiques"
-msgstr "Practical guide"
+msgstr "Travel tips"
+
+#: inc/carbon-fields/term-meta-category.php:10
+#: inc/carbon-fields/term-meta-category.php:13
+msgid "Image de couverture"
+msgstr ""
+
+#: inc/carbon-fields/term-meta-destination.php:15
+msgid "Image de destination"
+msgstr ""
+
+#: footer.php:93
+msgid "Instagram"
+msgstr ""
+
+#: footer.php:120
+msgid "Mentions légales"
+msgstr ""
 
 #: header.php:60
 msgid "Menu"
@@ -82,6 +130,11 @@ msgstr ""
 msgid "Nom de la nouvelle destination"
 msgstr ""
 
+#: patterns/carnet-day.php:3
+msgctxt "Pattern title"
+msgid "Jour de carnet"
+msgstr ""
+
 #: functions.php:56
 msgid "Primary"
 msgstr ""
@@ -93,6 +146,14 @@ msgstr ""
 #: inc/taxonomies.php:13
 msgid "Rechercher une destination"
 msgstr ""
+
+#: footer.php:6 footer.php:7
+msgid "Rubriques"
+msgstr ""
+
+#: footer.php:87
+msgid "Simplement quelqu'un qui aime voyager et partager sa passion."
+msgstr "Imply someone who likes to travel and share."
 
 #. Description of the theme
 msgid "Thème sur mesure basé sur _underscores pour le blog de voyage."
@@ -120,4 +181,8 @@ msgstr ""
 
 #: inc/taxonomies.php:16
 msgid "Zone parente :"
+msgstr ""
+
+#: footer.php:85
+msgid "À propos"
 msgstr ""
