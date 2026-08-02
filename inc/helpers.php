@@ -6,6 +6,7 @@
  */
 define('TD_SLUG_CARNETS', 'carnets-de-voyage'); // vérifie le slug exact en admin
 define('TD_SLUG_GUIDES', 'guides-pratiques');
+define('TD_SLUG_DESTINATIONS_GUIDES', 'guides-destinations');
 
 /**
  * Retourne le lien de la catégorie d'archive dans la langue courante,
