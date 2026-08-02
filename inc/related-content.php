@@ -154,7 +154,6 @@ function travel_dams_get_related_posts($post_id, $limit = 3)
 
         if (empty($related) && $context['country']) {
             $related = travel_dams_query_related_by_term($context['country'], $post_id, 'carnets-de-voyage', $limit);
-            var_dump('here');
         }
 
         if (empty($related) && $context['zone']) {
