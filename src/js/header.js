@@ -7,7 +7,6 @@
     });
 
     function initHeaderHeightVar() {
-        console.log('here i am');
 
         const header = document.getElementById('masthead');
         if (!header) return;
