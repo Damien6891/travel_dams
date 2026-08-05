@@ -2109,6 +2109,7 @@ body.admin-bar .site-header {
 .page-template-page-destinations .destinations-overview {
   margin-top: 80px;
   margin-bottom: 80px;
+  margin-bottom: 12px;
 }
 
 .destination-archive__description {
