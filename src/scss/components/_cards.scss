@@ -146,4 +146,380 @@
     font-size: abs.$font-size-sm;
     color: abs.$color-text-muted;
   }
+
+  // --- Variante "photo" : carte plein cadre avec scrim, utilisée pour les
+  // grilles éditoriales (ArticleCard du design system) plutôt que la carte
+  // blanche par défaut ci-dessus.
+  &--photo {
+    background-color: transparent;
+    border-radius: abs.$border-radius;
+    box-shadow: none;
+
+    &:hover,
+    &:focus-within {
+      box-shadow: none;
+      transform: none;
+    }
+
+    .content-card__thumbnail-link {
+      position: relative;
+      border-radius: abs.$border-radius;
+      overflow: hidden;
+      height: 340px;
+    }
+
+    .content-card__thumbnail,
+    .content-card__thumbnail--placeholder {
+      position: absolute;
+      inset: 0;
+      aspect-ratio: auto;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .content-card__thumbnail-link::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(28, 29, 30, 0.05) 0%, rgba(28, 29, 30, 0.65) 100%);
+    }
+
+    .content-card__badge {
+      z-index: 1;
+    }
+
+    .content-card__body {
+      padding: abs.spacer(3) 0 0;
+    }
+
+    .content-card__destination {
+      font-family: abs.$font-family-label;
+      letter-spacing: abs.$tracking-label;
+    }
+
+    .content-card__title {
+      font-family: abs.$font-family-heading;
+      font-size: 1.375rem;
+      font-weight: abs.$font-weight-normal;
+    }
+
+    .content-card__date {
+      display: none;
+    }
+
+    // Carte "hero" en bento — occupe 2 colonnes + image plus haute
+    &.content-card--feature {
+      grid-column: span 2;
+
+      .content-card__thumbnail-link {
+        height: 280px;
+      }
+    }
+  }
+
+  // --- Variante "overlay" : titre + date incrustés directement sur la photo
+  // (scrim bas), sans texte sous l'image — utilisée pour les grilles de
+  // carnets des pages destination.
+  &--overlay {
+    position: relative; // ancre .content-card__body (position:absolute) sur la carte, pas un ancêtre plus haut
+    background-color: transparent;
+    box-shadow: none;
+
+    &:hover,
+    &:focus-within {
+      box-shadow: none;
+      transform: none;
+    }
+
+    .content-card__thumbnail-link {
+      position: relative;
+      display: block;
+      border-radius: abs.$border-radius;
+      overflow: hidden;
+      height: 220px;
+    }
+
+    .content-card__thumbnail,
+    .content-card__thumbnail--placeholder {
+      position: absolute;
+      inset: 0;
+      aspect-ratio: auto;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .content-card__thumbnail-link::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      // 3 paliers plutôt que 2 : garantit un fond assez sombre sous le texte
+      // (bas de carte) quelle que soit la hauteur de la carte (220px vs 280px "feature"),
+      // au lieu d'un dégradé purement proportionnel qui s'éclaircit trop tôt sur les grandes cartes.
+      background: linear-gradient(0deg, rgba(28, 29, 30, 0.95) 0%, rgba(28, 29, 30, 0.75) 35%, rgba(28, 29, 30, 0) 70%);
+    }
+
+    .content-card__body {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      padding: abs.spacer(4);
+    }
+
+    .content-card__destination {
+      font-family: abs.$font-family-label;
+      color: rgba(242, 242, 242, 0.7);
+      letter-spacing: 0.5px;
+    }
+
+    .content-card__title {
+      font-family: abs.$font-family-heading;
+      color: abs.$color-text-inverse;
+      font-size: 1.1875rem;
+
+      // Le titre est enveloppé dans un <a> : la règle par défaut de
+      // .content-card__title a (couleur encre) l'emporterait sinon, car une
+      // couleur héritée du h3 perd toujours face à une déclaration explicite
+      // portée par l'élément lui-même.
+      a {
+        color: inherit;
+      }
+    }
+
+    .content-card__excerpt,
+    .content-card__date {
+      display: none;
+    }
+
+    &.content-card--feature {
+      grid-column: span 2;
+
+      .content-card__thumbnail-link {
+        height: 280px;
+      }
+
+      .content-card__title {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+// Tuile pays — grande photo + nom + compteur carnets/guides
+// (voir components/cards/CountryCard du design system)
+.country-card {
+  position: relative;
+  display: block;
+  border-radius: abs.$border-radius;
+  overflow: hidden;
+  height: 460px;
+  box-shadow: abs.$shadow-sm;
+  color: abs.$color-text-inverse;
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform abs.$transition-slow;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(28, 29, 30, 0.95) 0%, rgba(28, 29, 30, 0.75) 30%, rgba(28, 29, 30, 0) 65%);
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+
+  &__body {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    padding: abs.spacer(4);
+    display: flex;
+    flex-direction: column;
+    gap: abs.spacer(1);
+  }
+
+  &__name {
+    font-family: abs.$font-family-heading;
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  &__stats {
+    font-family: abs.$font-family-label;
+    font-size: abs.$font-size-label-xs;
+    letter-spacing: 0.5px;
+    color: rgba(242, 242, 242, 0.8);
+  }
+}
+
+// Tuile guide pratique — icône + titre + description, 4 tons de fond
+// (voir components/cards/GuideCard du design system)
+.guide-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: abs.spacer(3);
+  border-radius: abs.$border-radius-lg;
+  padding: abs.spacer(5);
+  overflow: hidden;
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: abs.$border-radius-pill;
+    font-size: 18px;
+  }
+
+  &__title {
+    font-size: abs.$font-size-h4;
+    font-weight: abs.$font-weight-normal;
+    margin: 0;
+  }
+
+  &__description {
+    font-size: abs.$font-size-body-s;
+    line-height: abs.$line-height-base;
+    margin: 0;
+  }
+
+  &__link {
+    margin-top: auto;
+    font-size: abs.$font-size-body-xs;
+    font-weight: abs.$font-weight-bold;
+  }
+
+  &--light {
+    background-color: abs.$color-surface-card;
+    color: abs.$color-text;
+
+    .guide-card__icon {
+      background-color: abs.$color-panel;
+      color: abs.$color-accent-teal;
+    }
+
+    .guide-card__description {
+      color: abs.$color-text-body;
+    }
+
+    .guide-card__link {
+      color: abs.$color-primary;
+    }
+  }
+
+  &--panel {
+    background-color: abs.$color-panel;
+    color: abs.$color-text;
+
+    .guide-card__description {
+      color: abs.$color-text-body;
+    }
+
+    .guide-card__link {
+      color: abs.$color-accent-teal;
+    }
+  }
+
+  &--teal {
+    background-color: abs.$color-accent-teal;
+    color: abs.$color-text-inverse;
+
+    .guide-card__icon {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    // Un h3 générique a plus de spécificité que la couleur héritée de la carte.
+    .guide-card__title {
+      color: abs.$color-text-inverse;
+    }
+
+    .guide-card__description {
+      opacity: 0.9;
+    }
+  }
+
+  &--dark {
+    background-color: abs.$color-primary-dark;
+    color: abs.$color-text-inverse;
+    justify-content: flex-end;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: var(--guide-card-bg, none);
+      background-size: cover;
+      background-position: center;
+      opacity: 0.5;
+    }
+
+    .guide-card__title {
+      font-family: abs.$font-family-heading;
+      font-size: 1.375rem;
+      color: abs.$color-secondary;
+      position: relative;
+    }
+
+    .guide-card__description {
+      color: rgba(255, 255, 255, 0.75);
+      position: relative;
+    }
+
+    .badge {
+      align-self: flex-start;
+      position: relative;
+    }
+  }
+
+  &--panel {
+    &.guide-card {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    .guide-card__side {
+      flex-shrink: 0;
+    }
+
+    .guide-card__side-image {
+      width: 96px;
+      height: 96px;
+      border-radius: abs.$border-radius-lg;
+      object-fit: cover;
+    }
+
+    .guide-card__main {
+      display: flex;
+      flex-direction: column;
+      gap: abs.spacer(2);
+    }
+  }
+}
+
+// Grille bento — 1er tuile (light) simple, 2e (dark) haute sur 2 rangées,
+// 3e (teal) simple, 4e (panel) large avec image
+.guides-bento {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: abs.spacer(4);
+  margin-bottom: abs.spacer(6);
+
+  .guide-card--feature {
+    grid-row: span 2;
+  }
 }

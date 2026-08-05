@@ -1,7 +1,14 @@
 @use '../abstracts' as abs;
 
+.page-template-page-destinations {
+  .destinations-overview {
+    margin-top: abs.spacer(8);
+    margin-bottom: abs.spacer(8);
+  }
+}
+
 .destination-archive__description {
-  color: abs.$color-text-muted;
+  color: abs.$color-text-body;
   line-height: abs.$line-height-base;
 
   p:last-child {
@@ -17,55 +24,58 @@
   }
 
   &__title {
+    font-family: abs.$font-family-heading;
     font-size: abs.$font-size-h2;
-    font-weight: abs.$font-weight-bold;
+    font-weight: abs.$font-weight-normal;
     margin: 0 0 abs.spacer(4);
     padding-bottom: abs.spacer(2);
-    border-bottom: 2px solid abs.$color-border;
+    border-bottom: 1px solid abs.$color-border;
   }
 }
 
 .countries-grid {
   display: grid;
   gap: abs.spacer(4);
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   margin-block: abs.spacer(6);
 
-  @include abs.mq('sm') {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  // Bascule "vue en liste" — pilotée par src/js/destination-archive.js
+  &[data-view='list'] {
+    grid-template-columns: 1fr;
 
-  @include abs.mq('lg') {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  }
+    .country-card {
+      height: auto;
+      display: flex;
+      align-items: center;
+      gap: abs.spacer(4);
+      padding: abs.spacer(3);
 
-  &__item {
-    display: block;
-    padding: abs.spacer(4);
-    background-color: abs.$color-bg-alt;
-    border: 1px solid abs.$color-border;
-    border-radius: abs.$border-radius;
-    text-decoration: none;
-    color: abs.$color-text;
-    transition: box-shadow abs.$transition-base, transform abs.$transition-base, border-color abs.$transition-base;
+      img {
+        position: static;
+        width: 96px;
+        height: 96px;
+        border-radius: abs.$border-radius-sm;
+        flex-shrink: 0;
+      }
 
-    &:hover,
-    &:focus-visible {
-      box-shadow: abs.$shadow-md;
-      border-color: abs.$color-primary;
-      transform: translateY(-2px);
+      &::after {
+        display: none;
+      }
+
+      .country-card__body {
+        position: static;
+        padding: 0;
+      }
+
+      .country-card__name {
+        font-size: abs.$font-size-h4;
+        color: abs.$color-text;
+      }
     }
-
-    h2 {
-      font-size: abs.$font-size-h4;
-      font-weight: abs.$font-weight-bold;
-      color: abs.$color-primary-dark;
-      margin: 0 0 abs.spacer(1);
-    }
   }
+}
 
-  &__count {
-    font-size: abs.$font-size-sm;
-    color: abs.$color-text-muted;
-  }
+.view-toggle {
+  display: flex;
+  gap: abs.spacer(2);
 }

@@ -1,9 +1,9 @@
-@use '../abstracts/' as abs;
+@use '../abstracts' as abs;
 
 .site-footer {
     background-color: abs.$color-primary-dark;
-    color: var(--color-white, #fff);
-    padding-block: spacer(xl);
+    color: abs.$color-text-inverse;
+    padding-block: abs.spacer(7) abs.spacer(5);
 
     &__container {
         @include abs.container();
@@ -12,12 +12,13 @@
 
 .footer-widgets {
     display: grid;
-    gap: spacer(l);
+    gap: abs.spacer(6);
     grid-template-columns: 1fr;
+    padding-bottom: abs.spacer(6);
 
     @include abs.mq('md') {
-        grid-template-columns: repeat(3, 1fr);
-        gap: spacer(xl);
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: abs.spacer(6);
     }
 }
 
@@ -29,10 +30,20 @@
 .footer-nav__title,
 .footer-destinations__title,
 .footer-about__title {
-    font-size: 1rem;
+    font-family: abs.$font-family-label;
+    font-size: abs.$font-size-label-s;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    margin-bottom: spacer(s);
+    letter-spacing: abs.$tracking-label;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0 0 abs.spacer(3);
+}
+
+.footer-about__title {
+    font-family: abs.$font-family-heading;
+    font-size: 1.375rem;
+    color: abs.$color-secondary;
+    letter-spacing: normal;
+    text-transform: none;
 }
 
 // Listes communes nav / destinations
@@ -43,26 +54,28 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: spacer(xs);
+    gap: abs.spacer(2);
 }
 
 .footer-nav__link,
 .footer-destinations__link {
-    color: inherit;
+    color: rgba(255, 255, 255, 0.75);
     text-decoration: none;
-    opacity: 0.8;
-    transition: opacity 0.2s ease;
+    font-size: abs.$font-size-body-s;
+    transition: color abs.$transition-fast;
 
     &:hover,
     &:focus-visible {
-        opacity: 1;
-        text-decoration: underline;
+        color: abs.$color-secondary;
     }
 }
 
 .footer-about__text {
-    opacity: 0.8;
-    margin-bottom: spacer(s);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: abs.$font-size-body-s;
+    line-height: abs.$line-height-relaxed;
+    max-width: 340px;
+    margin: abs.spacer(3) 0;
 }
 
 .footer-about__socials {
@@ -70,28 +83,27 @@
     margin: 0;
     padding: 0;
     display: flex;
-    gap: spacer(s);
+    gap: abs.spacer(3);
 }
 
 .footer-about__social-link {
     display: inline-flex;
-    color: inherit;
-    opacity: 0.8;
-    transition: opacity 0.2s ease;
+    color: rgba(255, 255, 255, 0.75);
+    transition: color abs.$transition-fast;
 
     &:hover,
     &:focus-visible {
-        opacity: 1;
+        color: abs.$color-secondary;
     }
 }
 
 .footer-bottom {
-    margin-top: spacer(xl);
-    padding-top: spacer(m);
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin-top: abs.spacer(6);
+    padding-top: abs.spacer(4);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     flex-direction: column;
-    gap: spacer(s);
+    gap: abs.spacer(2);
 
     @include abs.mq('md') {
         flex-direction: row;
@@ -101,8 +113,8 @@
 }
 
 .footer-bottom__copyright {
-    opacity: 0.6;
-    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: abs.$font-size-body-xs;
     margin: 0;
 }
 
@@ -112,19 +124,17 @@
     padding: 0;
     display: flex;
     align-items: center;
-    gap: spacer(m);
-    font-size: 0.875rem;
+    gap: abs.spacer(3);
+    font-size: abs.$font-size-body-xs;
 }
 
 .footer-bottom__legal-link {
-    color: inherit;
-    opacity: 0.8;
+    color: rgba(255, 255, 255, 0.4);
     text-decoration: none;
 
     &:hover,
     &:focus-visible {
-        opacity: 1;
-        text-decoration: underline;
+        color: abs.$color-secondary;
     }
 }
 
@@ -133,21 +143,20 @@
     margin: 0;
     padding: 0;
     display: flex;
-    gap: spacer(xs);
+    gap: abs.spacer(2);
 }
 
 .footer-bottom__lang-link {
-    color: inherit;
-    opacity: 0.6;
+    color: rgba(255, 255, 255, 0.4);
     text-decoration: none;
 
     &:hover,
     &:focus-visible {
-        opacity: 1;
+        color: abs.$color-secondary;
     }
 }
 
 .footer-bottom__lang-item--current .footer-bottom__lang-link {
-    opacity: 1;
+    color: abs.$color-text-inverse;
     font-weight: 700;
 }

@@ -1,18 +1,21 @@
 @use '../abstracts/variables' as v;
 @use '../abstracts/mixins' as m;
 
+// Le header Travel Dam's est un bandeau vert forêt permanent (pas de variante
+// transparente sur le hero) : les images de hero ont déjà leur propre scrim,
+// le header reste lisible en toutes circonstances.
 .site-header {
   position: fixed;
   top: 0;
-  // top: 32px; // remove later, because wpadminbar
   left: 0;
   right: 0;
   z-index: m.z('sticky-header');
   background-color: transparent;
   transition: background-color v.$transition-base, box-shadow v.$transition-base;
+  backdrop-filter: blur(5px);
 
   &--solid {
-    background-color: v.$color-bg;
+    background-color: v.$color-primary;
     box-shadow: v.$shadow-sm;
   }
 
@@ -53,16 +56,21 @@
     align-items: center;
     justify-content: space-between;
     gap: m.spacer(3);
-    // padding-block: m.spacer(3);
+    // padding-block: m.spacer(2);
+  }
 
-    @include m.mq('lg') {
-      // padding-block: m.spacer(4);
-    }
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: m.spacer(3);
+    flex-shrink: 0;
+  }
+
+  &__subscribe {
+    flex-shrink: 0;
   }
 }
 
-// Pages sans hero : le header est solide immédiatement,
-// donc le contenu doit être poussé sous sa hauteur.
 body:not(.has-hero) #content {
   padding-top: var(--header-height, 80px);
 }
@@ -73,6 +81,7 @@ body:not(.has-hero) #content {
   align-items: center;
   gap: m.spacer(2);
   min-width: 0; // empêche site-title de forcer un overflow du flex
+  flex-shrink: 0;
 
   .custom-logo-link {
     display: block;
@@ -82,13 +91,15 @@ body:not(.has-hero) #content {
 
   .site-title {
     margin: 0;
-    font-size: v.$font-size-lg;
+    font-family: v.$font-family-heading;
+    font-size: v.$font-size-h4;
+    font-weight: v.$font-weight-medium;
     line-height: v.$line-height-heading;
     @include m.truncate;
 
     a {
       text-decoration: none;
-      color: v.$color-text;
+      color: v.$color-text-inverse;
     }
   }
 
@@ -98,8 +109,8 @@ body:not(.has-hero) #content {
     @include m.mq('lg') {
       display: block;
       margin: 0;
-      font-size: v.$font-size-sm;
-      color: v.$color-text-muted;
+      font-size: v.$font-size-body-s;
+      color: rgba(255, 255, 255, 0.7);
       white-space: nowrap;
     }
   }

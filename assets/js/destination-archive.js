@@ -1,0 +1,2 @@
+!function(){"use strict";document.addEventListener("DOMContentLoaded",function(){var t=document.querySelector(".view-toggle"),e=document.querySelector('[data-view-target="grid"]');if(t&&e){var i=t.querySelectorAll(".icon-btn");i.forEach(function(t){t.addEventListener("click",function(){var r=t.getAttribute("data-view");i.forEach(function(e){var i=e===t;e.classList.toggle("is-active",i),e.setAttribute("aria-pressed",i?"true":"false")}),e.setAttribute("data-view",r)})})}})}();
+//# sourceMappingURL=destination-archive.js.map

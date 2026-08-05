@@ -214,9 +214,16 @@ function travel_dams_scripts()
 	// wp_dequeue_style('global-styles');
 
 	wp_enqueue_style(
+		'travel-dams-fonts',
+		'https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@400;600&display=swap',
+		array(),
+		null
+	);
+
+	wp_enqueue_style(
 		'travel-dams-style',
 		get_template_directory_uri() . '/assets/css/style.css',
-		array(),
+		array('travel-dams-fonts'),
 		// filemtime(get_template_directory() . '/assets/css/style.css')
 		travel_dams_asset_version('/assets/css/style.css')
 	);
@@ -240,11 +247,33 @@ function travel_dams_scripts()
 		true
 	);
 
+	// Bascule vue liste/grille — uniquement sur l'archive de zone (ex: Destinations Asie)
+	if (is_tax('destination') && 0 === get_queried_object()->parent) {
+		wp_enqueue_script(
+			'travel-dams-destination-archive',
+			get_template_directory_uri() . '/assets/js/destination-archive.js',
+			array(),
+			travel_dams_asset_version('/assets/js/destination-archive.js'),
+			true
+		);
+	}
+
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
 	}
 }
 add_action('wp_enqueue_scripts', 'travel_dams_scripts');
+
+/**
+ * Preconnect vers Google Fonts pour accélérer le chargement des 3 familles du design system.
+ */
+add_filter('wp_resource_hints', function ($urls, $relation_type) {
+	if ('preconnect' === $relation_type) {
+		$urls[] = array('href' => 'https://fonts.googleapis.com');
+		$urls[] = array('href' => 'https://fonts.gstatic.com', 'crossorigin');
+	}
+	return $urls;
+}, 10, 2);
 
 // Taille dédiée au hero — crop dur pour un ratio cohérent quelle que soit l'image source
 add_image_size('hero', 1600, 900, true);
@@ -376,6 +405,13 @@ add_action('init', function () {
 		'travel_dams',
 		array('label' => __('Carnet de voyage', 'travel-dams'))
 	);
+
+	// Style "Chapeau" pour core/quote : citation d'ouverture italique en serif,
+	// utilisée en tête des carnets de voyage (voir template-parts/hero.php contexte "carnet").
+	register_block_style('core/quote', array(
+		'name'  => 'chapeau',
+		'label' => __('Chapeau (carnet)', 'travel-dams'),
+	));
 });
 
 

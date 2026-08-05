@@ -1,0 +1,16 @@
+@use '../abstracts/variables' as v;
+
+.wp-block-image:not(.alignfull) {
+    img {
+        border-radius: v.$border-radius;
+
+    }
+}
+
+.wp-block-image,
+.wp-block-gallery {
+
+    ~p {
+        margin-top: 1rem;
+    }
+}

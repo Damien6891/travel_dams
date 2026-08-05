@@ -46,6 +46,74 @@ function travel_dams_get_pillar_link($reference_slug)
 
 
 /**
+ * Résout les destinations "coup de cœur" choisies en Réglages > Accueil
+ * (Carbon Fields, voir inc/carbon-fields/options-homepage.php).
+ *
+ * @return array{term: WP_Term, image_id: int, description: string}[]
+ */
+function travel_dams_get_homepage_favorites()
+{
+    $rows      = carbon_get_theme_option('homepage_favorite_destinations');
+    $favorites = array();
+
+    if (empty($rows)) {
+        return $favorites;
+    }
+
+    foreach ($rows as $row) {
+        $association = $row['destination_term'] ?? array();
+        if (empty($association[0]['id'])) {
+            continue;
+        }
+
+        $term = get_term(absint($association[0]['id']), 'destination');
+        if (! $term || is_wp_error($term)) {
+            continue;
+        }
+
+        $favorites[] = array(
+            'term'        => $term,
+            'image_id'    => absint(carbon_get_term_meta($term->term_id, 'zone_image_id')),
+            'description' => $row['description_override'] ?: $term->description,
+        );
+    }
+
+    return $favorites;
+}
+
+/**
+ * Compte les articles d'un terme `destination` (et sa descendance) pour un
+ * pilier donné (carnets-de-voyage, guides-destinations...). Utilisé pour les
+ * pastilles "X CARNETS · Y GUIDES" des tuiles pays/zone.
+ */
+function travel_dams_count_posts_for_destination($term_id, $pillar_slug_fr)
+{
+    $cat_id = travel_dams_get_pillar_term_id($pillar_slug_fr);
+
+    if (! $cat_id) {
+        return 0;
+    }
+
+    $query = new WP_Query(array(
+        'post_type'      => 'post',
+        'posts_per_page' => 1,
+        'no_found_rows'  => false,
+        'fields'         => 'ids',
+        'cat'            => $cat_id,
+        'tax_query'      => array(
+            array(
+                'taxonomy'         => 'destination',
+                'field'            => 'term_id',
+                'terms'            => $term_id,
+                'include_children' => true,
+            ),
+        ),
+    ));
+
+    return (int) $query->found_posts;
+}
+
+/**
  * Retire le préfixe /category/ des URLs d'archives de catégorie.
  */
 add_filter('category_link', function ($link) {

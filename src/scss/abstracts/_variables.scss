@@ -44,47 +44,45 @@ $content-width-wide: 1140px; // galeries, grilles destination
 // -----------------------------------------------------------------------------
 // 3. SPACING SCALE
 // -----------------------------------------------------------------------------
-// Échelle basée sur un multiple de 8px (rem), cohérente pour marges/paddings
+// Échelle alignée sur les tokens du design system Travel Dam's (tokens/spacing.css)
 $spacers: (
     0: 0,
-    1: 0.25rem,
-    // 4px
-    2: 0.5rem,
-    // 8px
-    3: 1rem,
-    // 16px
-    4: 1.5rem,
-    // 24px
-    5: 2rem,
-    // 32px
-    6: 3rem,
-    // 48px
-    7: 4rem,
-    // 64px
-    8: 6rem,
-    // 96px
-    9: 8rem // 128px
+    1: 8px,
+    2: 12px,
+    3: 16px,
+    4: 24px,
+    5: 32px,
+    6: 48px,
+    7: 64px,
+    8: 80px,
+    9: 96px
 );
 
 
 // -----------------------------------------------------------------------------
 // 4. COULEURS
 // -----------------------------------------------------------------------------
-// Palette de base — à adapter à ton identité visuelle travel-dams
-$color-primary: #1b6b5f; // ex: vert profond (nature/voyage)
-$color-primary-light: #2f8c7d;
-$color-primary-dark: #124b42;
+// Palette Travel Dam's — issue du design system (tokens/colors.css)
+// forêt (primaire), ambre (accent CTA), teal (accent secondaire)
+$color-primary: #354438; // forest-700 — header, panneaux sombres
+$color-primary-light: #06a68e; // teal-500 — accent secondaire (dates, liens "lire plus")
+$color-primary-dark: #1c1d1e; // forest-900 / ink — footer, panneaux les plus sombres
 
-$color-secondary: #d98e4a; // ex: ocre/terracotta (accent chaleureux)
+$color-secondary: #f6b74d; // amber-500 — CTA, liens au survol, eyebrows sur fond sombre
+$color-accent-teal: #06a68e; // alias explicite de $color-primary-light
 
-$color-text: #1a1a1a;
-$color-text-muted: #5f5f5f;
+$color-text: #1c1d1e; // ink — titres
+$color-text-body: #434843; // forest-500 — paragraphes
+$color-text-muted: #737873; // forest-300 — méta, légendes
 $color-text-inverse: #ffffff;
 
-$color-bg: #ffffff;
-$color-bg-alt: #f7f5f2; // sections alternées, cartes
+$color-bg: #fbfaee; // cream-100 — fond de page (jamais blanc pur)
+$color-bg-alt: #f5f4e8; // cream-200 — sections alternées
+$color-panel: #efeee3; // cream-300 — panneaux mis en avant
+$color-surface-card: #ffffff; // réservé aux surfaces de carte
 
-$color-border: #e0ddd8;
+$color-border: rgba(115, 120, 115, 0.3); // border-subtle
+$color-border-on-dark: rgba(255, 255, 255, 0.2);
 
 $color-success: #2e7d32;
 $color-error: #c62828;
@@ -103,23 +101,43 @@ $theme-colors: (
 // -----------------------------------------------------------------------------
 // 5. TYPOGRAPHIE
 // -----------------------------------------------------------------------------
-$font-family-base: 'system-ui', -apple-system, 'Segoe UI', Roboto, sans-serif;
-$font-family-heading: $font-family-base; // à remplacer si tu ajoutes une police custom
+// 3 familles distinctes, chacune avec un rôle précis — ne pas les mélanger :
+// serif = titres/citations, sans = corps/UI, label = eyebrows/dates/tags (tracked uppercase)
+$font-family-heading: 'Source Serif 4', serif;
+$font-family-base: 'Plus Jakarta Sans', sans-serif;
+$font-family-label: 'Space Grotesk', sans-serif;
 
-$font-size-base: 1rem; // 16px
-$font-size-sm: 0.875rem; // 14px
+$font-size-base: 1rem; // 16px — body-l
+$font-size-sm: 0.875rem; // 14px — body-s
 $font-size-lg: 1.125rem; // 18px
 
-// Échelle des titres (rapport ~1.25 - modular scale)
-$font-size-h1: 2.5rem;
-$font-size-h2: 2rem;
-$font-size-h3: 1.5rem;
-$font-size-h4: 1.25rem;
+// Échelle des titres (serif) — alignée sur le display scale du design system
+$font-size-h1: 3.5rem; // 56px — display-xl
+$font-size-h2: 2.25rem; // 36px — display-m
+$font-size-h3: 1.5rem; // 24px — heading
+$font-size-h4: 1.1875rem; // 19px — subheading
 $font-size-h5: 1.125rem;
 $font-size-h6: 1rem;
 
+// Corps (sans)
+$font-size-body-xxl: 2rem; // — paragraphes longs
+$font-size-body-xl: 1.5rem; // — paragraphes longs
+$font-size-body-l: 1rem; // 16px — paragraphes longs
+$font-size-body-m: 0.9375rem; // 15px — intros de section
+$font-size-body-s: 0.875rem; // 14px — texte courant UI
+$font-size-body-xs: 0.8125rem; // 13px — légendes, méta
+
+// Labels / eyebrows (grotesk, tracké)
+$font-size-label-m: 0.75rem; // 12px
+$font-size-label-s: 0.6875rem; // 11px — eyebrows
+$font-size-label-xs: 0.625rem; // 10px — tags, dates
+
+$tracking-label: 1px;
+$tracking-eyebrow: 2px;
+
 $line-height-base: 1.6; // confortable pour du texte long (articles)
 $line-height-heading: 1.2;
+$line-height-relaxed: 1.8;
 
 $font-weight-normal: 400;
 $font-weight-medium: 500;
@@ -142,14 +160,17 @@ $z-index: (
 // -----------------------------------------------------------------------------
 // 7. BORDER-RADIUS & OMBRES
 // -----------------------------------------------------------------------------
-$border-radius-sm: 4px;
-$border-radius: 8px;
+$border-radius-sm: 8px;
+$border-radius: 12px;
 $border-radius-lg: 16px;
-$border-radius-pill: 999px;
+$border-radius-xl: 24px; // grands panneaux (newsletter, bandeaux zone)
+$border-radius-2xl: 40px; // panneaux hero très larges
+$border-radius-pill: 9999px;
 
-$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-$shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+// Ombres très douces, à peine perceptibles — jamais de bordure dure en guise de carte
+$shadow-sm: 0 10px 15px -3px rgba(53, 68, 56, 0.05);
+$shadow-md: 0 10px 30px -5px rgba(53, 68, 56, 0.15);
+$shadow-lg: 0 20px 40px -10px rgba(28, 29, 30, 0.25);
 
 
 // -----------------------------------------------------------------------------

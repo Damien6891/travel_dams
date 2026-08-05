@@ -1,0 +1,59 @@
+@use '../abstracts' as abs;
+
+// Champs pilule — recherche header + email newsletter (voir components/core/Input)
+.input {
+  display: block;
+  width: 100%;
+  border-radius: abs.$border-radius-pill;
+  font-family: abs.$font-family-base;
+  font-size: abs.$font-size-body-s;
+  border: 1px solid transparent;
+
+  &::placeholder {
+    color: inherit;
+    opacity: 0.6;
+  }
+
+  &--search {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: abs.$color-text-inverse;
+    padding: 8px 16px;
+  }
+
+  &--email {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: abs.$color-text-inverse;
+    padding: 15px 24px;
+
+    &::placeholder {
+      opacity: 0.4;
+    }
+  }
+}
+
+// Bouton icône circulaire — bascule vue liste/grille (voir components/core/IconButton)
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 38px;
+  border-radius: abs.$border-radius-pill;
+  border: 1px solid abs.$color-border;
+  background: none;
+  color: abs.$color-text;
+  cursor: pointer;
+  transition: border-color abs.$transition-fast, background-color abs.$transition-fast;
+
+  &:hover {
+    border-color: abs.$color-secondary;
+  }
+
+  &.is-active,
+  &[aria-pressed='true'] {
+    background-color: abs.$color-primary;
+    border-color: abs.$color-primary;
+    color: abs.$color-text-inverse;
+  }
+}

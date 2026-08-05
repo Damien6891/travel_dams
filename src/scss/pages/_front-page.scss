@@ -1,37 +1,10 @@
 @use '../abstracts' as abs;
 
-.destinations-grid {
-    display: grid;
-    gap: abs.spacer(4);
-    grid-template-columns: repeat(2, 1fr);
-
-    @include abs.mq('md') {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    @include abs.mq('lg') {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-}
-
-// .post-grid {
-//     display: grid;
-//     gap: abs.spacer(5);
-//     grid-template-columns: 1fr;
-
-//     @include abs.mq('sm') {
-//         grid-template-columns: repeat(2, 1fr);
-//     }
-
-//     @include abs.mq('lg') {
-//         grid-template-columns: repeat(3, 1fr);
-//     }
-// }
-
-.destinations-section,
 .carnets-section,
+.favorites-section,
 .guides-section,
-.about-teaser {
+.about-teaser,
+.newsletter {
     margin-block: abs.spacer(7);
 
     @include abs.mq('lg') {

@@ -1,0 +1,83 @@
+@use '../abstracts' as abs;
+
+.carnet-share {
+  max-width: abs.content-size();
+  // margin: abs.spacer(6) auto 0;
+  margin: abs.spacer(6) auto;
+  text-align: center;
+
+  &__label {
+    display: block;
+    margin-bottom: abs.spacer(3);
+  }
+
+  &__links {
+    display: flex;
+    justify-content: center;
+    gap: abs.spacer(3);
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: abs.$border-radius-pill;
+    border: 1px solid abs.$color-border;
+    color: abs.$color-text;
+    background: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color abs.$transition-fast, color abs.$transition-fast;
+
+    &:hover {
+      border-color: abs.$color-secondary;
+      color: abs.$color-secondary;
+    }
+  }
+}
+
+.next-carnet {
+  margin-block: abs.spacer(7);
+
+  &__panel {
+    position: relative;
+    border-radius: abs.$border-radius-xl;
+    overflow: hidden;
+    min-height: clamp(220px, 35vw, 280px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: abs.spacer(4);
+    text-align: center;
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(28, 29, 30, 0.55);
+  }
+
+  &__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: abs.spacer(3);
+  }
+
+  &__title {
+    font-size: 1.75rem;
+    color: abs.$color-text-inverse;
+    margin: 0;
+  }
+}

@@ -33,6 +33,7 @@ const paths = {
 const jsEntries = {
   navigation: ['src/js/navigation.js'],
   header: ['src/js/header.js'],
+  'destination-archive': ['src/js/destination-archive.js'],
 };
 
 function styles() {
@@ -59,7 +60,9 @@ function scripts() {
       .pipe(gulp.dest(paths.js.dest));
   });
 
-  return merge(streams).pipe(browserSync.stream());
+  // Pas de browserSync.stream() ici : le JS déclenche un rechargement complet
+  // du navigateur (voir watchFiles), contrairement au CSS qui s'injecte à chaud.
+  return merge(streams);
 }
 
 function serve(done) {
@@ -78,9 +81,9 @@ function reload(done) {
 }
 
 function watchFiles() {
-  gulp.watch(paths.scss.watch, styles);
-  gulp.watch(paths.js.watch, scripts);
-  gulp.watch(paths.php.watch, reload);
+  gulp.watch(paths.scss.watch, styles); // injection à chaud (voir styles())
+  gulp.watch(paths.js.watch, gulp.series(scripts, reload)); // compile puis reload complet
+  gulp.watch(paths.php.watch, reload); // reload complet
 }
 
 const build = gulp.parallel(styles, scripts);

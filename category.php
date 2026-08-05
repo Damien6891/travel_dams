@@ -21,31 +21,55 @@ $image_id = carbon_get_term_meta($current_category->term_id, 'category_cover_ima
     ));
     ?>
 
-    <div class="container">
 
-        <?php if (have_posts()) : ?>
+    <section class="content">
 
-            <div class="post-grid">
+        <div class="container">
+
+            <?php
+            get_template_part(
+                'template-parts/section',
+                'heading',
+                [
+                    'title' => single_cat_title('', false),
+                    'description' => category_description()
+                ]
+            );
+            ?>
+
+            <?php if (have_posts()) : ?>
+
+                <div class="post-grid">
+                    <?php
+                    while (have_posts()) :
+                        the_post();
+                        get_template_part('template-parts/content', 'card', array(
+                            'show_category_badge'    => false, // redondant : on est déjà sur cette catégorie
+                            'show_destination_badge' => true,
+                        ));
+                    endwhile;
+                    ?>
+                </div>
+
                 <?php
-                while (have_posts()) :
-                    the_post();
-                    get_template_part('template-parts/content', 'card', array(
-                        'show_category_badge'    => false, // redondant : on est déjà sur cette catégorie
-                        'show_destination_badge' => true,
-                    ));
-                endwhile;
+                the_posts_pagination([
+                    'mid_size'  => 1,
+                    'prev_text' => __('Précédent', 'travel-dams'),
+                    'next_text' => __('Suivant', 'travel-dams'),
+                    'class'     => 'pagination', // wrapper nommé, réutilisable partout
+                ]);
                 ?>
-            </div>
 
-            <?php the_posts_pagination(); ?>
 
-        <?php else : ?>
+            <?php else : ?>
 
-            <p><?php esc_html_e('Aucun article pour le moment.', 'travel-dams'); ?></p>
+                <p><?php esc_html_e('Aucun article pour le moment.', 'travel-dams'); ?></p>
 
-        <?php endif; ?>
+            <?php endif; ?>
 
-    </div>
+        </div>
+
+    </section>
 
 </main>
 

@@ -1,0 +1,41 @@
+@use '../abstracts' as abs;
+
+// Eyebrow + titre serif + intro — le bloc le plus réutilisé du site
+// (voir components/core/SectionHeading)
+.section-heading {
+  margin-bottom: abs.spacer(6);
+
+  &__eyebrow {
+    display: block;
+    margin-bottom: abs.spacer(2);
+  }
+
+  &__title {
+    margin: 0 0 abs.spacer(2);
+  }
+
+  &__description {
+    margin: 0;
+    max-width: 480px;
+    font-size: abs.$font-size-body-m;
+    color: abs.$color-text-body;
+  }
+
+  &--center {
+    text-align: center;
+
+    .section-heading__description {
+      margin-inline: auto;
+    }
+  }
+
+  &--dark {
+    .section-heading__title {
+      color: abs.$color-text-inverse;
+    }
+
+    .section-heading__description {
+      color: rgba(255, 255, 255, 0.65);
+    }
+  }
+}

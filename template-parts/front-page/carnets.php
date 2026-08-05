@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Section "Derniers carnets de voyage".
+ * Section "Dernières Aventures".
  *
  * @package Travel_Dams
  */
@@ -23,29 +23,19 @@ if (! $carnets_query->have_posts()) {
 
     <div class="container container--wide">
 
-        <h2 class="section-title">
-            <?php esc_html_e('Derniers carnets de voyage', 'travel-dams'); ?>
-        </h2>
+        <div class="section-header">
+            <div>
+                <h2 class="section-title"><?php esc_html_e('Dernières Aventures', 'travel-dams'); ?></h2>
+                <p class="section-header__lead"><?php esc_html_e("Des récits immersifs écrits sur le terrain, capturant l'essence même du voyage contemplatif et respectueux.", 'travel-dams'); ?></p>
+            </div>
+            <a href="<?php echo esc_url(travel_dams_get_pillar_link(TD_SLUG_CARNETS)); ?>" class="section-link"><?php esc_html_e('Voir tout →', 'travel-dams'); ?></a>
+        </div>
 
         <div class="post-grid">
             <?php while ($carnets_query->have_posts()) : $carnets_query->the_post(); ?>
-                <article <?php post_class('post-card'); ?>>
-                    <a href="<?php the_permalink(); ?>" class="post-card__link">
-                        <?php if (has_post_thumbnail()) : ?>
-                            <div class="post-card__thumbnail">
-                                <?php the_post_thumbnail('medium_large'); ?>
-                            </div>
-                        <?php endif; ?>
-                        <h3 class="post-card__title"><?php the_title(); ?></h3>
-                        <p class="post-card__excerpt"><?php the_excerpt(); ?></p>
-                    </a>
-                </article>
+                <?php get_template_part('template-parts/content-card', null, array('variant' => 'photo')); ?>
             <?php endwhile; ?>
         </div>
-
-        <a href="<?php echo (travel_dams_get_pillar_link(TD_SLUG_CARNETS)); ?>" class="section-link">
-            <?php esc_html_e('Voir tous les carnets', 'travel-dams'); ?>
-        </a>
 
     </div>
 </section>

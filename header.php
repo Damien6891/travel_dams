@@ -77,7 +77,15 @@
 
 					<div class="mobile-nav-overlay-backdrop"></div>
 				</nav>
-				<div class="search">Search</div>
+
+				<div class="site-header__actions">
+					<form role="search" method="get" class="header-search" action="<?php echo esc_url(home_url('/')); ?>">
+						<label class="screen-reader-text" for="header-search-field"><?php esc_html_e('Rechercher', 'travel-dams'); ?></label>
+						<input type="search" id="header-search-field" class="input input--search" name="s" placeholder="<?php esc_attr_e('Rechercher...', 'travel-dams'); ?>" value="<?php echo get_search_query(); ?>">
+					</form>
+
+					<!-- <a href="#newsletter" class="btn btn--accent btn--s site-header__subscribe"><?php esc_html_e('Subscribe', 'travel-dams'); ?></a> -->
+				</div>
 			</div>
 
 		</header>

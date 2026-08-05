@@ -7,6 +7,7 @@
     });
 
     function initMobileToggle() {
+
         const nav = document.getElementById('site-navigation');
         if (!nav) return;
 
@@ -53,9 +54,13 @@
         }
 
         items.forEach(function (item) {
-            const trigger = item.querySelector(':scope > .mega-menu-trigger');
+            // const trigger = item.querySelector(':scope > .mega-menu-trigger');
+            // const panel = item.querySelector(':scope > .mega-menu');
+            const trigger = item.querySelector('.mega-menu-trigger'); // peu importe la profondeur d'imbrication
             const panel = item.querySelector(':scope > .mega-menu');
             let hoverTimeout;
+
+
 
             if (!trigger || !panel) return;
 

@@ -1,0 +1,109 @@
+@use '../abstracts' as abs;
+
+// Bandeau zone + rangée de pays — page "Destinations"
+.continent-panel {
+  background-color: abs.$color-surface-card;
+  border-radius: abs.$border-radius-xl;
+  overflow: hidden;
+  box-shadow: abs.$shadow-sm;
+
+  &__banner {
+    position: relative;
+    display: block;
+    min-height: clamp(180px, 32vw, 240px);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(28, 29, 30, 0.95) 0%, rgba(28, 29, 30, 0.7) 35%, rgba(28, 29, 30, 0) 70%);
+  }
+
+  &__banner-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    padding: abs.spacer(5);
+  }
+
+  &__name {
+    font-family: abs.$font-family-heading;
+    font-size: abs.$font-size-h2;
+    color: abs.$color-text-inverse;
+    margin: 0;
+  }
+
+  &__summary {
+    font-family: abs.$font-family-label;
+    font-size: abs.$font-size-label-s;
+    letter-spacing: 0.5px;
+    color: rgba(242, 242, 242, 0.85);
+  }
+
+  &__countries {
+    padding: abs.spacer(5);
+    display: flex;
+    flex-wrap: wrap;
+    gap: abs.spacer(3);
+  }
+
+  &__country {
+    display: flex;
+    align-items: center;
+    gap: abs.spacer(2);
+    padding: abs.spacer(2) abs.spacer(4) abs.spacer(2) abs.spacer(2);
+    border-radius: abs.$border-radius-pill;
+    border: 1px solid abs.$color-border;
+    color: abs.$color-text;
+    text-decoration: none;
+    transition: border-color abs.$transition-fast;
+
+    &:hover {
+      border-color: abs.$color-secondary;
+
+      .continent-panel__country-stats {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__country-image {
+    width: 32px;
+    height: 32px;
+    border-radius: abs.$border-radius-sm;
+    object-fit: cover;
+  }
+
+  &__country-name {
+    font-size: abs.$font-size-body-s;
+  }
+
+  &__country-stats {
+    font-family: abs.$font-family-label;
+    font-size: abs.$font-size-label-xs;
+    letter-spacing: 0.5px;
+    color: abs.$color-accent-teal;
+    font-weight: abs.$font-weight-bold;
+    opacity: 0;
+    transition: opacity abs.$transition-fast;
+  }
+}
+
+.continent-panels {
+  display: flex;
+  flex-direction: column;
+  gap: abs.spacer(6);
+}

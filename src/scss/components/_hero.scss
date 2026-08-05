@@ -64,6 +64,8 @@
     overflow: hidden;
     color: abs.$color-text-inverse;
     background-color: abs.$color-primary-dark; // fallback si pas d'image
+    min-height: clamp(360px, 58vw, 420px);
+
 
     &__background {
         position: absolute;
@@ -96,44 +98,121 @@
         }
     }
 
+    &__eyebrow {
+        margin-bottom: abs.spacer(3);
+    }
+
     &__title {
+        font-family: abs.$font-family-heading;
+        font-weight: abs.$font-weight-normal;
         font-size: abs.$font-size-h2;
-        font-weight: abs.$font-weight-bold;
         line-height: abs.$line-height-heading;
         margin: 0 0 abs.spacer(2);
+        // Un h1 générique a plus de spécificité que la couleur héritée de .hero :
+        // on la fixe explicitement ici pour ne pas retomber sur l'encre sombre.
+        color: abs.$color-text-inverse;
 
         @include abs.mq('lg') {
             font-size: abs.$font-size-h1;
         }
     }
 
+    &__byline {
+        display: block;
+        font-size: abs.$font-size-body-xs;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: abs.spacer(2);
+    }
+
     &__subtitle {
         max-width: 60ch;
-        font-size: abs.$font-size-lg;
+        font-size: abs.$font-size-body-m;
+        line-height: abs.$line-height-relaxed;
         margin: 0;
+    }
+
+    &__ctas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: abs.spacer(3);
+        margin-top: abs.spacer(3);
     }
 
     // --- Variantes par contexte ---
 
     &--front-page {
-        min-height: 70vh;
+        min-height: 90vh;
         align-items: center;
 
         .hero__content {
             text-align: center;
+            max-width: 640px;
+            margin-inline: auto;
+        }
+
+        .hero__ctas {
+            justify-content: center;
         }
     }
 
     &--single,
+    &--carnet {
+        min-height: 40vh;
+
+        &.hero--carnet {
+            min-height: clamp(420px, 60vw, 560px);
+            align-items: center;
+            text-align: center;
+
+            .hero__content {
+                max-width: 760px;
+                margin-inline: auto;
+            }
+        }
+    }
+
     &--destination {
         min-height: 40vh;
+    }
+
+    // Bandeau translucide centré (archive de zone, ex : "Destinations : Asie")
+    &--zone {
+        min-height: clamp(420px, 60vw, 520px);
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        .hero__content {
+            background-color: rgba(251, 250, 238, 0.9);
+            border-radius: abs.$border-radius-lg;
+            padding: abs.spacer(6) abs.spacer(5);
+            max-width: 640px;
+            margin: 0 abs.spacer(3);
+            color: abs.$color-text;
+        }
+
+        .hero__title {
+            color: abs.$color-text;
+        }
+
+        .hero__subtitle {
+            color: abs.$color-text-body;
+        }
+
+        .hero__eyebrow {
+            background: none;
+            border: none;
+            padding: 0;
+            color: abs.$color-accent-teal;
+        }
     }
 
     &--archive {
         min-height: 50vh;
 
         &:not(.hero--has-image) {
-            background-color: abs.$color-bg-alt;
+            // background-color: abs.$color-bg-alt;
+            background-color: abs.$color-primary;
             color: abs.$color-text;
         }
     }

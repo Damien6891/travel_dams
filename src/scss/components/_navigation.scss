@@ -17,7 +17,7 @@
   background: none;
   border: 0;
   cursor: pointer;
-  color: v.$color-text;
+  color: v.$color-text-inverse;
   z-index: m.z('overlay');
 
   @include m.mq('lg') {
@@ -94,18 +94,37 @@
   padding: 0;
   display: flex;
   flex-direction: column;
+  font-size: v.$font-size-body-s;
 
   @include m.mq('lg') {
     flex-direction: row;
+    align-items: center;
     gap: m.spacer(5);
   }
 
-  >li>a {
+  >li>a,
+  >li .mega-menu-link {
     display: block;
     padding: m.spacer(3) 0;
+    color: v.$color-text;
 
     @include m.mq('lg') {
       padding: m.spacer(4) 0;
+      color: rgba(255, 255, 255, 0.9);
+
+      &:hover {
+        color: v.$color-secondary;
+      }
+    }
+  }
+
+  .mega-menu-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    button {
+      line-height: 1;
     }
   }
 }
@@ -124,6 +143,16 @@
   @include m.mq('lg') {
     width: auto;
     padding: m.spacer(4) 0;
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid transparent;
+
+    &[aria-expanded='true'] {
+      border-bottom-color: v.$color-secondary;
+    }
+
+    &:hover {
+      color: v.$color-secondary;
+    }
   }
 }
 
@@ -145,9 +174,9 @@
       max-width: 90vw;
       max-height: none;
       overflow: visible;
-      background: v.$color-bg;
+      background: v.$color-surface-card;
       box-shadow: v.$shadow-lg;
-      border-radius: v.$border-radius;
+      border-radius: v.$border-radius-lg;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
@@ -193,11 +222,12 @@
   &__continent {
     display: block;
     margin: 0 0 m.spacer(2);
-    font-size: v.$font-size-sm;
-    font-weight: v.$font-weight-medium;
+    font-family: v.$font-family-label;
+    font-size: v.$font-size-label-s;
+    font-weight: v.$font-weight-bold;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: v.$color-text;
+    letter-spacing: v.$tracking-label;
+    color: v.$color-accent-teal;
     text-decoration: none;
   }
 
@@ -205,18 +235,29 @@
     list-style: none;
     margin: 0;
     padding: 0;
-
-    li+li {
-      margin-top: m.spacer(1);
-    }
+    display: flex;
+    flex-direction: column;
+    gap: m.spacer(2);
 
     a {
-      color: v.$color-text-muted;
+      display: flex;
+      align-items: center;
+      gap: m.spacer(2);
+      color: v.$color-text;
       text-decoration: none;
+      font-size: v.$font-size-body-s;
 
       &:hover {
         color: v.$color-primary;
       }
+    }
+
+    img {
+      width: 36px;
+      height: 36px;
+      border-radius: v.$border-radius-sm;
+      object-fit: cover;
+      flex-shrink: 0;
     }
   }
 }

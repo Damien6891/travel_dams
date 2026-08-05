@@ -62,6 +62,15 @@
 			}
 
 			if (! empty($related)) {
+
+
+				$carnets_cat_id = travel_dams_get_pillar_term_id(TD_SLUG_CARNETS);
+
+				// if ($carnets_cat_id && has_category($carnets_cat_id, $post_id)) {
+				// 	get_template_part('template-parts/destination/next-carnet', null, ['post' => $related[0]]);
+				// } else {
+				// 	get_template_part('template-parts/related-posts', null, ['posts' => $related]);
+				// }
 				get_template_part('template-parts/related-posts', null, ['posts' => $related]);
 			}
 			?>

@@ -1,0 +1,87 @@
+@use '../abstracts' as abs;
+
+// Panneau d'inscription newsletter — voir components/sections/Newsletter
+.newsletter {
+  border-radius: abs.$border-radius-xl;
+  padding: abs.spacer(8) abs.spacer(5);
+  text-align: center;
+  color: abs.$color-text-inverse;
+
+  &__eyebrow {
+    display: block;
+    margin-bottom: abs.spacer(3);
+    color: abs.$color-secondary;
+  }
+
+  &__title {
+    max-width: 560px;
+    margin: 0 auto abs.spacer(3);
+    color: abs.$color-text-inverse;
+  }
+
+  &__description {
+    max-width: 480px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: abs.$font-size-body-m;
+  }
+
+  &__form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: abs.spacer(3);
+    margin: abs.spacer(4) auto 0;
+    width: 100%;
+    max-width: 448px;
+  }
+
+  &__field {
+    flex: 1 1 200px;
+  }
+
+  &__submit {
+    white-space: nowrap;
+  }
+
+  &__disclaimer {
+    display: block;
+    margin-top: abs.spacer(3);
+    font-size: abs.$font-size-body-xs;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  // --- Tons ---
+  &--darkest {
+    background-color: abs.$color-primary-dark;
+  }
+
+  &--forest {
+    background-color: abs.$color-primary;
+  }
+
+  // --- Mise en page côte-à-côte (utilisée sur Destination Thaïlande) ---
+  &--split {
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: abs.spacer(6);
+    padding: abs.spacer(7) abs.spacer(5);
+
+    .newsletter__intro,
+    .newsletter__form-wrap {
+      flex: 1 1 320px;
+    }
+
+    .newsletter__title,
+    .newsletter__description {
+      margin-left: 0;
+      max-width: none;
+    }
+
+    .newsletter__form {
+      margin-left: 0;
+      max-width: none;
+    }
+  }
+}

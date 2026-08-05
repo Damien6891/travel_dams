@@ -29,6 +29,7 @@ $wide-gap: calc((#{$wide-size} - #{$content-size}) / 2);
 .content-grid,
 .entry-content {
     display: grid;
+    margin-top: m.spacer(8);
     @include content-grid-columns(v.$container-padding-x);
 
     @include m.mq('lg') {

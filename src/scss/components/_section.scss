@@ -4,17 +4,48 @@
     font-size: abs.$font-size-h2;
     font-weight: abs.$font-weight-bold;
     margin-bottom: abs.spacer(4);
+
+    .eyebrow {
+        font-size: abs.$font-size-label-s;
+        color: abs.$color-accent-teal;
+    }
 }
 
 .section-link {
     display: inline-block;
     margin-top: abs.spacer(4);
-    color: abs.$color-primary;
-    font-weight: abs.$font-weight-medium;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+    color: abs.$color-accent-teal;
+    font-weight: abs.$font-weight-bold;
+    font-size: abs.$font-size-body-xs;
+    text-decoration: none;
 
     &:hover {
-        color: abs.$color-primary-dark;
+        color: abs.$color-primary;
+    }
+}
+
+// En-tête de section : titre+intro à gauche, lien "voir tout" à droite
+.section-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: abs.spacer(3);
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: abs.spacer(6);
+
+    .section-title {
+        margin-bottom: abs.spacer(2);
+    }
+
+    .section-link {
+        margin-top: 0;
+        white-space: nowrap;
+    }
+
+    &__lead {
+        font-size: abs.$font-size-body-m;
+        color: abs.$color-text-body;
+        margin: 0;
+        max-width: 480px;
     }
 }

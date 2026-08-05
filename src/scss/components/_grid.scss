@@ -14,3 +14,18 @@
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+// Grille asymétrique : 1re carte (feature) sur 2 colonnes, le reste en 1 colonne
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: abs.spacer(4);
+
+    @media (max-width: 599px) {
+        grid-template-columns: 1fr;
+
+        .content-card--feature {
+            grid-column: span 1;
+        }
+    }
+}

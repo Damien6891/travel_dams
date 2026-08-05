@@ -1,0 +1,99 @@
+@use '../abstracts' as abs;
+
+// Bloc d'intro d'une page pays : texte + tags + image
+.country-intro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: abs.spacer(6);
+  align-items: center;
+  margin-block: abs.spacer(7);
+
+  &__text {
+    flex: 1 1 380px;
+  }
+
+  &__description {
+    font-size: abs.$font-size-body-m;
+    color: abs.$color-text-body;
+    line-height: abs.$line-height-relaxed;
+
+    p:last-child {
+      margin-bottom: abs.spacer(4);
+    }
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: abs.spacer(2);
+  }
+
+  &__image {
+    flex: 1 1 320px;
+    width: 100%;
+    max-width: 100%;
+    height: clamp(260px, 40vw, 420px);
+    object-fit: cover;
+    border-radius: abs.$border-radius-lg;
+  }
+}
+
+// Section "Guides Pratiques" en liste 4 colonnes bordées (page pays)
+.guides-list-section {
+  background-color: abs.$color-bg-alt;
+  margin-inline: calc(-1 * abs.$container-padding-x);
+  padding: abs.spacer(8) abs.$container-padding-x;
+  text-align: center;
+
+  @include abs.mq('lg') {
+    margin-inline: calc(-1 * abs.$container-padding-x-lg);
+    padding-inline: abs.$container-padding-x-lg;
+  }
+
+  &__header {
+    margin-bottom: abs.spacer(6);
+  }
+
+  &__title {
+    margin: abs.spacer(2) 0 0;
+  }
+}
+
+.guides-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  text-align: left;
+
+  &__item {
+    padding: abs.spacer(5);
+    border-left: 1px solid abs.$color-border;
+    display: flex;
+    flex-direction: column;
+    gap: abs.spacer(2);
+  }
+
+  &__title {
+    font-size: abs.$font-size-h4;
+    font-weight: abs.$font-weight-normal;
+    margin: 0;
+
+    a {
+      color: abs.$color-text;
+    }
+  }
+
+  &__excerpt {
+    font-size: abs.$font-size-body-s;
+    color: abs.$color-text-body;
+    line-height: abs.$line-height-base;
+    margin: 0;
+  }
+
+  &__link {
+    margin-top: abs.spacer(1);
+    font-size: abs.$font-size-label-m;
+    font-weight: abs.$font-weight-bold;
+    letter-spacing: 0.5px;
+    color: abs.$color-primary;
+  }
+}

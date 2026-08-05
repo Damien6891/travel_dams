@@ -1,0 +1,56 @@
+@use '../abstracts' as abs;
+
+// Eyebrows, tags image, hashtags — voir components/core/Badge et Chip du design system
+.badge {
+  display: inline-block;
+  font-family: abs.$font-family-label;
+  font-size: abs.$font-size-label-s;
+  font-weight: abs.$font-weight-bold;
+  letter-spacing: abs.$tracking-eyebrow;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  // Eyebrow superposé à une image sombre (hero, cartes photo) : pilule + bordure ambre
+  &--eyebrow-dark {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(28, 29, 30, 0.5);
+    border: 1px solid rgba(246, 183, 77, 0.4);
+    border-radius: abs.$border-radius-pill;
+    color: abs.$color-secondary;
+    padding: 6px 16px;
+  }
+
+  // Eyebrow simple sur fond clair : pas de pilule, juste le texte tracké
+  &--eyebrow-light {
+    color: abs.$color-accent-teal;
+  }
+
+  // Tag posé sur une image (catégorie, pays) : pilule blanche opaque, texte sombre
+  &--tag {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: abs.$border-radius-pill;
+    color: abs.$color-text;
+    padding: 6px 12px;
+    letter-spacing: 1px;
+  }
+
+  // Tag bordé sur fond sombre (ex: "DOSSIER SPÉCIAL")
+  &--outline-dark {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: abs.$border-radius-pill;
+    color: abs.$color-text-inverse;
+    padding: 8px 16px;
+  }
+}
+
+// Chip générique — pilule bordée, sans fond (hashtags #SlowTravel, stats destination)
+.chip {
+  display: inline-block;
+  border: 1px solid abs.$color-border;
+  border-radius: abs.$border-radius-pill;
+  padding: 8px 16px;
+  font-family: abs.$font-family-base;
+  font-size: abs.$font-size-body-xs;
+  color: abs.$color-text-body;
+}

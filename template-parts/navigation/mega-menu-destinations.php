@@ -20,10 +20,15 @@ if (empty($columns)) {
                 <?php echo esc_html($column['continent']->name); ?>
             </a>
             <ul class="mega-menu__countries">
-                <?php foreach ($column['countries'] as $country) : ?>
+                <?php foreach ($column['countries'] as $country) :
+                    $country_image_id = carbon_get_term_meta($country->term_id, 'zone_image_id');
+                ?>
                     <li>
                         <a href="<?php echo esc_url(get_term_link($country)); ?>">
-                            <?php echo esc_html($country->name); ?>
+                            <?php if ($country_image_id) : ?>
+                                <?php echo wp_get_attachment_image(absint($country_image_id), 'thumbnail'); ?>
+                            <?php endif; ?>
+                            <span><?php echo esc_html($country->name); ?></span>
                         </a>
                     </li>
                 <?php endforeach; ?>

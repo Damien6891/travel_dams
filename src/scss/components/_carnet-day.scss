@@ -1,18 +1,61 @@
 // components/_carnet-day.scss
-@use '../abstracts/mixins' as m;
-@use '../abstracts/variables' as v;
+@use '../abstracts' as abs;
 
 .carnet-day {
     display: contents;
 
-    &__title {}
+    &__meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        // border-top: 1px solid abs.$color-border;
+        padding-top: abs.spacer(4);
+        margin-top: abs.spacer(7);
+        gap: 1rem;
+
+        .line {
+            flex-grow: 1;
+            height: 1px;
+            background: abs.$color-border;
+        }
+    }
+
+    &__number {
+        font-family: abs.$font-family-label;
+        font-size: abs.$font-size-body-xl;
+        font-weight: abs.$font-weight-bold;
+        color: abs.$color-secondary;
+        opacity: .7;
+    }
 
     &__date {
-        margin-top: 0;
-        color: v.$color-text-muted;
+        font-family: abs.$font-family-label;
+        font-size: abs.$font-size-label-m;
+        letter-spacing: abs.$tracking-label;
+        color: abs.$color-secondary;
     }
-}
 
-:root .carnet-day__title {
-    margin-block-start: m.spacer(6);
+    &__title {
+        margin-block-start: abs.spacer(3) !important;
+        margin-block-end: abs.spacer(5);
+        font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+
+    &__content {
+        p {
+            font-size: abs.$font-size-body-l;
+            line-height: abs.$line-height-relaxed;
+            color: abs.$color-text-body;
+        }
+
+        img {
+            border-radius: abs.$border-radius;
+        }
+
+        figcaption {
+            text-align: center;
+            font-size: abs.$font-size-body-xs;
+            color: abs.$color-text-muted;
+        }
+    }
 }
