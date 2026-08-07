@@ -315,6 +315,14 @@ function travel_dams_get_hero_title()
 	return '';
 }
 
+// Allow SVG
+function travel_dams_allow_svg_upload($mimes)
+{
+	$mimes['svg'] = 'image/svg+xml';
+	return $mimes;
+}
+add_filter('upload_mimes', 'travel_dams_allow_svg_upload');
+
 // h1 partout SAUF sur la home, où le h1 est déjà pris par le nom du site dans le header
 function travel_dams_get_hero_title_tag()
 {
