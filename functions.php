@@ -258,11 +258,33 @@ function travel_dams_scripts()
 		);
 	}
 
+	// Analytics UMAMI
+	wp_enqueue_script(
+		'umami-tracking',
+		'https://stats.damien-hantzer.com/script.js',
+		[],
+		null,
+		[
+			'strategy' => 'defer',
+			'in_footer' => false
+		]
+	);
+
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
 	}
 }
 add_action('wp_enqueue_scripts', 'travel_dams_scripts');
+
+function add_umami_data_attribute($tag, $handle)
+{
+	if ('umami-tracking' === $handle) {
+		$tag = str_replace(' src', ' data-website-id="718e5083-d5ca-4f57-9c91-e881be0fca7a" src', $tag);
+	}
+
+	return $tag;
+}
+add_filter('script_loader_tag', 'add_umami_data_attribute', 10, 2);
 
 /**
  * Preconnect vers Google Fonts pour accélérer le chargement des 3 familles du design system.
