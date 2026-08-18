@@ -18,7 +18,7 @@ $block = Block::make(__('Jour de carnet', 'travel-dams'))
 /** @disregard P1013 */
 $block->set_inner_blocks(true)
     ->set_inner_blocks_position('below')
-    ->set_allowed_inner_blocks(array('core/paragraph', 'core/image', 'core/columns'))
+    // ->set_allowed_inner_blocks(array('core/paragraph', 'core/image', 'core/columns'))
     ->set_render_callback(function ($fields, $attributes, $inner_blocks) {
         static $day_number = 0;
         $day_number++;

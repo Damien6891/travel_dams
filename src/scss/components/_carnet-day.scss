@@ -1,8 +1,66 @@
-// components/_carnet-day.scss
+// // components/_carnet-day.scss
 @use '../abstracts' as abs;
 
+// .carnet-day {
+//     display: contents;
+
+//     &__meta {
+//         display: flex;
+//         justify-content: space-between;
+//         align-items: baseline;
+//         // border-top: 1px solid abs.$color-border;
+//         padding-top: abs.spacer(4);
+//         margin-top: abs.spacer(7);
+//         gap: 1rem;
+
+//         .line {
+//             flex-grow: 1;
+//             height: 1px;
+//             background: abs.$color-border;
+//         }
+//     }
+
+//     &__number {
+//         font-family: abs.$font-family-label;
+//         font-size: abs.$font-size-body-xl;
+//         font-weight: abs.$font-weight-bold;
+//         color: abs.$color-secondary;
+//         opacity: .7;
+//     }
+
+//     &__date {
+//         font-family: abs.$font-family-label;
+//         font-size: abs.$font-size-label-m;
+//         letter-spacing: abs.$tracking-label;
+//         color: abs.$color-secondary;
+//     }
+
+//     &__title {
+//         margin-block-start: abs.spacer(3) !important;
+//         margin-block-end: abs.spacer(5);
+//         font-size: clamp(1.5rem, 6vw, 2rem);
+//     }
+
+//     &__content {
+//         p {
+//             font-size: abs.$font-size-body-l;
+//             line-height: abs.$line-height-relaxed;
+//             color: abs.$color-text-body;
+//         }
+
+//         img {
+//             border-radius: abs.$border-radius;
+//         }
+
+//         figcaption {
+//             text-align: center;
+//             font-size: abs.$font-size-body-xs;
+//             color: abs.$color-text-muted;
+//         }
+//     }
+// }
+
 .carnet-day {
-    display: contents;
 
     &__meta {
         display: flex;
@@ -56,6 +114,67 @@
             text-align: center;
             font-size: abs.$font-size-body-xs;
             color: abs.$color-text-muted;
+        }
+    }
+
+    >.carnet-day__meta,
+    >.carnet-day__title {
+        grid-column: content;
+    }
+
+    >.carnet-day__content {
+        grid-column: full;
+        display: grid;
+        grid-template-columns: subgrid;
+
+        >* {
+            grid-column: content;
+        }
+
+        >.alignwide {
+            grid-column: wide;
+        }
+
+        >.alignfull {
+            grid-column: full;
+
+            >img,
+            >video,
+            >iframe {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        >.aligncenter {
+            grid-column: content;
+            margin-inline: auto;
+        }
+    }
+
+    &--pattern {
+
+        .carnet-day__line {
+            flex-grow: 1;
+
+            .line {
+                display: block;
+                height: 1px;
+                background: abs.$color-border;
+            }
+        }
+
+        >* {
+            grid-column: content;
+
+            &.alignwide {
+                grid-column: wide;
+            }
+
+            &.alignfull {
+                grid-column: full;
+
+            }
         }
     }
 }

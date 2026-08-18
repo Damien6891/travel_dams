@@ -7,12 +7,16 @@
  */
 ?>
 <!-- wp:group {"className":"carnet-day", "templateLock":false} -->
-<div class="wp-block-group carnet-day">
+<div class="wp-block-group carnet-day carnet-day--pattern">
 
     <!-- wp:group {"className":"carnet-day__meta","layout":{"type":"flex","justifyContent":"space-between"}} -->
     <div class="wp-block-group carnet-day__meta">
         <!-- wp:paragraph {"className":"carnet-day__number"} -->
         <p class="carnet-day__number">01</p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:paragraph  {"className":"carnet-day__line"} -->
+        <p class="carnet-day__line"><span class="line"></span></p>
         <!-- /wp:paragraph -->
 
         <!-- wp:paragraph {"className":"carnet-day__date"} -->
