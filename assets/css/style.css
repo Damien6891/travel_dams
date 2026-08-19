@@ -1470,9 +1470,6 @@ body.admin-bar .site-header {
   line-height: 1.8;
   color: #434843;
 }
-.carnet-day__content img {
-  border-radius: 12px;
-}
 .carnet-day__content figcaption {
   text-align: center;
   font-size: 0.8125rem;
