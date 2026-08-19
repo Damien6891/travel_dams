@@ -2101,6 +2101,15 @@ body.admin-bar .site-header {
   margin-top: 1rem;
 }
 
+.wp-block-image.alignfull img {
+  width: 100%;
+  max-height: 600px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center;
+  object-position: center;
+}
+
 .pagination {
   display: flex;
   justify-content: center;
