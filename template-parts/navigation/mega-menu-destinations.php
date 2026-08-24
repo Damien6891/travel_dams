@@ -25,12 +25,19 @@ if (empty($columns)) {
                 ?>
                     <li>
                         <a href="<?php echo esc_url(get_term_link($country)); ?>">
-                            <?php if ($country_image_id) : ?>
+                            <!-- <?php if ($country_image_id) : ?>
                                 <?php echo wp_get_attachment_image(absint($country_image_id), 'thumbnail'); ?>
+                            <?php endif; ?> -->
+                            <?php $code = carbon_get_term_meta($country->term_id, 'country_code'); ?>
+                            <?php if ($code) : ?>
+                                <span class="fi fi-<?php echo esc_attr($code); ?> fis country-flag" aria-hidden="true"></span>
                             <?php endif; ?>
                             <span><?php echo esc_html($country->name); ?></span>
                         </a>
+
                     </li>
+
+
                 <?php endforeach; ?>
             </ul>
         </div>

@@ -22,10 +22,22 @@ const paths = {
     watch: 'src/js/**/*.js',
     dest: './assets/js'
   },
+  // flags: {
+  //   src: 'node_modules/flag-icons/flags/**/*.svg',
+  //   base: 'node_modules/fleg-icons/flags',
+  //   dest: './assets/flags'
+  // },
   php: {
     watch: ['./**/*.php', '!node_modules/**', '!vendor/**']
   }
 };
+
+function copyFlagIcons() {
+  return merge(
+    gulp.src('node_modules/flag-icons/flags/4x3/*.svg').pipe(gulp.dest('./assets/flags/4x3')),
+    gulp.src('node_modules/flag-icons/flags/1x1/*.svg').pipe(gulp.dest('./assets/flags/1x1'))
+  );
+}
 
 // Un point d'entrée = un fichier de sortie, chargé uniquement où il est enqueue.
 // "navigation" est global (présent sur chaque page).
@@ -41,12 +53,17 @@ function styles() {
     .src(paths.scss.main)
     .pipe(plumber())
     .pipe(sourcemaps.init())
-    .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
+    .pipe(sass({
+      outputStyle: 'expanded',
+      includePaths: ['node_modules'],
+      loadPaths: ['node_modules'],
+    }).on('error', sass.logError))
     .pipe(autoprefixer({ cascade: false }))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(paths.scss.dest))
     .pipe(browserSync.stream());
 }
+
 
 function scripts() {
   const streams = Object.entries(jsEntries).map(([name, files]) => {
@@ -86,11 +103,12 @@ function watchFiles() {
   gulp.watch(paths.php.watch, reload); // reload complet
 }
 
-const build = gulp.parallel(styles, scripts);
+const build = gulp.parallel(styles, scripts, copyFlagIcons);
 const dev = gulp.series(build, serve, watchFiles);
 
 exports.styles = styles;
 exports.scripts = scripts;
+exports.copyFlagIcons = copyFlagIcons;
 exports.build = build;
 exports.watch = dev;
 exports.default = dev;

@@ -25,6 +25,7 @@ $image_id = carbon_get_term_meta($current_term->term_id, 'zone_image_id');
     ))
     ?>
 
+
     <?php if ($is_zone && ! empty($current_term->description)) : ?>
         <div class="container container--narrow">
             <div class="destination-archive__description">

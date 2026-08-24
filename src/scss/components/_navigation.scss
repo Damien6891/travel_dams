@@ -252,6 +252,14 @@
       }
     }
 
+    .fi.country-flag {
+      width: 36px;
+      height: 36px;
+      border-radius: v.$border-radius-sm;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
     img {
       width: 36px;
       height: 36px;
