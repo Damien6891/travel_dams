@@ -157,7 +157,8 @@
 
     &--single,
     &--carnet {
-        min-height: 40vh;
+        // min-height: 40vh;
+        min-height: 90vh;
 
         &.hero--carnet {
             min-height: clamp(420px, 60vw, 560px);
@@ -172,7 +173,8 @@
     }
 
     &--destination {
-        min-height: 40vh;
+        // min-height: 40vh;
+        min-height: 90vh;
     }
 
     // Bandeau translucide centré (archive de zone, ex : "Destinations : Asie")
@@ -208,7 +210,8 @@
     }
 
     &--archive {
-        min-height: 50vh;
+        // min-height: 40vh;
+        min-height: 90vh;
 
         &:not(.hero--has-image) {
             // background-color: abs.$color-bg-alt;

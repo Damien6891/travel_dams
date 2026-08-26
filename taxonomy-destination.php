@@ -9,8 +9,8 @@ get_header();
 
 $current_term = get_queried_object();
 $is_zone      = (0 === $current_term->parent); // pas de parent = c'est une zone
-$image_id = carbon_get_term_meta($current_term->term_id, 'zone_image_id');
-
+$image_id = carbon_get_term_meta($current_term->term_id, 'hero_image');
+$long_description = carbon_get_term_meta($current_term->term_id, 'country_description');
 ?>
 
 <main id="primary" class="site-main destination-archive">
@@ -25,6 +25,25 @@ $image_id = carbon_get_term_meta($current_term->term_id, 'zone_image_id');
     ))
     ?>
 
+    <!-- <?php if (!$is_zone) : ?>
+        <div class="container">
+            <div class="country">
+                <div class="country__infos">
+                    <ul>
+                        <li>
+                            <p><?= __('Pays', 'travel-dams') ?></p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="country__description">
+                    <?= wpautop($long_description) ?>
+                </div>
+            </div>
+
+        </div>
+        <?= wpautop($long_description) ?>
+    <?php endif ?> -->
+
 
     <?php if ($is_zone && ! empty($current_term->description)) : ?>
         <div class="container container--narrow">
@@ -34,7 +53,8 @@ $image_id = carbon_get_term_meta($current_term->term_id, 'zone_image_id');
         </div>
     <?php endif; ?>
 
-    <div class="container container--wide">
+    <div class="container ">
+        <!-- <div class="container container--wide"> -->
 
         <?php if ($is_zone) : ?>
 

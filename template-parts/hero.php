@@ -27,6 +27,8 @@ $classes = array('hero', 'hero--' . $context);
 if ($hero_image_id) {
     $classes[] = 'hero--has-image';
 }
+
+
 ?>
 
 <section class="<?php echo esc_attr(implode(' ', $classes)); ?>">

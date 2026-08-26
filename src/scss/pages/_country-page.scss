@@ -3,10 +3,125 @@
 // Bloc d'intro d'une page pays : texte + tags + image
 .country-intro {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: abs.spacer(6);
-  align-items: center;
+  // align-items: center;
   margin-block: abs.spacer(7);
+  // position: relative;
+
+  @include abs.mq('md') {
+    // flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+
+
+  }
+
+  &__infos {
+    position: relative;
+    flex-basis: 250px;
+    font-family: abs.$font-family-label;
+    background: abs.$color-surface-card;
+    padding: abs.spacer(4);
+    border-radius: abs.$border-radius;
+    border: 1px solid abs.$color-border;
+
+    .country-infos-title {
+      display: block;
+      text-transform: uppercase;
+      font-size: abs.$font-size-label-s;
+      margin-bottom: abs.spacer(2);
+      font-weight: abs.$font-weight-bold;
+      color: abs.$color-accent-teal;
+    }
+
+    ul {
+      list-style: none;
+      padding: unset;
+      margin-block: unset;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: abs.spacer(2);
+
+      @include abs.mq('md') {
+        // position: sticky;
+        // top: 0;
+      }
+    }
+
+    p {
+      margin: 0;
+    }
+
+    li {
+      position: relative;
+
+      p:first-child {
+        font-weight: abs.$font-weight-bold;
+        font-size: abs.$font-size-label-m;
+        text-transform: uppercase;
+        color: abs.$color-text-muted;
+      }
+    }
+
+    hr {
+      width: 100%;
+      height: 1px;
+      background: abs.$color-text-muted;
+      opacity: .5;
+    }
+  }
+
+  &__map {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    max-height: 90%;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: 0;
+
+    // background-color: var(--color-accent, currentColor); // n'importe laquelle de tes couleurs de charte
+    // -webkit-mask-image: var(--map-icon);
+    // mask-image: var(--map-icon);
+    // -webkit-mask-repeat: no-repeat;
+    // mask-repeat: no-repeat;
+    // -webkit-mask-position: right -60px top -40px; // effet "déborde du cadre", à ajuster à l'oeil
+    // mask-position: right -60px top -40px;
+    // -webkit-mask-size: 480px;
+    // mask-size: 480px;
+    // opacity: .08; // subtil, effet filigrane plutôt qu'illustration visible
+    // pointer-events: none;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      opacity: .12;
+
+      g {
+        fill: abs.$color-text-muted;
+      }
+    }
+
+    &--outline {
+      svg {
+        g {
+          fill: none;
+          stroke: currentColor;
+          stroke-width: 2;
+        }
+
+        path {
+          vector-effect: non-scaling-stroke;
+        }
+      }
+    }
+  }
+
 
   &__text {
     flex: 1 1 380px;
@@ -16,6 +131,10 @@
     font-size: abs.$font-size-body-m;
     color: abs.$color-text-body;
     line-height: abs.$line-height-relaxed;
+
+    p:first-child {
+      margin-top: unset;
+    }
 
     p:last-child {
       margin-bottom: abs.spacer(4);
