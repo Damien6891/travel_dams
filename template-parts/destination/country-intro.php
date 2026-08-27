@@ -20,12 +20,13 @@ $country_language = carbon_get_term_meta($destination_term->term_id, 'country_la
 $country_code = carbon_get_term_meta($destination_term->term_id, 'country_code');
 $map_path = get_template_directory() . '/assets/maps/' . $country_code . '.svg';
 
-if (empty($destination_term->description) && ! $image_id && empty($tags)) {
-    return;
-}
+// if (empty($destination_term->description) && ! $image_id && empty($tags)) {
+//     return;
+// }
 ?>
 
 <section class="country-intro">
+
 
     <div class="country-intro__infos">
         <span class="country-infos-title"><?= __('En bref', 'travel-dams') ?></span>
