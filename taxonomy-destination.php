@@ -11,6 +11,11 @@ $current_term = get_queried_object();
 $is_zone      = (0 === $current_term->parent); // pas de parent = c'est une zone
 $image_id = carbon_get_term_meta($current_term->term_id, 'hero_image');
 $long_description = carbon_get_term_meta($current_term->term_id, 'country_description');
+$country_map = null;
+// $country_code = carbon_get_term_meta($destination_term->term_id, 'country_code');
+if (!$is_zone) {
+    $country_map = get_template_directory() . '/assets/maps/' . carbon_get_term_meta($current_term->term_id, 'country_code') . '.svg';
+}
 ?>
 
 <main id="primary" class="site-main destination-archive">
@@ -22,6 +27,7 @@ $long_description = carbon_get_term_meta($current_term->term_id, 'country_descri
         'title'    => $current_term->name,
         'subtitle' => $current_term->description,
         'image_id' => $image_id ? absint($image_id) : 0,
+        'country_map' => $country_map
     ))
     ?>
 

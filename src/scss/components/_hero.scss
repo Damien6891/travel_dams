@@ -138,6 +138,55 @@
         margin-top: abs.spacer(3);
     }
 
+
+    &__map {
+        position: absolute;
+        max-width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        // left: 0;
+        z-index: 0;
+
+        // background-color: var(--color-accent, currentColor); // n'importe laquelle de tes couleurs de charte
+        // -webkit-mask-image: var(--map-icon);
+        // mask-image: var(--map-icon);
+        // -webkit-mask-repeat: no-repeat;
+        // mask-repeat: no-repeat;
+        // -webkit-mask-position: right -60px top -40px; // effet "déborde du cadre", à ajuster à l'oeil
+        // mask-position: right -60px top -40px;
+        // -webkit-mask-size: 480px;
+        // mask-size: 480px;
+        // opacity: .08; // subtil, effet filigrane plutôt qu'illustration visible
+        // pointer-events: none;
+
+        svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+            opacity: .1;
+
+            g {
+                fill: abs.$color-surface-card;
+            }
+        }
+
+        &--outline {
+            svg {
+                g {
+                    fill: none;
+                    // stroke: currentColor;
+                    stroke: abs.$color-surface-card;
+                    stroke-width: 2;
+                }
+
+                path {
+                    vector-effect: non-scaling-stroke;
+                }
+            }
+        }
+    }
+
     // --- Variantes par contexte ---
 
     &--front-page {
@@ -219,4 +268,5 @@
             color: abs.$color-text;
         }
     }
+
 }

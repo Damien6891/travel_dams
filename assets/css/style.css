@@ -1007,6 +1007,31 @@ body.admin-bar .site-header {
   gap: 16px;
   margin-top: 16px;
 }
+.hero__map {
+  position: absolute;
+  max-width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: 0;
+}
+.hero__map svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+}
+.hero__map svg g {
+  fill: #ffffff;
+}
+.hero__map--outline svg g {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 2;
+}
+.hero__map--outline svg path {
+  vector-effect: non-scaling-stroke;
+}
 .hero--front-page {
   min-height: 90vh;
   align-items: center;
