@@ -24,7 +24,7 @@ $hero_tag      = tag_escape(travel_dams_get_hero_title_tag());
 $context       = $args['context'] ?? 'default';
 
 // If taxonomy destination country
-$country_map = $args['country_map'];
+$country_map = $args['country_map'] ?? null;
 
 $classes = array('hero', 'hero--' . $context);
 if ($hero_image_id) {
@@ -72,7 +72,6 @@ if ($hero_image_id) {
     </div>
 
     <?php if ($country_map && file_exists($country_map)) : ?>
-
         <div class="hero__map hero__map--">
             <?= file_get_contents($country_map) ?>
             <!-- <?php echo str_replace('preserveAspectRatio="xMidYMid meet"', 'preserveAspectRatio="xMidYMid slice"', file_get_contents($country_map)); ?> -->
