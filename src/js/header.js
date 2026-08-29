@@ -9,10 +9,18 @@
     function initHeaderHeightVar() {
 
         const header = document.getElementById('masthead');
+        const adminBar = document.getElementById('wpadminbar')
+
+        let adminBarHeight = 0
+
+        if (adminBar) {
+            adminBarHeight = adminBar.offsetHeight
+        }
+
         if (!header) return;
 
         function setHeaderHeightVar() {
-            document.documentElement.style.setProperty('--header-height', header.offsetHeight + 'px');
+            document.documentElement.style.setProperty('--header-height', header.offsetHeight + adminBarHeight + 'px');
         }
 
         setHeaderHeightVar();
