@@ -178,3 +178,62 @@
         }
     }
 }
+
+// .carnet-layout {
+//   @include mq($from: desktop) {
+//     display: grid;
+//     grid-template-columns: 260px 1fr;
+//     gap: 2rem;
+//     align-items: start;
+//   }
+// }
+
+.carnet-sommaire {
+    // @include abs.mq('lg') {
+    //     position: sticky;
+    //     top: var(--header-height, 80px);
+    //     top: calc(var(--header-height, 80px) + 32px);
+    //     max-height: calc(100vh - var(--header-height, 80px) - 2rem);
+    //     overflow-y: auto;
+    //     background: white;
+    // }
+    position: sticky;
+    top: var(--header-height, 80px);
+    max-height: calc(100vh - var(--header-height, 80px) - 2rem);
+    overflow-y: auto;
+    background: white;
+    padding: abs.spacer(2);
+    border-radius: abs.$border-radius;
+    z-index: 10;
+    // border: 1px solid abs.$color-accent-teal;
+
+    summary {
+        color: abs.$color-accent-teal;
+        text-transform: uppercase;
+        font-family: abs.$font-family-label;
+    }
+
+    &__toggle {
+        @include abs.mq('lg') {
+            // pointer-events: none;
+        }
+
+        // désactive le toggle natif
+    }
+
+    &__list {
+        @include abs.mq('lg') {
+            display: block !important;
+        }
+
+        // toujours visible, ignore [open]
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.carnet-jour {
+    scroll-margin-top: var(--header-height, 80px); // évite que l'ancre passe sous le header sticky
+}

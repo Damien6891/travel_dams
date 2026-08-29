@@ -1555,6 +1555,35 @@ body.admin-bar .site-header {
   grid-column: full;
 }
 
+.carnet-sommaire {
+  position: sticky;
+  top: var(--header-height, 80px);
+  max-height: calc(100vh - var(--header-height, 80px) - 2rem);
+  overflow-y: auto;
+  background: white;
+  padding: 12px;
+  border-radius: 12px;
+  z-index: 10;
+}
+.carnet-sommaire summary {
+  color: #06a68e;
+  text-transform: uppercase;
+  font-family: "Space Grotesk", sans-serif;
+}
+@media (min-width: 992px) {
+  .carnet-sommaire__list {
+    display: block !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.carnet-jour {
+  scroll-margin-top: var(--header-height, 80px);
+}
+
 .wp-block-gallery.has-nested-images figure.wp-block-image:not(#individual-image) {
   width: 100%;
 }
@@ -2437,6 +2466,10 @@ body.admin-bar .site-header {
 .archive .content {
   margin-top: 80px;
   margin-bottom: 80px;
+}
+
+.site-main {
+  position: relative;
 }
 
 .u-max-h-sm img,

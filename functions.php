@@ -458,3 +458,71 @@ add_action('init', function () {
 if (defined('JETPACK__VERSION')) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+
+function travel_dams_get_carnet_sommaire($post_id = null)
+{
+	$post_id = $post_id ?: get_the_ID();
+	$blocks = parse_blocks(get_post_field('post_content', $post_id));
+	$days = [];
+
+
+	foreach ($blocks as $block) {
+
+
+		if ('carbon-fields/jour-de-carnet' === $block['blockName']) {
+			$data = $block['attrs']['data'] ?? [];
+			$days[] = [
+				'number' => $data['carnet_day_number'] ?? '',
+				'number_title' => $data['carnet_day_day'] ?? '',
+				'title' => $data['carnet_day_title'] ?? ''
+			];
+		}
+	}
+
+	return $days;
+}
+
+function travel_dams_get_carnet_category_id()
+{
+	static $id = null;
+
+	if ($id !== null) {
+		return $id;
+	}
+
+	$terms = get_terms([
+		'taxonomy'   => 'category',
+		'slug'       => TD_SLUG_CARNETS,
+		'lang'       => '', // bypass du filtre Polylang
+		'hide_empty' => false,
+	]);
+
+	if (empty($terms) || is_wp_error($terms)) {
+		$id = 0;
+		return $id;
+	}
+
+	$base_term_id = $terms[0]->term_id;
+
+	$id = function_exists('pll_get_term')
+		? (pll_get_term($base_term_id) ?: $base_term_id)
+		: $base_term_id;
+
+	return $id;
+}
+
+add_filter('template_include', 'travel_dams_carnet_template');
+
+function travel_dams_carnet_template($template)
+{
+	if (is_single() && has_category(travel_dams_get_carnet_category_id())) {
+		$carnet_template = locate_template('single-carnet.php');
+
+		if ($carnet_template) {
+			return $carnet_template;
+		}
+	}
+
+	return $template;
+}
