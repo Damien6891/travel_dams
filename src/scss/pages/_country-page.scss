@@ -128,8 +128,9 @@
   }
 
   &__description {
-    font-size: abs.$font-size-body-m;
-    color: abs.$color-text-body;
+    // font-size: abs.$font-size-body-m;
+    // color: abs.$color-text-body;
+    font-weight: abs.$font-weight-medium;
     line-height: abs.$line-height-relaxed;
 
     p:first-child {
