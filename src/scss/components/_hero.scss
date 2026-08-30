@@ -129,6 +129,8 @@
         font-size: abs.$font-size-body-m;
         line-height: abs.$line-height-relaxed;
         margin: 0;
+        font-style: italic;
+        // font-family: abs.$font-family-heading;
     }
 
     &__ctas {

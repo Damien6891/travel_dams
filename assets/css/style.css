@@ -1000,6 +1000,7 @@ body.admin-bar .site-header {
   font-size: 0.9375rem;
   line-height: 1.8;
   margin: 0;
+  font-style: italic;
 }
 .hero__ctas {
   display: flex;
