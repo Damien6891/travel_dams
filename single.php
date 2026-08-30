@@ -50,6 +50,7 @@ if ($is_carnet) {
 		'title'   => get_the_title(),
 		'byline'  => $hero_byline,
 		'image_id' => $hero_image ?: get_post_thumbnail_id(),
+		'subtitle' => ''
 	))
 	?>
 
