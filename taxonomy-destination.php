@@ -23,7 +23,7 @@ if (!$is_zone) {
     <?php
     get_template_part('template-parts/hero', null, array(
         'context'  => $is_zone ? 'zone' : 'destination',
-        'eyebrow'  => $is_zone ? __('Explorer le monde', 'travel-dams') : '',
+        'eyebrow'  => $is_zone ? __('Explorer le monde', 'travel-dams') : 'Destination ' . get_term($current_term->parent)->name,
         'title'    => $current_term->name,
         'subtitle' => $current_term->description,
         'image_id' => $image_id ? absint($image_id) : 0,
