@@ -80,7 +80,7 @@ if ($start && $end) {
                                                 <?= esc_html($day['number_title']) ?>
                                             </span>
                                             <span class="carnet-sommaire__title">
-                                                <?= esc_html($day['title']) ?>
+                                                <?= esc_html(wptexturize($day['title'])) ?>
                                             </span>
                                             <span class="carnet-sommaire__date">
                                                 <?= $day['date'] ?>

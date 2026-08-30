@@ -32,6 +32,7 @@ $block->set_inner_blocks(true)
         $day_number = $fields['carnet_day_number'];
 
 ?>
+
     <div class="carnet-day" id="day-<?= esc_attr($day_number) ?>">
 
         <div class="carnet-day__meta">
@@ -42,10 +43,11 @@ $block->set_inner_blocks(true)
                 <time class="carnet-day__date" datetime="<?php echo esc_attr($date); ?>"><?php echo esc_html(mb_strtoupper($formatted)); ?></time>
             <?php endif; ?>
         </div>
-        <h2 class="carnet-day__title"><?php echo esc_html($fields['carnet_day_title']); ?></h2>
+        <h2 class="carnet-day__title"><?php echo esc_html(wptexturize($fields['carnet_day_title'])); ?></h2>
         <div class="carnet-day__content">
             <?php echo $inner_blocks; ?>
         </div>
+
     </div>
 <?php
     });
