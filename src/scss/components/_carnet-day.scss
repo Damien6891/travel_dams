@@ -211,6 +211,8 @@
         color: abs.$color-accent-teal;
         text-transform: uppercase;
         font-family: abs.$font-family-label;
+        font-size: abs.$font-size-body-s;
+        cursor: pointer;
     }
 
     &__toggle {
@@ -222,11 +224,32 @@
     }
 
     &__list {
-        @include abs.mq('lg') {
-            display: block !important;
-        }
+        list-style: none;
+        padding-left: unset;
+        // @include abs.mq('lg') {
+        //     display: block !important;
+        // }
 
         // toujours visible, ignore [open]
+    }
+
+    &__item {
+        display: grid;
+        grid-template-columns: 70px 1fr auto;
+        padding-block: abs.spacer(3);
+        border-bottom: 1px solid abs.$color-border-light;
+    }
+
+    &__day {
+        color: abs.$color-secondary;
+        font-weight: abs.$font-weight-medium;
+    }
+
+    &__title {}
+
+    &__date {
+        font-size: abs.$font-size-label-s;
+        color: abs.$color-text-muted;
     }
 }
 

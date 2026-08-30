@@ -74,9 +74,19 @@ if ($start && $end) {
                             <summary class="carnet-sommaire__toggle">Sommaire</summary>
                             <ul class="carnet-sommaire__list">
                                 <?php foreach ($days as $day) : ?>
-                                    <li><a href="#day-<?php echo esc_attr($day['number']); ?>">
-                                            <?php echo esc_html($day['number_title']); ?> — <?php echo esc_html($day['title']); ?>
-                                        </a></li>
+                                    <li>
+                                        <a class="carnet-sommaire__item" href="#day-<?php echo esc_attr($day['number']); ?>">
+                                            <span class="carnet-sommaire__day">
+                                                <?= esc_html($day['number_title']) ?>
+                                            </span>
+                                            <span class="carnet-sommaire__title">
+                                                <?= esc_html($day['title']) ?>
+                                            </span>
+                                            <span class="carnet-sommaire__date">
+                                                <?= $day['date'] ?>
+                                            </span>
+                                        </a>
+                                    </li>
                                 <?php endforeach; ?>
                             </ul>
                         </details>

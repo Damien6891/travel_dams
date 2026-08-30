@@ -475,7 +475,8 @@ function travel_dams_get_carnet_sommaire($post_id = null)
 			$days[] = [
 				'number' => $data['carnet_day_number'] ?? '',
 				'number_title' => $data['carnet_day_day'] ?? '',
-				'title' => $data['carnet_day_title'] ?? ''
+				'title' => $data['carnet_day_title'] ?? '',
+				'date' => $data['carnet_day_date'] ? date_i18n('j F', strtotime($data['carnet_day_date'])) : ''
 			];
 		}
 	}
