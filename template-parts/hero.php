@@ -16,7 +16,8 @@
 
 $hero_image_id = $args['image_id'] ?? travel_dams_get_hero_image_id();
 $hero_title    = $args['title'] ?? travel_dams_get_hero_title();
-$hero_subtitle = $args['subtitle'] ?? travel_dams_get_hero_title();
+// $hero_subtitle = $args['subtitle'] ?? travel_dams_get_hero_title();
+$hero_subtitle = $args['subtitle'];
 $hero_eyebrow  = $args['eyebrow'] ?? '';
 $hero_byline   = $args['byline'] ?? '';
 $hero_ctas     = $args['ctas'] ?? array();
