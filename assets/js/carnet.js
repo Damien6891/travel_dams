@@ -1,0 +1,2 @@
+!function(){"use strict";document.addEventListener("DOMContentLoaded",()=>{const e=document.querySelector(".carnet-sommaire__container");e&&(e.addEventListener("click",t=>{t.target.closest("a")&&e.removeAttribute("open")}),document.addEventListener("click",t=>{e.hasAttribute("open")&&!e.contains(t.target)&&e.removeAttribute("open")}),document.addEventListener("keydown",t=>{"Escape"===t.key&&e.hasAttribute("open")&&e.removeAttribute("open")}))})}();
+//# sourceMappingURL=carnet.js.map

@@ -258,6 +258,17 @@ function travel_dams_scripts()
 		);
 	}
 
+
+	if (is_single() && has_category(travel_dams_get_carnet_category_id())) {
+		wp_enqueue_script(
+			'travel-dams-carnet',
+			get_template_directory_uri() . '/assets/js/carnet.js',
+			array(),
+			travel_dams_asset_version('/assets/js/carnet.js'),
+			true
+		);
+	}
+
 	// Analytics UMAMI
 	wp_enqueue_script(
 		'umami-tracking',
@@ -269,6 +280,7 @@ function travel_dams_scripts()
 			'in_footer' => false
 		]
 	);
+
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');

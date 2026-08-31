@@ -70,7 +70,7 @@ if ($start && $end) {
 
                 if ($days) : ?>
                     <nav class="carnet-sommaire" aria-label="Sommaire du carnet">
-                        <details class="carnet-sommaire__mobile">
+                        <details class="carnet-sommaire__container">
                             <summary class="carnet-sommaire__toggle">Sommaire</summary>
                             <ul class="carnet-sommaire__list">
                                 <?php foreach ($days as $day) : ?>
