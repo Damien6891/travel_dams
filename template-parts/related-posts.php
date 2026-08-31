@@ -20,10 +20,11 @@ $title = $args['title'] ?? __('À lire aussi', 'travel_dams');
         <?php foreach ($posts as $related_post) : ?>
             <!-- <?php get_template_part('template-parts/content', 'card', array('show_category_badge' => false)); ?> -->
 
+
             <article id="post-<?php the_ID(); ?>" <?php post_class('content-card'); ?>>
 
                 <a href="<?php echo esc_url(get_permalink($related_post)); ?>" class="content-card__thumbnail-link">
-                    <?php if (has_post_thumbnail()) : ?>
+                    <?php if (has_post_thumbnail($related_post)) : ?>
                         <?php echo get_the_post_thumbnail($related_post, 'travel-dams-card', array('class' => 'content-card__thumbnail')); ?>
                     <?php else : ?>
                         <div class="content-card__thumbnail content-card__thumbnail--placeholder" aria-hidden="true"></div>
@@ -32,8 +33,6 @@ $title = $args['title'] ?? __('À lire aussi', 'travel_dams');
                 </a>
 
                 <div class="content-card__body">
-
-
 
                     <h3 class="content-card__title">
                         <a href="<?php echo get_permalink($related_post); ?>"><?php echo esc_html(get_the_title($related_post)); ?></a>
