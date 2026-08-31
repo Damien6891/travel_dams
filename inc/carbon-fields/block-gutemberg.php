@@ -33,7 +33,7 @@ $block->set_inner_blocks(true)
 
 ?>
 
-    <div class="carnet-day" id="day-<?= esc_attr($day_number) ?>">
+    <div class="carnet-day" id="day-<?= esc_attr($day_number) ?>" data-title="<?php echo esc_attr($fields['carnet_day_title']); ?>">
 
         <div class="carnet-day__meta">
             <span class="carnet-day__number"><?php echo esc_html($fields['carnet_day_day']); ?></span>

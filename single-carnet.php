@@ -71,7 +71,9 @@ if ($start && $end) {
                 if ($days) : ?>
                     <nav class="carnet-sommaire" aria-label="Sommaire du carnet">
                         <details class="carnet-sommaire__container">
-                            <summary class="carnet-sommaire__toggle">Sommaire</summary>
+                            <summary class="carnet-sommaire__toggle">
+                                <?= __('Sommaire', 'travel-dams') ?> <span class="carnet-sommaire__current"></span>
+                            </summary>
                             <ul class="carnet-sommaire__list">
                                 <?php foreach ($days as $day) : ?>
                                     <li>

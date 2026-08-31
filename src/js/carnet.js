@@ -32,6 +32,38 @@
                 summary.removeAttribute('open')
             }
         })
+
+        const currentEl = document.querySelector('.carnet-sommaire__current')
+        const days = document.querySelectorAll('.carnet-day')
+
+        if (currentEl && days.length) {
+            const firstDay = days[0]
+
+            const observer = new IntersectionObserver(
+                function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            currentEl.textContent = entry.target.dataset.title || ''
+                        }
+                    })
+                },
+                {
+                    rootMargin: '-10% 0px -85% 0px',
+                    threshold: 0
+                }
+            )
+
+            days.forEach(function (day) {
+                observer.observe(day)
+            })
+
+            // empty span when pass scroll first element top
+            window.addEventListener('scroll', () => {
+                if (firstDay.getBoundingClientRect().top > window.innerHeight * 0.2) {
+                    currentEl.textContent = ''
+                }
+            })
+        }
     })
 
 
