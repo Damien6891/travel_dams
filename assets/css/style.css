@@ -1562,7 +1562,7 @@ body.admin-bar .site-header {
   top: calc(var(--header-height, 80px) + 12px);
   max-height: calc(100vh - var(--header-height, 80px) - 2rem);
   overflow-y: auto;
-  background: white;
+  background: #ffffff;
   padding: 12px;
   border-radius: 12px;
   z-index: 10;
@@ -1594,6 +1594,14 @@ body.admin-bar .site-header {
   grid-template-columns: 70px 1fr auto;
   padding-block: 16px;
   border-bottom: 1px solid rgba(115, 120, 115, 0.144);
+}
+.carnet-sommaire__item--active {
+  font-weight: 700;
+  background: linear-gradient(90deg, #ffffff 0%, #fbfaee 5%, #fbfaee 95%, #ffffff 100%);
+  padding-inline: 12px;
+}
+.carnet-sommaire__item--active .carnet-sommaire__day {
+  color: #06a68e;
 }
 .carnet-sommaire__day {
   color: #f6b74d;

@@ -203,7 +203,7 @@
     // top: var(--header-height, 80px);
     max-height: calc(100vh - var(--header-height, 80px) - 2rem);
     overflow-y: auto;
-    background: white;
+    background: abs.$color-white;
     padding: abs.spacer(2);
     border-radius: abs.$border-radius;
     z-index: 10;
@@ -252,6 +252,17 @@
         grid-template-columns: 70px 1fr auto;
         padding-block: abs.spacer(3);
         border-bottom: 1px solid abs.$color-border-light;
+
+        &--active {
+            font-weight: abs.$font-weight-bold;
+            // background: abs.$color-bg;
+            background: linear-gradient(90deg, abs.$color-white 0%, abs.$color-bg 5%, abs.$color-bg 95%, abs.$color-white 100%);
+            padding-inline: abs.spacer(2);
+
+            .carnet-sommaire__day {
+                color: abs.$color-primary-light;
+            }
+        }
     }
 
     &__day {
