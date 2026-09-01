@@ -58,9 +58,17 @@
             })
 
             // empty span when pass scroll first element top
+            let ticking = false
+
             window.addEventListener('scroll', () => {
-                if (firstDay.getBoundingClientRect().top > window.innerHeight * 0.2) {
-                    currentEl.textContent = ''
+                if (!ticking) {
+                    requestAnimationFrame(function () {
+                        if (firstDay.getBoundingClientRect().top > window.innerHeight * 0.2) {
+                            currentEl.textContent = ''
+                        }
+                        ticking = false
+                    })
+                    ticking = true
                 }
             })
         }
