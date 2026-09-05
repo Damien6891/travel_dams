@@ -2206,6 +2206,28 @@ html {
   object-position: center;
 }
 
+.wp-block-video {
+  position: relative;
+}
+.wp-block-video.is-vertical {
+  aspect-ratio: 9/16;
+}
+.wp-block-video.is-vertical video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.wp-block-video.aligncenter {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .pagination {
   display: flex;
   justify-content: center;

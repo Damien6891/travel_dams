@@ -23,3 +23,35 @@
         object-position: center;
     }
 }
+
+// .wp-block-columns {
+//     .wp-block-video video {
+//         width: 100%;
+//         height: auto;
+//         display: block;
+//     }
+// }
+
+.wp-block-video {
+    position: relative;
+
+    &.is-vertical {
+        aspect-ratio: 9/16;
+
+        video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &.aligncenter {
+        display: block; // écrase le display: table par défaut de WP
+        width: 100%; // ou une valeur fixe/max-width selon le rendu voulu
+        max-width: 400px; // optionnel : pour ne pas que ce soit full-bleed
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
