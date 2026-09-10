@@ -88,7 +88,7 @@
 				</p>
 				<ul class="footer-about__socials">
 					<li class="footer-about__social-item">
-						<a class="footer-about__social-link" href="https://www.instagram.com/travel-dams" target="_blank" rel="noopener noreferrer">
+						<a class="footer-about__social-link" href="https://www.instagram.com/travel_dams" target="_blank" rel="noopener noreferrer">
 							<span class="dashicons dashicons-instagram"></span>
 							<span class="screen-reader-text"><?php esc_html_e('Instagram', 'travel-dams'); ?></span>
 						</a>
