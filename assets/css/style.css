@@ -2585,6 +2585,23 @@ html {
   position: relative;
 }
 
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: 1px solid rgba(115, 120, 115, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  background: #fbfaee;
+}
+.scroll-to-top span {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  font-size: 2.25rem;
+}
+
 .u-max-h-sm img,
 .u-max-h-sm video {
   width: 100%;

@@ -46,7 +46,8 @@ const jsEntries = {
   navigation: ['src/js/navigation.js'],
   header: ['src/js/header.js'],
   'destination-archive': ['src/js/destination-archive.js'],
-  carnet: ['src/js/carnet.js']
+  carnet: ['src/js/carnet.js'],
+  main: ['src/js/main.js']
 };
 
 function styles() {

@@ -239,6 +239,15 @@ function travel_dams_scripts()
 	);
 
 	wp_enqueue_script(
+		'travel-dams-main',
+		get_template_directory_uri() . '/assets/js/main.js',
+		array(),
+		// filemtime(get_template_directory() . '/assets/js/navigation.js'),
+		travel_dams_asset_version('/assets/js/main.js'),
+		true
+	);
+
+	wp_enqueue_script(
 		'travel-dams-header',
 		get_template_directory_uri() . '/assets/js/header.js',
 		array(),

@@ -1,6 +1,20 @@
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("hello main");
+(function () {
+  'use strict';
 
-  // Ton JS ici. D'autres fichiers dans src/js/ seront concaténés
-  // automatiquement dans le même main.js (voir gulpfile.js).
-});
+  document.addEventListener('DOMContentLoaded', function () {
+    scrollToTop()
+
+  });
+
+  const scrollToTop = () => {
+    const scrollToTopBtn = document.querySelector('.scroll-to-top')
+
+    if (!scrollToTopBtn) return
+
+    scrollToTopBtn.addEventListener('click', () => {
+      window.scrollTo(0, 0)
+    })
+
+  }
+
+})();

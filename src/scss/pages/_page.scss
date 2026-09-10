@@ -1,3 +1,24 @@
+@use '../abstracts/variables' as v;
+
 .site-main {
     position: relative;
+}
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border: 1px solid v.$color-border;
+    border-radius: v.$border-radius-sm;
+    cursor: pointer;
+    background: v.$color-bg;
+    // padding: 10px;
+
+    span {
+        width: 40px;
+        height: 40px;
+        display: grid;
+        place-items: center;
+        font-size: v.$font-size-h2;
+    }
 }

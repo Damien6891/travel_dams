@@ -43,6 +43,10 @@ if ($start && $end) {
 
 <main id="primary" class="site-main">
 
+    <button class="scroll-to-top">
+        <span class="dashicons dashicons-arrow-up-alt2"></span>
+    </button>
+
 
     <?php
     get_template_part('template-parts/hero', null, array(
