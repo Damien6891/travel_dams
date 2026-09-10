@@ -74,6 +74,34 @@
   &__subscribe {
     flex-shrink: 0;
   }
+
+  &__lang-switcher {
+    margin: unset;
+    padding: unset;
+    display: flex;
+    gap: m.spacer(2);
+
+    li {
+      list-style: none;
+      font-size: v.$font-size-sm;
+    }
+
+    &--mobile {
+      @include m.mq('lg') {
+        display: none;
+      }
+    }
+
+  }
+
+  &__lang-item {
+    color: v.$color-text;
+
+    &--current {
+      color: v.$color-accent-teal;
+      font-weight: v.$font-weight-bold;
+    }
+  }
 }
 
 body:not(.has-hero) #content {

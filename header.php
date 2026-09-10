@@ -61,22 +61,53 @@
 					</button>
 					<!-- <span class="dashicons dashicons-no-alt"></span> -->
 
-					<?php
-					wp_nav_menu(
-						array(
-							'theme_location'  => 'menu-1',
-							'menu_id'         => 'primary-menu',
-							'menu_class'      => 'primary-menu',
-							'container'       => 'div',
-							'container_id'    => 'primary-menu-container',
-							'container_class' => 'primary-menu-container',
-							'walker'          => new Travel_Dams_Nav_Walker(),
-							'fallback_cb'     => false,
-							// Add close button in menu
-							'items_wrap'	  =>  '<button class="menu-close-mobile" aria-controls="primary-menu-container" aria-expanded="false" aria-label="' . esc_attr__('Fermer le menu', 'travel-dams') . '"><svg class="icon icon-close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" /></svg></button><ul id="%1$s" class="%2$s">%3$s</ul>'
-						)
-					);
-					?>
+					<div id="primary-menu-container" class="primary-menu-container">
+
+						<button class="menu-close-mobile" aria-controls="primary-menu-container" aria-expanded="false" aria-label="<?= esc_attr__('Fermer le menu', 'travel-dams') ?>">
+							<svg class="icon icon-close" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+								<path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" />
+							</svg>
+						</button>
+
+						<?php
+						wp_nav_menu(
+							array(
+								'theme_location'  => 'menu-1',
+								'menu_id'         => 'primary-menu',
+								'menu_class'      => 'primary-menu',
+								// 'container'       => 'div',
+								// 'container_id'    => 'primary-menu-container',
+								// 'container_class' => 'primary-menu-container',
+								'walker'          => new Travel_Dams_Nav_Walker(),
+								'fallback_cb'     => false,
+								// Add close button in menu
+								// 'items_wrap'	  =>  '<button class="menu-close-mobile" aria-controls="primary-menu-container" aria-expanded="false" aria-label="' . esc_attr__('Fermer le menu', 'travel-dams') . '"><svg class="icon icon-close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" /></svg></button><ul id="%1$s" class="%2$s">%3$s</ul>'
+							)
+						);
+						?>
+
+						<?php
+						if (function_exists('pll_the_languages')) :
+							$languages = pll_the_languages(array('raw' => 1));
+							if ($languages) :
+						?>
+								<ul class="site-header__lang-switcher site-header__lang-switcher--mobile">
+									<!-- <ul class=""> -->
+									<?php foreach ($languages as $language) : ?>
+										<li class="site-header__lang-item<?php echo $language['current_lang'] ? ' site-header__lang-item--current' : ''; ?>">
+											<a class="site-header__lang-link" href="<?php echo esc_url($language['url']); ?>">
+												<?php echo esc_html(strtoupper($language['slug'])); ?>
+											</a>
+										</li>
+									<?php endforeach; ?>
+									<!-- </ul> -->
+								</ul>
+						<?php
+							endif;
+						endif;
+						?>
+
+					</div>
 
 					<div class="mobile-nav-overlay-backdrop"></div>
 				</nav>
@@ -88,6 +119,26 @@
 					</form>
 
 					<!-- <a href="#newsletter" class="btn btn--accent btn--s site-header__subscribe"><?php esc_html_e('Subscribe', 'travel-dams'); ?></a> -->
+					<?php
+					if (function_exists('pll_the_languages')) :
+						$languages = pll_the_languages(array('raw' => 1));
+						if ($languages) :
+					?>
+							<ul class="site-header__lang-switcher">
+								<!-- <ul class=""> -->
+								<?php foreach ($languages as $language) : ?>
+									<li class="footer-bottom__lang-item<?php echo $language['current_lang'] ? ' footer-bottom__lang-item--current' : ''; ?>">
+										<a class="footer-bottom__lang-link" href="<?php echo esc_url($language['url']); ?>">
+											<?php echo esc_html(strtoupper($language['slug'])); ?>
+										</a>
+									</li>
+								<?php endforeach; ?>
+								<!-- </ul> -->
+							</ul>
+					<?php
+						endif;
+					endif;
+					?>
 				</div>
 			</div>
 

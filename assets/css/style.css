@@ -210,6 +210,28 @@ body.has-hero .site-header:not(.site-header--solid) .menu-toggle {
 .site-header__subscribe {
   flex-shrink: 0;
 }
+.site-header__lang-switcher {
+  margin: unset;
+  padding: unset;
+  display: flex;
+  gap: 12px;
+}
+.site-header__lang-switcher li {
+  list-style: none;
+  font-size: 0.875rem;
+}
+@media (min-width: 992px) {
+  .site-header__lang-switcher--mobile {
+    display: none;
+  }
+}
+.site-header__lang-item {
+  color: #1c1d1e;
+}
+.site-header__lang-item--current {
+  color: #06a68e;
+  font-weight: 700;
+}
 
 body:not(.has-hero) #content {
   padding-top: var(--header-height, 80px);
@@ -1153,6 +1175,9 @@ body.admin-bar .site-header {
 }
 
 .primary-menu-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   right: 0;
