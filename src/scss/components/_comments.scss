@@ -1,0 +1,180 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts//mixins' as m;
+
+.comments {
+    ol {
+        list-style: none;
+        margin: unset;
+        padding: unset;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .comment {
+        --avatar-width: 44px;
+        --avatar-body-gap: 16px;
+
+        font-size: v.$font-size-sm;
+
+        &__body {
+            display: flex;
+            gap: var(--avatar-body-gap);
+        }
+
+        &__meta {
+            display: flex;
+            gap: m.spacer(2);
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+
+        &__avatar {
+            flex-shrink: 0;
+            width: var(--avatar-width);
+            height: var(--avatar-width);
+            border-radius: 9999px;
+            background: v.$color-panel;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: v.$font-family-heading;
+        }
+
+        &__author {
+            font-size: v.$font-size-sm;
+            font-weight: v.$font-weight-semibold;
+        }
+
+        &__infos {
+            font-family: v.$font-family-label;
+            font-size: v.$font-size-label-s;
+            color: v.$color-text-muted;
+        }
+
+        &__main {
+            flex-basis: 100%;
+        }
+
+        &__content {
+            p {
+                margin-bottom: unset;
+            }
+        }
+
+        .comment-reply-link {
+            display: block;
+            width: max-content;
+            margin-left: auto;
+            font-size: v.$font-size-body-s;
+            color: v.$color-accent-teal;
+            font-weight: v.$font-weight-semibold;
+        }
+
+        &.depth-1 {
+            background: v.$color-surface-card;
+            padding: m.spacer(4);
+            border-radius: v.$border-radius-lg;
+            border: 1px solid v.$color-border-light;
+        }
+
+        .children {
+            margin-left: calc(var(--avatar-body-gap) + var(--avatar-width));
+            display: flex;
+            flex-direction: column;
+            gap: m.spacer(3);
+
+            .comment {
+                &.bypostauthor {
+                    border-left: 2px solid v.$color-secondary;
+
+                    .comment__main {
+                        margin-left: m.spacer(3);
+                    }
+
+                    .comment__reply-label {
+                        font-size: v.$font-size-label-m;
+                        font-family: v.$font-family-label;
+                        color: v.$color-accent-teal;
+                        text-transform: uppercase;
+                        font-weight: v.$font-weight-semibold;
+                        letter-spacing: 0.5px;
+                        margin-bottom: m.spacer(1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.comment-respond {
+    background: v.$color-surface-card;
+    padding: m.spacer(4);
+    border-radius: v.$border-radius-lg;
+    border: 1px solid v.$color-border-light;
+    margin-top: m.spacer(5);
+    font-size: v.$font-size-body-s;
+
+    p {
+        margin-bottom: unset;
+    }
+
+    .comment-reply-title {
+        font-size: v.$font-size-label-m;
+        font-family: v.$font-family-label;
+        color: v.$color-accent-teal;
+        text-transform: uppercase;
+        font-weight: v.$font-weight-semibold;
+        letter-spacing: 0.5px;
+    }
+
+    .comment-form {
+        display: flex;
+        flex-direction: column;
+        gap: m.spacer(3);
+
+        &__row-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: m.spacer(2);
+        }
+
+        &__row {
+            flex: 1 1 0;
+        }
+
+        input:not([type='submit']),
+        textarea {
+            width: 100%;
+            font-size: v.$font-size-sm;
+            background: v.$color-bg;
+            border-radius: v.$border-radius;
+            border: 1px solid v.$color-border-light;
+            padding: m.spacer(2) m.spacer(3);
+            font-family: v.$font-family-base;
+        }
+
+        textarea {
+            min-height: m.spacer(8);
+            resize: vertical;
+        }
+
+        .form-submit {
+            text-align: end;
+        }
+
+        &__submit {
+            background: v.$color-primary;
+            color: v.$color-white;
+            font-weight: v.$font-weight-semibold;
+            border-radius: 999px;
+            padding: m.spacer(2) m.spacer(4);
+            border: none;
+            cursor: pointer;
+        }
+    }
+
+}

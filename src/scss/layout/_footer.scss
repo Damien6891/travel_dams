@@ -1,4 +1,9 @@
-// Si tu as besoin des variables/mixins ici : @use '../abstracts' as *;
+@use '../abstracts/mixins' as *;
+
 .site-footer {
   // styles du footer
+}
+
+.entry-footer {
+  margin-bottom: spacer(8);
 }

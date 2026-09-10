@@ -75,6 +75,15 @@
 			}
 			?>
 		</div>
+
+		<div>
+			<?php
+			if (comments_open() || get_comments_number()) :
+				comments_template();
+			endif;
+			?>
+		</div>
+
 		<!-- <?php travel_dams_entry_footer(); ?> -->
 	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->
