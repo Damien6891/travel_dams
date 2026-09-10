@@ -71,6 +71,18 @@
   z-index: m.z('overlay');
   padding: m.spacer(7) m.spacer(4) m.spacer(5);
 
+  .menu-close-mobile {
+    position: absolute;
+    width: 50px;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+
+    @include m.mq('lg') {
+      display: none;
+    }
+  }
+
   &.is-open {
     transform: translateX(0);
   }

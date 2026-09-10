@@ -59,6 +59,7 @@
 						</svg>
 						<span class="screen-reader-text"><?php esc_html_e('Menu', 'travel-dams'); ?></span>
 					</button>
+					<!-- <span class="dashicons dashicons-no-alt"></span> -->
 
 					<?php
 					wp_nav_menu(
@@ -71,6 +72,8 @@
 							'container_class' => 'primary-menu-container',
 							'walker'          => new Travel_Dams_Nav_Walker(),
 							'fallback_cb'     => false,
+							// Add close button in menu
+							'items_wrap'	  =>  '<button class="menu-close-mobile" aria-controls="primary-menu-container" aria-expanded="false" aria-label="' . esc_attr__('Fermer le menu', 'travel-dams') . '"><svg class="icon icon-close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" /></svg></button><ul id="%1$s" class="%2$s">%3$s</ul>'
 						)
 					);
 					?>

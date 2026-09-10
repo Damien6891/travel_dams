@@ -12,6 +12,7 @@
         if (!nav) return;
 
         const toggle = nav.querySelector('.menu-toggle');
+        const closeBtn = nav.querySelector('.menu-close-mobile')
         const container = document.getElementById('primary-menu-container');
         const backdrop = nav.querySelector('.mobile-nav-overlay-backdrop');
 
@@ -34,6 +35,10 @@
         toggle.addEventListener('click', function () {
             container.classList.contains('is-open') ? closeMenu() : openMenu();
         });
+
+        closeBtn.addEventListener('click', () => {
+            container.classList.contains('is-open') ? closeMenu() : openMenu()
+        })
 
         backdrop && backdrop.addEventListener('click', closeMenu);
 

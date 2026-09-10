@@ -60,10 +60,15 @@
   }
 
   &__actions {
-    display: flex;
+    display: none;
+    // display: flex;
     align-items: center;
     gap: m.spacer(3);
     flex-shrink: 0;
+
+    @include m.mq('lg') {
+      display: flex;
+    }
   }
 
   &__subscribe {
