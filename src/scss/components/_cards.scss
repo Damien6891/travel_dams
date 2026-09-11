@@ -61,7 +61,8 @@
 // Content card
 .content-card {
   position: relative;
-  background-color: abs.$color-bg;
+  // background-color: abs.$color-bg;
+  background-color: abs.$color-surface-card;
   border-radius: abs.$border-radius;
   overflow: hidden;
   box-shadow: abs.$shadow-sm;
