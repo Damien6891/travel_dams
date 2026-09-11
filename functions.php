@@ -414,6 +414,9 @@ require get_template_directory() . '/inc/carbon-fields.php';
 /** COMMENTS */
 require get_template_directory() . '/inc/comments.php';
 
+/** Modify query carnets de voyages by trip date */
+require get_template_directory() . '/inc/query-modifications.php';
+
 // Contourne un changement de comportement de Gutenberg (~2026) qui verrouille
 // automatiquement les patterns non synchronisés en mode "contenu seul" à l'insertion,
 // empêchant l'ajout de nouveaux blocs (ex: images) dans le pattern "Jour de carnet".
