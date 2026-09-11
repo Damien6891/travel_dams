@@ -32,10 +32,9 @@ $hero_eyebrow = $country
 if ($start && $end) {
     $hero_byline = sprintf(
         /* translators: 1: date de début, 2: date de fin, 3: auteur */
-        __('%1$s – %2$s · %3$s', 'travel-dams'),
+        __('%1$s – %2$s', 'travel-dams'),
         date_i18n('j F Y', strtotime($start)),
-        date_i18n('j F Y', strtotime($end)),
-        get_the_author()
+        date_i18n('j F Y', strtotime($end))
     );
 }
 // }
