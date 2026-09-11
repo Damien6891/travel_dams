@@ -599,6 +599,8 @@ body.admin-bar .site-header {
   overflow: hidden;
   box-shadow: 0 10px 15px -3px rgba(53, 68, 56, 0.05);
   transition: box-shadow 0.25s ease-in-out, transform 0.25s ease-in-out;
+  display: flex;
+  flex-direction: column;
 }
 .content-card:hover, .content-card:focus-within {
   box-shadow: 0 10px 30px -5px rgba(53, 68, 56, 0.15);
@@ -633,6 +635,9 @@ body.admin-bar .site-header {
 }
 .content-card__body {
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .content-card__destination {
   font-size: 0.875rem;
@@ -663,8 +668,10 @@ body.admin-bar .site-header {
 }
 .content-card__date {
   display: block;
-  font-size: 0.875rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.6875rem;
   color: #737873;
+  margin-top: auto;
 }
 .content-card--photo {
   background-color: transparent;

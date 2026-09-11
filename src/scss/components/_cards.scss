@@ -68,6 +68,9 @@
   box-shadow: abs.$shadow-sm;
   transition: box-shadow abs.$transition-base, transform abs.$transition-base;
 
+  display: flex;
+  flex-direction: column;
+
   &:hover,
   &:focus-within {
     box-shadow: abs.$shadow-md;
@@ -108,6 +111,10 @@
 
   &__body {
     padding: abs.spacer(3);
+
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   &__destination {
@@ -144,8 +151,11 @@
 
   &__date {
     display: block;
-    font-size: abs.$font-size-sm;
+    font-family: abs.$font-family-label;
+    font-size: abs.$font-size-label-s;
     color: abs.$color-text-muted;
+
+    margin-top: auto;
   }
 
   // --- Variante "photo" : carte plein cadre avec scrim, utilisée pour les

@@ -40,7 +40,9 @@ if ($feature) {
             ? $categories[0]->name
             : ((! empty($destinations) && ! is_wp_error($destinations)) ? $destinations[0]->name : '');
         ?>
-        <?php if ($badge_label) : ?>
+
+
+        <?php if ($badge_label && $show_category_badge) : ?>
             <span class="badge badge--tag content-card__badge">
                 <?php echo esc_html($badge_label); ?>
             </span>
@@ -69,9 +71,26 @@ if ($feature) {
             </div>
         <?php endif; ?>
 
-        <time class="content-card__date" datetime="<?php echo esc_attr(get_the_date('c')); ?>">
-            <?php echo esc_html(get_the_date()); ?>
-        </time>
+        <div class="content-card__date">
+            <?php if (in_category(TD_SLUG_CARNETS)) : ?>
+
+                <time datetime="<?php echo esc_html(carbon_get_post_meta(get_the_ID(), 'trip_start_date')) ?>">
+                    <?php echo date_i18n('j F', strtotime(carbon_get_post_meta(get_the_ID(), 'trip_start_date'))) ?>
+                    -
+                    <?php echo date_i18n('j F Y', strtotime(carbon_get_post_meta(get_the_ID(), 'trip_end_date'))) ?>
+                </time>
+
+
+            <?php else : ?>
+
+                <time class="" datetime="<?php echo esc_attr(get_the_date('c')); ?>">
+                    <?php echo esc_html(get_the_date()); ?>
+                </time>
+
+            <?php endif ?>
+        </div>
+
+
 
     </div>
 
