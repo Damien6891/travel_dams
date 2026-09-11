@@ -16,7 +16,7 @@ $image_id = carbon_get_term_meta($current_category->term_id, 'category_cover_ima
     get_template_part('template-parts/hero', null, array(
         'context'  => 'archive',
         'title'    => single_cat_title('', false),
-        'subtitle' => category_description(),
+        'subtitle' => wp_strip_all_tags(category_description()),
         'image_id' => $image_id ? absint($image_id) : 0
     ));
     ?>
@@ -25,17 +25,6 @@ $image_id = carbon_get_term_meta($current_category->term_id, 'category_cover_ima
     <section class="content">
 
         <div class="container">
-
-            <?php
-            get_template_part(
-                'template-parts/section',
-                'heading',
-                [
-                    'title' => single_cat_title('', false),
-                    'description' => category_description()
-                ]
-            );
-            ?>
 
             <?php if (have_posts()) : ?>
 
