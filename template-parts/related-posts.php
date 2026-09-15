@@ -12,7 +12,7 @@ if (empty($args['posts'])) {
 }
 
 $posts = $args['posts'];
-$title = $args['title'] ?? __('À lire aussi', 'travel_dams');
+$title = $args['title'] ?? __('À lire aussi', 'travel-dams');
 ?>
 <section class="destination-section">
     <h2 class="destination-section__title"><?php echo esc_html($title); ?></h2>
@@ -42,9 +42,17 @@ $title = $args['title'] ?? __('À lire aussi', 'travel_dams');
                         <?php echo esc_html(wp_trim_words(get_the_excerpt($related_post), 20)); ?>
                     </div>
 
-                    <time class="content-card__date" datetime="<?php echo esc_attr(get_the_date('c')); ?>">
-                        <?php echo esc_html(get_the_date()); ?>
-                    </time>
+
+                    <div class="content-card__date">
+                        <?php if (in_category(TD_SLUG_CARNETS, $related_post->ID)) : ?>
+
+                            <time datetime="<?php echo esc_html(carbon_get_post_meta($related_post->ID, 'trip_start_date')) ?>">
+                                <?php echo date_i18n('j F', strtotime(carbon_get_post_meta($related_post->ID, 'trip_start_date'))) ?>
+                                -
+                                <?php echo date_i18n('j F Y', strtotime(carbon_get_post_meta($related_post->ID, 'trip_end_date'))) ?>
+                            </time>
+                        <?php endif ?>
+                    </div>
 
                 </div>
 
