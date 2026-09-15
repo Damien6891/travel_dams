@@ -104,7 +104,7 @@ if ($start && $end) {
                     sprintf(
                         wp_kses(
                             /* translators: %s: Name of current post. Only visible to screen readers */
-                            __('Continue reading<span class="screen-reader-text"> "%s"</span>', 'travel_dams'),
+                            __('Continue reading<span class="screen-reader-text"> "%s"</span>', 'travel-dams'),
                             array(
                                 'span' => array(
                                     'class' => array(),
@@ -117,7 +117,7 @@ if ($start && $end) {
 
                 wp_link_pages(
                     array(
-                        'before' => '<div class="page-links">' . esc_html__('Pages:', 'travel_dams'),
+                        'before' => '<div class="page-links">' . esc_html__('Pages:', 'travel-dams'),
                         'after'  => '</div>',
                     )
                 );
