@@ -78,8 +78,8 @@ if (!$is_zone) {
 
             <?php
             $pillars = array(
-                TD_SLUG_CARNETS   => __('Carnets de voyage', 'travel-dams'),
                 TD_SLUG_DESTINATIONS_GUIDES => __('Guides destinations', 'travel-dams'),
+                TD_SLUG_CARNETS   => __('Carnets de voyage', 'travel-dams'),
             );
 
             foreach ($pillars as $category_slug => $section_title) :
@@ -91,7 +91,7 @@ if (!$is_zone) {
                         'destination_term' => $current_term,
                         'category_slug'    => $category_slug,
                         'section_title'    => $section_title,
-                        'bento'            => TD_SLUG_CARNETS === $category_slug,
+                        // 'bento'            => TD_SLUG_CARNETS === $category_slug,
                     )
                 );
             endforeach;
