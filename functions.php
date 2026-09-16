@@ -298,23 +298,62 @@ function travel_dams_scripts()
 add_action('wp_enqueue_scripts', 'travel_dams_scripts');
 
 /**
- * Inject travelpayouts tracking script in <head>
+ * Add Tarteaucitron js
+ * cookies
  */
-function travel_dams_travelpayouts_tracking_script()
+function travel_dams_tarteaucitron_init()
 {
+	$tac_url = get_template_directory_uri() . '/assets/vendor/tarteaucitron/tarteaucitron.min.js';
 ?>
-	<script nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1" data-cmp-ab="2">
-		(function() {
-			var script = document.createElement("script");
-			script.async = 1;
-			script.setAttribute("data-cmp-ab", "2");
-			script.src = 'https://emrldco.com/NTc0NjEw.js?t=574610';
-			document.head.appendChild(script);
-		})();
+	<script data-no-defer="1" src="<?php echo esc_url($tac_url); ?>"></script>
+	<script data-no-defer="1">
+		tarteaucitron.init({
+			"privacyUrl": "/politique-de-confidentialite",
+			"orientation": "bottom",
+			"showAlertSmall": false,
+			// "showAlertSmall": true,
+			"showIcon": false,
+			"cookieslist": true,
+			"AcceptAllCta": true,
+			"removeCredit": true,
+			"useExternalCss": false,
+		});
 	</script>
 <?php
 }
-add_action('wp_head', 'travel_dams_travelpayouts_tracking_script', 1);
+add_action('wp_head', 'travel_dams_tarteaucitron_init', 1);
+
+/**
+ * Déclare Travelpayouts comme service custom tarteaucitron.
+ * Le script ne se charge que si le visiteur consent.
+ */
+function travel_dams_travelpayouts_tarteaucitron_service()
+{
+?>
+	<script data-no-defer="1">
+		tarteaucitron.services.travelpayouts = {
+			"key": "travelpayouts",
+			"type": "ads",
+			"name": "Travelpayouts (Emerald / LinkSwitcher)",
+			"needConsent": true,
+			"cookies": [],
+			"js": function() {
+				"use strict";
+				var script = document.createElement("script");
+				script.async = 1;
+				script.setAttribute("data-cmp-ab", "2");
+				script.src = 'https://emrldco.com/NTc0NjEw.js?t=574610';
+				document.head.appendChild(script);
+			},
+			"fallback": function() {
+				"use strict";
+			}
+		};
+		(tarteaucitron.job = tarteaucitron.job || []).push('travelpayouts');
+	</script>
+<?php
+}
+add_action('wp_head', 'travel_dams_travelpayouts_tarteaucitron_service', 2);
 
 function add_umami_data_attribute($tag, $handle)
 {

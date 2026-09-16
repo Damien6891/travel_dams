@@ -1,8 +1,179 @@
-@use '../abstracts/mixins' as *;
+@use '../abstracts' as abs;
 
 .site-footer {
-  // styles du footer
+  background-color: abs.$color-primary-dark;
+  color: abs.$color-text-inverse;
+  padding-block: abs.spacer(7) abs.spacer(5);
+
+  &__container {
+    @include abs.container();
+  }
 }
+
+.footer-widgets {
+  display: grid;
+  gap: abs.spacer(6);
+  grid-template-columns: 1fr;
+  padding-bottom: abs.spacer(6);
+
+  @include abs.mq('md') {
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: abs.spacer(6);
+  }
+}
+
+.footer-widgets__column {
+  min-width: 0;
+}
+
+// Titres communs aux 3 colonnes
+.footer-nav__title,
+.footer-destinations__title,
+.footer-about__title {
+  font-family: abs.$font-family-label;
+  font-size: abs.$font-size-label-s;
+  text-transform: uppercase;
+  letter-spacing: abs.$tracking-label;
+  color: abs.$color-text-muted;
+  margin: 0 0 abs.spacer(3);
+}
+
+.footer-about__title {
+  font-family: abs.$font-family-heading;
+  font-size: 1.375rem;
+  color: abs.$color-secondary;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+// Listes communes nav / destinations
+.footer-nav__list,
+.footer-destinations__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: abs.spacer(2);
+}
+
+.footer-nav__link,
+.footer-destinations__link {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-size: abs.$font-size-body-s;
+  transition: color abs.$transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    color: abs.$color-secondary;
+  }
+}
+
+.footer-about__text {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: abs.$font-size-body-s;
+  line-height: abs.$line-height-relaxed;
+  max-width: 340px;
+  margin: abs.spacer(3) 0;
+}
+
+.footer-about__socials {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: abs.spacer(3);
+}
+
+.footer-about__social-link {
+  display: inline-flex;
+  color: rgba(255, 255, 255, 0.75);
+  transition: color abs.$transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    color: abs.$color-secondary;
+  }
+}
+
+.footer-bottom {
+  margin-top: abs.spacer(6);
+  padding-top: abs.spacer(4);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: abs.spacer(2);
+
+  @include abs.mq('md') {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__copyright {
+    color: abs.$color-text-muted;
+    font-size: abs.$font-size-body-xs;
+    margin: 0;
+  }
+
+  &__cookies {
+    color: abs.$color-text-muted;
+    font-size: abs.$font-size-body-xs;
+    margin: 0;
+  }
+
+  &__legal {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: abs.spacer(3);
+    font-size: abs.$font-size-body-xs;
+  }
+
+  &__legal-link {
+    color: abs.$color-text-muted;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      color: abs.$color-secondary;
+    }
+  }
+
+  &__lang-switcher {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: abs.spacer(2);
+  }
+
+  &__lang-link {
+    color: abs.$color-text-muted;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      color: abs.$color-secondary;
+    }
+
+  }
+
+  &__lang-item {
+    &--current {
+
+      .footer-bottom__lang-link {
+        color: abs.$color-text-inverse;
+        font-weight: abs.$font-weight-bold;
+      }
+    }
+  }
+}
+
+
 
 .entry-footer {
   margin-bottom: spacer(8);

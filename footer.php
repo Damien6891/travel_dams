@@ -110,6 +110,8 @@
 				&copy; <?php echo esc_html(date_i18n('Y')); ?> Travel Dam's
 			</p>
 
+			<a href="#" class="footer-bottom__cookies" onclick="tarteaucitron.userInterface.openPanel(); return false;"><?= __('Gérer les cookies', 'travel-dams') ?> </a>
+
 			<ul class="footer-bottom__legal">
 				<?php
 				$legal_page = get_page_by_path('mentions-legales');

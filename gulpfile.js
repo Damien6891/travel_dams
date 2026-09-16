@@ -39,6 +39,13 @@ function copyFlagIcons() {
   );
 }
 
+function copyTarteaucitron() {
+  return gulp.src('node_modules/tarteaucitronjs/**/*', {
+    base: 'node_modules/tarteaucitronjs/'
+  })
+    .pipe(gulp.dest('./assets/vendor/tarteaucitron/'))
+}
+
 // Un point d'entrée = un fichier de sortie, chargé uniquement où il est enqueue.
 // "navigation" est global (présent sur chaque page).
 // Ajoute une entrée par besoin ponctuel au fur et à mesure (ex: "gallery": [...]).
@@ -65,6 +72,7 @@ function styles() {
     .pipe(gulp.dest(paths.scss.dest))
     .pipe(browserSync.stream());
 }
+
 
 
 function scripts() {
@@ -105,7 +113,7 @@ function watchFiles() {
   gulp.watch(paths.php.watch, reload); // reload complet
 }
 
-const build = gulp.parallel(styles, scripts, copyFlagIcons);
+const build = gulp.parallel(styles, scripts, copyFlagIcons, copyTarteaucitron);
 const dev = gulp.series(build, serve, watchFiles);
 
 exports.styles = styles;
