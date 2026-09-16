@@ -297,6 +297,25 @@ function travel_dams_scripts()
 }
 add_action('wp_enqueue_scripts', 'travel_dams_scripts');
 
+/**
+ * Inject travelpayouts tracking script in <head>
+ */
+function travel_dams_travelpayouts_tracking_script()
+{
+?>
+	<script nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1" data-cmp-ab="2">
+		(function() {
+			var script = document.createElement("script");
+			script.async = 1;
+			script.setAttribute("data-cmp-ab", "2");
+			script.src = 'https://emrldco.com/NTc0NjEw.js?t=574610';
+			document.head.appendChild(script);
+		})();
+	</script>
+<?php
+}
+add_action('wp_head', 'travel_dams_travelpayouts_tracking_script', 1);
+
 function add_umami_data_attribute($tag, $handle)
 {
 	if ('umami-tracking' === $handle) {
