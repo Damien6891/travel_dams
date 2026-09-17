@@ -5,8 +5,8 @@
  * @package Travel_Dams
  */
 
-use Carbon_Fields\Container\Container;
-use Carbon_Fields\Field\Field;
+use Carbon_Fields\Container;
+use Carbon_Fields\Field;
 
 Container::make('term_meta', __('Détails destination', 'travel-dams'))
     ->where('term_taxonomy', '=', 'destination')
