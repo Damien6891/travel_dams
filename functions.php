@@ -448,6 +448,7 @@ require get_template_directory() . '/inc/taxonomies.php';
  * SEO
  */
 require get_template_directory() . '/inc/seo-meta-output.php';
+require get_template_directory() . '/inc/seo-term-destination-output.php';
 
 /**
  *  NAVIGATION 
