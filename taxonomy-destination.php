@@ -31,6 +31,10 @@ if (!$is_zone) {
     ))
     ?>
 
+    <div class="container">
+        <?php travel_dams_the_breadcrumb() ?>
+    </div>
+
     <!-- <?php if (!$is_zone) : ?>
         <div class="container">
             <div class="country">

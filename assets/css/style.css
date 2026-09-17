@@ -2480,6 +2480,31 @@ html {
   cursor: pointer;
 }
 
+.breadcrumb {
+  padding-top: 24px;
+}
+.breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.breadcrumb__item:not(:last-child)::after {
+  content: "›";
+  margin: 0 0.5em;
+}
+.breadcrumb__link {
+  text-decoration: none;
+}
+.breadcrumb__link:hover {
+  text-decoration: underline;
+}
+.breadcrumb__current {
+  color: currentColor;
+  opacity: 0.7;
+}
+
 .page-template-page-destinations .destinations-overview {
   margin-top: 80px;
   margin-bottom: 80px;

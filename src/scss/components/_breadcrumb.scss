@@ -1,0 +1,31 @@
+@use '../abstracts/' as *;
+
+.breadcrumb {
+    padding-top: spacer(4);
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    &__item:not(:last-child)::after {
+        content: '›';
+        margin: 0 0.5em;
+    }
+
+    &__link {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__current {
+        color: currentColor;
+        opacity: 0.7;
+    }
+}
