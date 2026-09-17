@@ -279,16 +279,20 @@ function travel_dams_scripts()
 	}
 
 	// Analytics UMAMI
-	wp_enqueue_script(
-		'umami-tracking',
-		'https://stats.damien-hantzer.com/script.js',
-		[],
-		null,
-		[
-			'strategy' => 'defer',
-			'in_footer' => false
-		]
-	);
+	if (wp_get_environment_type() === 'production') {
+
+		wp_enqueue_script(
+			'umami-tracking',
+			'https://stats.damien-hantzer.com/script.js',
+			[],
+			null,
+			[
+				'strategy' => 'defer',
+				'in_footer' => false
+			]
+		);
+	}
+
 
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
@@ -354,6 +358,8 @@ function travel_dams_travelpayouts_tarteaucitron_service()
 <?php
 }
 add_action('wp_head', 'travel_dams_travelpayouts_tarteaucitron_service', 2);
+
+
 
 function add_umami_data_attribute($tag, $handle)
 {
