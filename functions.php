@@ -445,6 +445,11 @@ add_action('wp_enqueue_scripts', 'enqueue_dashicons_front');
 require get_template_directory() . '/inc/taxonomies.php';
 
 /**
+ * SEO
+ */
+require get_template_directory() . '/inc/seo-meta-output.php';
+
+/**
  *  NAVIGATION 
  */
 require get_template_directory() . '/inc/navigation.php';
