@@ -10,7 +10,13 @@
  * image : réutilise l'image mise en avant, comme pour l'Open Graph
  * (inc/seo-open-graph.php).
  *
- * À charger depuis functions.php :
+ * author.url : page d'archive auteur native de WordPress.
+ *
+ * Toutes les URLs passent par travel_dams_absolute_url() (inc/seo-helpers.php)
+ * — un JSON-LD avec une URL protocol-relative (//host/...) est rejeté comme
+ * invalide par le Rich Results Test de Google.
+ *
+ * À charger depuis functions.php, après seo-helpers.php :
  *   require get_template_directory() . '/inc/seo-json-ld-article.php';
  *
  * @package Travel_Dams
@@ -31,7 +37,11 @@ add_action('wp_head', function () {
     }
 
     $thumbnail_id = get_post_thumbnail_id($post_id);
-    $image_url = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'large') : null;
+    $image_url = $thumbnail_id
+        ? travel_dams_absolute_url(wp_get_attachment_image_url($thumbnail_id, 'large')) // seo-helpers.php
+        : null;
+
+    $author_id = get_post_field('post_author', $post_id);
 
     $schema = array(
         '@context'         => 'https://schema.org',
@@ -41,7 +51,8 @@ add_action('wp_head', function () {
         'dateModified'     => get_the_modified_date('c', $post_id),
         'author'           => array(
             '@type' => 'Person',
-            'name'  => get_the_author_meta('display_name', get_post_field('post_author', $post_id)),
+            'name'  => get_the_author_meta('display_name', $author_id),
+            'url'   => travel_dams_absolute_url(get_author_posts_url($author_id)), // seo-helpers.php
         ),
         'publisher'        => array(
             '@type' => 'Organization',
@@ -49,7 +60,7 @@ add_action('wp_head', function () {
         ),
         'mainEntityOfPage' => array(
             '@type' => 'WebPage',
-            '@id'   => get_permalink($post_id),
+            '@id'   => travel_dams_absolute_url(get_permalink($post_id)), // seo-helpers.php
         ),
     );
 

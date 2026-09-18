@@ -13,7 +13,10 @@
  * L'image utilise l'image mise en avant pour les articles, hero_image pour
  * les destinations (inc/carbon-fields/term-met-destination.php).
  *
- * À charger depuis functions.php :
+ * Toutes les URLs passent par travel_dams_absolute_url() (inc/seo-helpers.php)
+ * pour éviter les URLs protocol-relative invalides pour les réseaux sociaux.
+ *
+ * À charger depuis functions.php, après seo-helpers.php :
  *   require get_template_directory() . '/inc/seo-open-graph.php';
  *
  * @package Travel_Dams
@@ -25,7 +28,7 @@ function travel_dams_get_og_image_url()
         $thumbnail_id = get_post_thumbnail_id(get_the_ID());
 
         if ($thumbnail_id) {
-            return wp_get_attachment_image_url($thumbnail_id, 'large');
+            return travel_dams_absolute_url(wp_get_attachment_image_url($thumbnail_id, 'large')); // seo-helpers.php
         }
 
         return null;
@@ -35,7 +38,7 @@ function travel_dams_get_og_image_url()
         $image_id = carbon_get_term_meta(get_queried_object_id(), 'hero_image');
 
         if ($image_id) {
-            return wp_get_attachment_image_url($image_id, 'large');
+            return travel_dams_absolute_url(wp_get_attachment_image_url($image_id, 'large')); // seo-helpers.php
         }
     }
 
@@ -46,18 +49,21 @@ add_action('wp_head', function () {
     if (is_singular('post')) {
         $title       = travel_dams_get_seo_title(get_the_ID());
         $description = travel_dams_get_seo_description(get_the_ID());
-        $url         = get_permalink();
+        $url         = travel_dams_absolute_url(get_permalink()); // seo-helpers.php
         $type        = 'article';
     } elseif (is_tax('destination')) {
         $term_id     = get_queried_object_id();
         $title       = travel_dams_get_destination_seo_title($term_id);
         $description = travel_dams_get_destination_seo_description($term_id);
         $url         = get_term_link($term_id, 'destination');
-        $type        = 'website';
 
         if (is_wp_error($url)) {
             $url = '';
+        } else {
+            $url = travel_dams_absolute_url($url); // seo-helpers.php
         }
+
+        $type = 'website';
     } else {
         return;
     }

@@ -7,7 +7,11 @@
  * (title/url), réutilisé à la fois pour l'affichage (ci-dessous) et pour
  * le JSON-LD BreadcrumbList (inc/seo-json-ld-breadcrumb.php).
  *
- * À charger depuis functions.php :
+ * Toutes les URLs passent par travel_dams_absolute_url() (inc/seo-helpers.php)
+ * pour éviter les URLs protocol-relative (//host/...) que WordPress peut
+ * générer en local — invalides pour les validateurs JSON-LD.
+ *
+ * À charger depuis functions.php, après seo-helpers.php :
  *   require get_template_directory() . '/inc/breadcrumb.php';
  *
  * @package Travel_Dams
@@ -15,13 +19,13 @@
 
 /**
  * Lien vers la page hub des destinations (page-destination.php, slug
- * "destination"), insérée entre Accueil et le premier niveau de taxonomie —
- * c'est le vrai point d'entrée de navigation vers les destinations.
+ * "destinations"), insérée entre Accueil et le premier niveau de
+ * taxonomie — c'est le vrai point d'entrée de navigation vers les
+ * destinations.
  */
 function travel_dams_get_destinations_hub_link()
 {
     $page = get_page_by_path('destinations');
-
 
     if (! $page) {
         return null;
@@ -35,17 +39,23 @@ function travel_dams_get_destinations_hub_link()
         }
     }
 
-    if (!$page) {
+    if (! $page) {
         return null;
     }
 
-    return array('title' => get_the_title($page), 'url' => get_permalink($page));
+    return array(
+        'title' => get_the_title($page),
+        'url'   => travel_dams_absolute_url(get_permalink($page)), // seo-helpers.php
+    );
 }
 
 function travel_dams_get_breadcrumb_trail()
 {
     $trail = array(
-        array('title' => __('Accueil', 'travel-dams'), 'url' => home_url('/')),
+        array(
+            'title' => __('Accueil', 'travel-dams'),
+            'url'   => travel_dams_absolute_url(home_url('/')), // seo-helpers.php
+        ),
     );
 
     if (is_tax('destination')) {
@@ -67,7 +77,10 @@ function travel_dams_get_breadcrumb_trail()
             $ancestor = get_term($ancestor_id, 'destination');
 
             if ($ancestor && ! is_wp_error($ancestor)) {
-                $trail[] = array('title' => $ancestor->name, 'url' => get_term_link($ancestor));
+                $trail[] = array(
+                    'title' => $ancestor->name,
+                    'url'   => travel_dams_absolute_url(get_term_link($ancestor)), // seo-helpers.php
+                );
             }
         }
 
@@ -109,16 +122,25 @@ function travel_dams_get_breadcrumb_trail()
                 $ancestor = get_term($ancestor_id, 'destination');
 
                 if ($ancestor && ! is_wp_error($ancestor)) {
-                    $trail[] = array('title' => $ancestor->name, 'url' => get_term_link($ancestor));
+                    $trail[] = array(
+                        'title' => $ancestor->name,
+                        'url'   => travel_dams_absolute_url(get_term_link($ancestor)), // seo-helpers.php
+                    );
                 }
             }
 
-            $trail[] = array('title' => $term->name, 'url' => get_term_link($term));
+            $trail[] = array(
+                'title' => $term->name,
+                'url'   => travel_dams_absolute_url(get_term_link($term)), // seo-helpers.php
+            );
         } else {
             $categories = get_the_category($post_id);
 
             if (! empty($categories)) {
-                $trail[] = array('title' => $categories[0]->name, 'url' => get_category_link($categories[0]));
+                $trail[] = array(
+                    'title' => $categories[0]->name,
+                    'url'   => travel_dams_absolute_url(get_category_link($categories[0])), // seo-helpers.php
+                );
             }
         }
 
