@@ -451,6 +451,7 @@ require get_template_directory() . '/inc/seo-helpers.php';
 require get_template_directory() . '/inc/breadcrumb.php';
 require get_template_directory() . '/inc/seo-meta-output.php';
 require get_template_directory() . '/inc/seo-term-destination-output.php';
+require get_template_directory() . '/inc/seo-json-ld-destination.php';
 require get_template_directory() . '/inc/seo-open-graph.php';
 require get_template_directory() . '/inc/seo-json-ld-breadcrumb.php';
 require get_template_directory() . '/inc/seo-json-ld-post.php';
