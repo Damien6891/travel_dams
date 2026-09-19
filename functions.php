@@ -633,37 +633,6 @@ function travel_dams_carnet_template($template)
 	return $template;
 }
 
-
-function carnet_debug_log($msg)
-{
-	file_put_contents(
-		WP_CONTENT_DIR . '/carnet-debug.log',
-		'[' . gmdate('Y-m-d H:i:s') . '] ' . $msg . "\n",
-		FILE_APPEND
-	);
-}
-
-// Test : ouvre n'importe quelle page avec ?log_test=1
-add_action('init', function () {
-	if (isset($_GET['log_test'])) carnet_debug_log('test OK');
-});
-
-add_filter('render_block_carbon-fields/jour-de-carnet', function ($content) {
-	static $logged = false;
-	if ($logged || strpos($content, 'carnet-day') !== false) return $content;
-	$logged = true;
-
-	carnet_debug_log(implode(' | ', [
-		'wrapper absent',
-		'url=' . ($_SERVER['REQUEST_URI'] ?? ''),
-		'dans_init=' . (doing_action('init') ? 'oui' : 'non'),
-		'wp=' . did_action('wp'),
-		'template_redirect=' . did_action('template_redirect'),
-		'wp_head=' . did_action('wp_head'),
-		'cf_register=' . did_action('carbon_fields_register_fields'),
-		'cf_registered=' . did_action('carbon_fields_fields_registered'),
-		'bloc_enregistre=' . (WP_Block_Type_Registry::get_instance()->is_registered('carbon-fields/jour-de-carnet') ? 'oui' : 'non'),
-		'appel=' . wp_debug_backtrace_summary(),
-	]));
-	return $content;
-});
+/**
+ * debug
+ */
