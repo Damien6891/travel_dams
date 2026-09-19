@@ -649,16 +649,21 @@ add_action('init', function () {
 });
 
 add_filter('render_block_carbon-fields/jour-de-carnet', function ($content) {
-	if (strpos($content, 'carnet-day') === false) {
-		carnet_debug_log(sprintf(
-			'wrapper absent | enregistre=%s | url=%s | lang=%s | connecte=%s | init=%d | ua=%s',
-			WP_Block_Type_Registry::get_instance()->is_registered('carbon-fields/jour-de-carnet') ? 'oui' : 'non',
-			$_SERVER['REQUEST_URI'] ?? '',
-			function_exists('pll_current_language') ? var_export(pll_current_language(), true) : 'n/a',
-			is_user_logged_in() ? 'oui' : 'non',
-			did_action('init'),
-			$_SERVER['HTTP_USER_AGENT'] ?? ''
-		));
-	}
+	static $logged = false;
+	if ($logged || strpos($content, 'carnet-day') !== false) return $content;
+	$logged = true;
+
+	carnet_debug_log(implode(' | ', [
+		'wrapper absent',
+		'url=' . ($_SERVER['REQUEST_URI'] ?? ''),
+		'dans_init=' . (doing_action('init') ? 'oui' : 'non'),
+		'wp=' . did_action('wp'),
+		'template_redirect=' . did_action('template_redirect'),
+		'wp_head=' . did_action('wp_head'),
+		'cf_register=' . did_action('carbon_fields_register_fields'),
+		'cf_registered=' . did_action('carbon_fields_fields_registered'),
+		'bloc_enregistre=' . (WP_Block_Type_Registry::get_instance()->is_registered('carbon-fields/jour-de-carnet') ? 'oui' : 'non'),
+		'appel=' . wp_debug_backtrace_summary(),
+	]));
 	return $content;
 });
