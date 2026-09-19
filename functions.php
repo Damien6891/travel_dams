@@ -634,10 +634,24 @@ function travel_dams_carnet_template($template)
 }
 
 
+function carnet_debug_log($msg)
+{
+	file_put_contents(
+		WP_CONTENT_DIR . '/carnet-debug.log',
+		'[' . gmdate('Y-m-d H:i:s') . '] ' . $msg . "\n",
+		FILE_APPEND
+	);
+}
+
+// Test : ouvre n'importe quelle page avec ?log_test=1
+add_action('init', function () {
+	if (isset($_GET['log_test'])) carnet_debug_log('test OK');
+});
+
 add_filter('render_block_carbon-fields/jour-de-carnet', function ($content) {
 	if (strpos($content, 'carnet-day') === false) {
-		error_log(sprintf(
-			'[carnet-debug] wrapper absent | enregistré=%s | url=%s | lang=%s | connecté=%s | init=%d | ua=%s',
+		carnet_debug_log(sprintf(
+			'wrapper absent | enregistre=%s | url=%s | lang=%s | connecte=%s | init=%d | ua=%s',
 			WP_Block_Type_Registry::get_instance()->is_registered('carbon-fields/jour-de-carnet') ? 'oui' : 'non',
 			$_SERVER['REQUEST_URI'] ?? '',
 			function_exists('pll_current_language') ? var_export(pll_current_language(), true) : 'n/a',
