@@ -632,3 +632,14 @@ function travel_dams_carnet_template($template)
 
 	return $template;
 }
+
+
+
+add_action('template_redirect', function () {
+	if (!isset($_GET['debug_blocks']) || !current_user_can('manage_options')) return;
+	$names = array_keys(WP_Block_Type_Registry::get_instance()->get_all_registered());
+	wp_send_json([
+		'locale' => get_locale(),
+		'carbon' => array_values(array_filter($names, fn($n) => str_starts_with($n, 'carbon-fields/'))),
+	]);
+});
