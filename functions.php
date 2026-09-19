@@ -632,3 +632,19 @@ function travel_dams_carnet_template($template)
 
 	return $template;
 }
+
+
+add_filter('render_block_carbon-fields/jour-de-carnet', function ($content) {
+	if (strpos($content, 'carnet-day') === false) {
+		error_log(sprintf(
+			'[carnet-debug] wrapper absent | enregistré=%s | url=%s | lang=%s | connecté=%s | init=%d | ua=%s',
+			WP_Block_Type_Registry::get_instance()->is_registered('carbon-fields/jour-de-carnet') ? 'oui' : 'non',
+			$_SERVER['REQUEST_URI'] ?? '',
+			function_exists('pll_current_language') ? var_export(pll_current_language(), true) : 'n/a',
+			is_user_logged_in() ? 'oui' : 'non',
+			did_action('init'),
+			$_SERVER['HTTP_USER_AGENT'] ?? ''
+		));
+	}
+	return $content;
+});
