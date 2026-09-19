@@ -9,7 +9,7 @@
 use Carbon_Fields\Block;
 use Carbon_Fields\Field;
 
-$block = Block::make(__('Jour de carnet', 'travel-dams'))
+$block = Block::make('Jour de carnet')
     ->add_fields(array(
         Field::make('text', 'carnet_day_title', __('Titre', 'travel-dams')),
         // Field::make('date', 'carnet_day_date', __('Date', 'travel-dams')),
