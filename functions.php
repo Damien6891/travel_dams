@@ -444,6 +444,9 @@ add_action('wp_enqueue_scripts', 'enqueue_dashicons_front');
 
 require get_template_directory() . '/inc/taxonomies.php';
 
+/** MEDIA FOLDERS */
+require_once get_theme_file_path('inc/media-folders.php');
+
 /**
  * SEO
  */
