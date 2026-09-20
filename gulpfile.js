@@ -113,12 +113,15 @@ function watchFiles() {
   gulp.watch(paths.php.watch, reload); // reload complet
 }
 
-const build = gulp.parallel(styles, scripts, copyFlagIcons, copyTarteaucitron);
+const vendor = gulp.parallel(copyFlagIcons, copyTarteaucitron);
+const build = gulp.parallel(styles, scripts);
 const dev = gulp.series(build, serve, watchFiles);
 
 exports.styles = styles;
 exports.scripts = scripts;
-exports.copyFlagIcons = copyFlagIcons;
+// exports.copyFlagIcons = copyFlagIcons;
+
+exports.vendor = vendor;
 exports.build = build;
 exports.watch = dev;
 exports.default = dev;

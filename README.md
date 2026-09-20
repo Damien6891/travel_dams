@@ -71,3 +71,5 @@ Good luck!
 
 
 To get countries SVG maps go on https://github.com/djaiss/mapsicon
+
+npm run postinstall to run copyFlags & copyTarteaucitron js
