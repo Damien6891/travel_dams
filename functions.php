@@ -215,12 +215,12 @@ function travel_dams_scripts()
 	// wp_dequeue_style('classic-theme-styles');
 	// wp_dequeue_style('global-styles');
 
-	wp_enqueue_style(
-		'travel-dams-fonts',
-		'https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@400;600&display=swap',
-		array(),
-		null
-	);
+	// wp_enqueue_style(
+	// 	'travel-dams-fonts',
+	// 	'https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@400;600&display=swap',
+	// 	array(),
+	// 	null
+	// );
 
 	wp_enqueue_style(
 		'travel-dams-style',
@@ -302,6 +302,15 @@ function travel_dams_scripts()
 	}
 }
 add_action('wp_enqueue_scripts', 'travel_dams_scripts');
+
+add_action('enqueue_block_assets', function () {
+	wp_enqueue_style(
+		'travel-dams-fonts',
+		'https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@400;600&display=swap',
+		array(),
+		null
+	);
+});
 
 /**
  * Add Tarteaucitron js

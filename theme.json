@@ -33,10 +33,38 @@
           "fluid": { "min": "1.75rem", "max": "2.25rem" } },
         { "slug": "huge",    "name": "Énorme",      "size": "3.5rem",
           "fluid": { "min": "2.5rem", "max": "3.5rem" } }
+      ],
+      "fontFamilies": [
+        {
+          "slug": "source-serif",
+          "name": "Source Serif 4",
+          "fontFamily": "\"Source Serif 4\", Georgia, serif"
+        },
+        {
+          "slug": "jakarta",
+          "name": "Plus Jakarta Sans",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif"
+        },
+        {
+          "slug": "space-grotesk",
+          "name": "Space Grotesk",
+          "fontFamily": "\"Space Grotesk\", system-ui, sans-serif"
+        }
       ]
     }
   },
   "styles" : {
+    "typography": {
+      "fontFamily": "var:preset|font-family|jakarta"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|source-serif",
+          "fontWeight": "600"
+        }
+      }
+    },
     "blocks": {
       "core/paragraph" : {
         "spacing" : {
