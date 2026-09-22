@@ -33,6 +33,8 @@ function travel_dams_setup()
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support('automatic-feed-links');
 
+	add_post_type_support('page', 'excerpt');
+
 	add_theme_support('align-wide');
 
 	/*
@@ -541,8 +543,9 @@ add_filter('block_editor_settings_all', function ($settings) {
 add_action('init', function () {
 	register_block_pattern_category(
 		'travel_dams',
-		array('label' => __('Carnet de voyage', 'travel-dams'))
+		array('label' => __('Travel Dam\'s', 'travel-dams'))
 	);
+
 
 	// Style "Chapeau" pour core/quote : citation d'ouverture italique en serif,
 	// utilisée en tête des carnets de voyage (voir template-parts/hero.php contexte "carnet").
