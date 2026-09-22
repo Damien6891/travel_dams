@@ -65,7 +65,23 @@
           { "slug": "xx-large",  "name": "Extra Grand",   "size": "40px" },
           { "slug": "full",   "name": "Arrondi", "size": "9999px" }
         ]
-      }
+      },
+    "spacing" : {
+      "defaultSpacingSizes": false,
+      "spapcingScale": { "steps": 0},
+      "units": ["px", "rem", "%", "vw"],
+      "spacingSizes": [
+        { "slug": "8", "name": "8px", "size": "8px" },
+        { "slug": "12", "name": "12px", "size": "12px" },
+        { "slug": "16", "name": "16px", "size": "16px" },
+        { "slug": "24", "name": "24px", "size": "24px" },
+        { "slug": "32", "name": "32px", "size": "32px" },
+        { "slug": "48", "name": "48px", "size": "48px" },
+        { "slug": "64", "name": "64px", "size": "64px" },
+        { "slug": "80", "name": "80px", "size": "80px" },
+        { "slug": "96", "name": "96px", "size": "96px" }
+      ]
+    }
   },
   "styles" : {
     "color": {
