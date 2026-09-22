@@ -19,7 +19,10 @@
         { "slug": "bg-panel", "name": "Background light", "color": "#efeee3" },
         { "slug": "text-color", "name": "Couleur texte", "color": "#434843" },
         { "slug": "text-color-muted", "name": "Couleur texte muted", "color": "#737873" },
-        { "slug": "text-color-inverse", "name": "Couleur texte inverse", "color": "#ffffff" }
+        { "slug": "text-color-inverse", "name": "Couleur texte inverse", "color": "#ffffff" },
+        { "slug": "border", "name": "Couleur bordure inverse", "color": "rgba(115, 120, 115, 0.3)" },
+        { "slug": "border-light", "name": "Couleur bordure light", "color": "rgba(115, 120, 115, 0.144)" },
+        { "slug": "border-dark", "name": "Couleur bordure on dark", "color": "rgba(255, 255, 255, 0.2)" }
       ]
     },
     "typography": {
