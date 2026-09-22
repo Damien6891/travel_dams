@@ -14,9 +14,20 @@
  */
 
 get_header();
+
 ?>
 
 <main id="primary" class="site-main">
+
+
+	<?php
+	get_template_part('template-parts/hero', null, array(
+		// 'eyebrow' => 'eyebrow',
+		'title'   => get_the_title(),
+		'byline'  => get_the_excerpt(),
+		'image_id' =>  get_post_thumbnail_id(),
+	))
+	?>
 
 	<?php
 	while (have_posts()) :
@@ -35,5 +46,5 @@ get_header();
 </main><!-- #main -->
 
 <?php
-get_sidebar();
+// get_sidebar();
 get_footer();
