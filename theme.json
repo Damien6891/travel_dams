@@ -16,7 +16,10 @@
         { "slug": "secondary", "name": "Secondaire", "color": "#f6b74d" },
         { "slug": "bg", "name": "Background", "color": "#fbfaee" },
         { "slug": "bg-alt", "name": "Background alt", "color": "#f5f4e8" },
-        { "slug": "bg-panel", "name": "Background light", "color": "#efeee3" }
+        { "slug": "bg-panel", "name": "Background light", "color": "#efeee3" },
+        { "slug": "text-color", "name": "Couleur texte", "color": "#434843" },
+        { "slug": "text-color-muted", "name": "Couleur texte muted", "color": "#737873" },
+        { "slug": "text-color-inverse", "name": "Couleur texte inverse", "color": "#ffffff" }
       ]
     },
     "typography": {
@@ -65,6 +68,10 @@
       }
   },
   "styles" : {
+    "color": {
+      "background": "var:preset|color|bg",
+      "text": "var:preset|color|text-color"
+    },
     "typography": {
       "fontFamily": "var:preset|font-family|jakarta"
     },
