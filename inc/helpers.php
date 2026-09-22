@@ -138,3 +138,40 @@ add_filter('category_rewrite_rules', function ($rules) {
 
     return $new_rules + $rules;
 });
+
+/**
+ * Get "A propos" texte for Home page depending current language
+ */
+/**
+ * Récupère une option Theme Options traduite, avec fallback FR.
+ *
+ * @param string        $base_field Nom du champ sans suffixe de langue (ex: 'homepage_about').
+ * @param callable|null $resolver   Callback optionnel (mixed $value) => mixed, pour transformer
+ *                                  la valeur brute (ex: résoudre un champ association en URL/titre).
+ */
+function td_get_translated_option(string $base_field, ?callable $resolver = null)
+{
+    $lang = function_exists('pll_current_language') ? pll_current_language() : 'fr';
+
+    $value = carbon_get_theme_option($base_field . '_' . $lang);
+
+    if (empty($value) && $lang !== 'fr') {
+        $value = carbon_get_theme_option($base_field . '_fr');
+    }
+
+    if ($resolver) {
+        return $value ? $resolver($value) : null;
+    }
+
+    return $value ?: '';
+}
+
+function td_resolve_page_link(array $value): array
+{
+    $page_id = $value[0]['id'] ?? null;
+
+    return array(
+        'page_url'   => $page_id ? get_permalink($page_id) : '',
+        'page_title' => $page_id ? get_the_title($page_id) : '',
+    );
+}

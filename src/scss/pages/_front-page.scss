@@ -11,3 +11,20 @@
         margin-block: abs.spacer(8);
     }
 }
+
+.about-teaser {
+    &__container {
+        @include abs.mq('lg') {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            gap: clamp(abs.spacer(4), 5vw, abs.spacer(7));
+        }
+    }
+
+    &__image {
+        img {
+            width: 100%;
+            border-radius: abs.$border-radius-xl;
+        }
+    }
+}

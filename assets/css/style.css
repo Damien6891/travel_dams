@@ -66,6 +66,7 @@ h6,
   line-height: 1.2;
   font-weight: 400;
   color: #1c1d1e;
+  margin: unset;
 }
 
 h1 {
@@ -76,12 +77,26 @@ h2 {
   font-size: 2.25rem;
 }
 
+h2.wp-block-heading {
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
 h3 {
   font-size: 1.5rem;
 }
 
+h3.wp-block-heading {
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
 h4 {
   font-size: 1.1875rem;
+}
+
+h4.wp-block-heading {
+  margin-bottom: 1rem;
 }
 
 h5 {
@@ -2294,6 +2309,13 @@ html {
   display: block;
 }
 
+.wp-block-separator {
+  width: 100%;
+  margin-bottom: 24px;
+  margin-top: 50px;
+  color: rgba(115, 120, 115, 0.144);
+}
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -2591,6 +2613,18 @@ html {
   .newsletter {
     margin-block: 80px;
   }
+}
+
+@media (min-width: 992px) {
+  .about-teaser__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: clamp(24px, 5vw, 64px);
+  }
+}
+.about-teaser__image img {
+  width: 100%;
+  border-radius: 24px;
 }
 
 .country-intro {
