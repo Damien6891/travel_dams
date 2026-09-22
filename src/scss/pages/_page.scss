@@ -1,14 +1,19 @@
 @use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
 
 .site-main {
     position: relative;
 
-    a:not(.wp-block-button__link) {
-        color: v.$color-secondary;
-        text-decoration: underline;
+    .entry-content {
+        margin-bottom: m.spacer(8);
 
-        &:hover {
-            color: v.$color-primary-light;
+        a:not(.wp-block-button__link) {
+            color: v.$color-secondary;
+            text-decoration: underline;
+
+            &:hover {
+                color: v.$color-primary-light;
+            }
         }
     }
 }
