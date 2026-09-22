@@ -2800,6 +2800,13 @@ html {
 .site-main {
   position: relative;
 }
+.site-main a:not(.wp-block-button__link) {
+  color: #f6b74d;
+  text-decoration: underline;
+}
+.site-main a:not(.wp-block-button__link):hover {
+  color: #06a68e;
+}
 
 .scroll-to-top {
   position: fixed;
