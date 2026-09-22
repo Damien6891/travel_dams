@@ -5,7 +5,36 @@
       "contentSize": "720px",
       "wideSize": "1140px"
     },
-    "appearanceTools" : true
+    "appearanceTools" : true,
+    "color": {
+      "defaultPalette": false,
+      "custom": true,
+      "palette": [
+        { "slug": "primary",   "name": "Primaire",   "color": "#354438" },
+        { "slug": "primary-light",   "name": "Primaire claire",   "color": "#06a68e" },
+        { "slug": "primary-dark",   "name": "Primaire foncée",   "color": "#1c1d1e" },
+        { "slug": "secondary", "name": "Secondaire", "color": "#f6b74d" },
+        { "slug": "bg", "name": "Background", "color": "#fbfaee" },
+        { "slug": "bg-alt", "name": "Background alt", "color": "#f5f4e8" },
+        { "slug": "bg-panel", "name": "Background light", "color": "#efeee3" }
+      ]
+    },
+    "typography": {
+      "defaultFontSizes": false,
+      "customFontSize": true,
+      "fluid": true,
+      "fontSizes": [
+        { "slug": "x-small",   "name": "Très petit",       "size": "0.6875rem" },
+        { "slug": "small",   "name": "Petit",       "size": "0.875rem" },
+        { "slug": "medium",  "name": "Moyen",       "size": "1.125rem" },
+        { "slug": "large",   "name": "Grand",       "size": "1.5rem",
+          "fluid": { "min": "1.25rem", "max": "1.5rem" } },
+        { "slug": "x-large", "name": "Très grand",  "size": "2.25rem",
+          "fluid": { "min": "1.75rem", "max": "2.25rem" } },
+        { "slug": "huge",    "name": "Énorme",      "size": "3.5rem",
+          "fluid": { "min": "2.5rem", "max": "3.5rem" } }
+      ]
+    }
   },
   "styles" : {
     "blocks": {
