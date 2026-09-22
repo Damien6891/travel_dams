@@ -51,7 +51,18 @@
           "fontFamily": "\"Space Grotesk\", system-ui, sans-serif"
         }
       ]
-    }
+    },
+    "border": {
+        "radius": true,
+        "radiusSizes": [
+          { "slug": "small",  "name": "Petit",   "size": "8px" },
+          { "slug": "medium", "name": "Moyen",   "size": "12px" },
+          { "slug": "large",  "name": "Grand",   "size": "16px" },
+          { "slug": "x-large",  "name": "Très Grand",   "size": "24px" },
+          { "slug": "xx-large",  "name": "Extra Grand",   "size": "40px" },
+          { "slug": "full",   "name": "Arrondi", "size": "9999px" }
+        ]
+      }
   },
   "styles" : {
     "typography": {
