@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Travel Dams\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-19 19:39+0000\n"
+"POT-Creation-Date: 2026-09-22 22:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -43,7 +43,7 @@ msgstr ""
 msgid "%1$s – %2$s · %3$s"
 msgstr ""
 
-#: inc/carbon-fields/options-homepage.php:16
+#: inc/carbon-fields/options-homepage.php:17
 msgid "2 destinations mises en avant sur la page d'accueil."
 msgstr ""
 
@@ -53,7 +53,7 @@ msgid ""
 "Référence : iso.org."
 msgstr ""
 
-#: inc/breadcrumb.php:56 inc/carbon-fields/options-homepage.php:13
+#: inc/breadcrumb.php:56 inc/carbon-fields/options-homepage.php:14
 msgid "Accueil"
 msgstr ""
 
@@ -78,7 +78,7 @@ msgstr ""
 msgid "Capitale"
 msgstr ""
 
-#: functions.php:541 single-carnet.php:30 single.php:30
+#: single-carnet.php:30 single.php:30
 msgid "Carnet de voyage"
 msgstr ""
 
@@ -98,7 +98,7 @@ msgid ""
 "terres qui ont marqué notre esprit cette saison par leur beauté brute."
 msgstr ""
 
-#: functions.php:548
+#: functions.php:563
 msgid "Chapeau (carnet)"
 msgstr ""
 
@@ -173,7 +173,7 @@ msgid ""
 "voyage contemplatif et respectueux."
 msgstr ""
 
-#: inc/carbon-fields/options-homepage.php:28
+#: inc/carbon-fields/options-homepage.php:29
 msgid "Description (optionnel)"
 msgstr ""
 
@@ -181,7 +181,7 @@ msgstr ""
 msgid "Description du pays"
 msgstr ""
 
-#: inc/taxonomies.php:12 inc/carbon-fields/options-homepage.php:20
+#: inc/taxonomies.php:12 inc/carbon-fields/options-homepage.php:21
 msgid "Destination"
 msgstr ""
 
@@ -195,7 +195,7 @@ msgstr ""
 msgid "Destinations Coup de Cœur"
 msgstr ""
 
-#: inc/carbon-fields/options-homepage.php:15
+#: inc/carbon-fields/options-homepage.php:16
 msgid "Destinations coup de cœur"
 msgstr ""
 
@@ -203,10 +203,6 @@ msgstr ""
 msgid ""
 "Deux continents, dix pays, un même engagement : le voyage lent et "
 "respectueux des terres que nous traversons."
-msgstr ""
-
-#: template-parts/front-page/about-teaser.php:17
-msgid "Deux ou trois lignes de présentation ici."
 msgstr ""
 
 #: inc/carbon-fields/term-meta-destination-country.php:28
@@ -233,7 +229,8 @@ msgstr ""
 msgid "En bref"
 msgstr ""
 
-#: template-parts/front-page/about-teaser.php:21
+#: template-parts/front-page/about-teaser.php:35
+#: template-parts/front-page/about-teaser.php:41
 msgid "En savoir plus"
 msgstr ""
 
@@ -300,15 +297,11 @@ msgstr ""
 msgid "Jour"
 msgstr ""
 
-#: inc/carbon-fields/block-gutemberg.php:12
-msgid "Jour de carnet"
-msgstr ""
-
 #: comments.php:80
 msgid "Laisser un mot"
 msgstr ""
 
-#: inc/carbon-fields/options-homepage.php:29
+#: inc/carbon-fields/options-homepage.php:30
 msgid "Laisser vide pour utiliser la description du terme."
 msgstr ""
 
@@ -362,6 +355,10 @@ msgstr ""
 
 #: inc/taxonomies.php:17
 msgid "Modifier la destination"
+msgstr ""
+
+#: template-parts/front-page/about-teaser.php:29
+msgid "Moi, c'est Damien"
 msgstr ""
 
 #: template-parts/destination/country-intro.php:41
@@ -420,6 +417,18 @@ msgstr ""
 msgid "Pas de spam, seulement de l'inspiration brute et sauvage."
 msgstr ""
 
+#: patterns/guide-destination.php:3
+msgctxt "Pattern description"
+msgid ""
+"Ossature d'un guide destination : essentiel, accès, hébergement, activités, "
+"budget, ce que je referais, FAQ, renvois."
+msgstr ""
+
+#: patterns/guide-destination.php:3
+msgctxt "Pattern title"
+msgid "Guide destination"
+msgstr ""
+
 #: patterns/carnet-day.php:3
 msgctxt "Pattern title"
 msgid "Jour de carnet"
@@ -433,7 +442,7 @@ msgstr ""
 msgid "Population"
 msgstr ""
 
-#: functions.php:56
+#: functions.php:58
 msgid "Primary"
 msgstr ""
 
@@ -461,10 +470,6 @@ msgstr ""
 
 #: comments.php:94
 msgid "Publier"
-msgstr ""
-
-#: template-parts/front-page/about-teaser.php:16
-msgid "Qui suis-je ?"
 msgstr ""
 
 #: taxonomy-destination.php:121
@@ -592,6 +597,10 @@ msgstr ""
 msgid "Toutes les destinations"
 msgstr ""
 
+#: functions.php:555
+msgid "Travel Dam's"
+msgstr ""
+
 #. Name of the theme
 msgid "Travel Dams"
 msgstr ""
@@ -672,10 +681,10 @@ msgid ""
 "site."
 msgstr ""
 
-#: template-parts/related-posts.php:15
+#: template-parts/page-suggestions.php:54 template-parts/related-posts.php:15
 msgid "À lire aussi"
 msgstr ""
 
-#: footer.php:85
+#: footer.php:85 template-parts/front-page/about-teaser.php:27
 msgid "À propos"
 msgstr ""

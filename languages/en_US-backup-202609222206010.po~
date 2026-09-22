@@ -3,10 +3,10 @@ msgstr ""
 "Project-Id-Version: Travel Dams\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-15 12:04+0000\n"
-"PO-Revision-Date: 2026-09-22 22:06+0000\n"
+"PO-Revision-Date: 2026-09-18 21:51+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
-"Language: en_US\n"
+"Language: en-US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -42,7 +42,7 @@ msgstr "%1$s – %2$s"
 msgid "%1$s – %2$s · %3$s"
 msgstr "%1$s – %2$s · %3$s"
 
-#: inc/carbon-fields/options-homepage.php:17
+#: inc/carbon-fields/options-homepage.php:16
 msgid "2 destinations mises en avant sur la page d'accueil."
 msgstr "2 featured destinations on the homepage."
 
@@ -54,7 +54,7 @@ msgstr ""
 "2 lowercase letters, e.g. th (Thailand), lk (Sri Lanka), am (Armenia). "
 "Reference: iso.org."
 
-#: inc/breadcrumb.php:56 inc/carbon-fields/options-homepage.php:14
+#: inc/breadcrumb.php:56 inc/carbon-fields/options-homepage.php:13
 msgid "Accueil"
 msgstr "Home"
 
@@ -74,22 +74,22 @@ msgstr "No articles yet."
 msgid "Aucune destination pour le moment dans cette zone."
 msgstr "No destination for this zone"
 
-#: inc/carbon-fields/term-meta-destination-country.php:29
 #: template-parts/destination/country-intro.php:46
+#: inc/carbon-fields/term-meta-destination-country.php:29
 msgid "Capitale"
 msgstr "Capital"
 
-#: single-carnet.php:30 single.php:30
+#: single.php:30 single-carnet.php:30 functions.php:541
 msgid "Carnet de voyage"
 msgstr "Travel journal"
 
 #. %s: nom du pays
-#: single-carnet.php:29 single.php:29
+#: single.php:29 single-carnet.php:29
 #, php-format
 msgid "Carnet de voyage · %s"
 msgstr "Travel journal · %s"
 
-#: footer.php:12 taxonomy-destination.php:86
+#: taxonomy-destination.php:86 footer.php:12
 msgid "Carnets de voyage"
 msgstr "Travel journals"
 
@@ -101,7 +101,7 @@ msgstr ""
 "Some places aren't just visited, they're felt. Here are the lands that "
 "marked our minds this season with their raw beauty."
 
-#: functions.php:563
+#: functions.php:548
 msgid "Chapeau (carnet)"
 msgstr "Intro paragraph (journal entry)"
 
@@ -178,7 +178,7 @@ msgstr ""
 "Immersive stories written on the road, capturing the very essence of "
 "contemplative, respectful travel."
 
-#: inc/carbon-fields/options-homepage.php:29
+#: inc/carbon-fields/options-homepage.php:28
 msgid "Description (optionnel)"
 msgstr "Description (optional)"
 
@@ -186,7 +186,7 @@ msgstr "Description (optional)"
 msgid "Description du pays"
 msgstr "Country description"
 
-#: inc/taxonomies.php:12 inc/carbon-fields/options-homepage.php:21
+#: inc/taxonomies.php:12 inc/carbon-fields/options-homepage.php:20
 msgid "Destination"
 msgstr "Destination"
 
@@ -200,7 +200,7 @@ msgstr "Destinations"
 msgid "Destinations Coup de Cœur"
 msgstr "Favorite Destinations"
 
-#: inc/carbon-fields/options-homepage.php:16
+#: inc/carbon-fields/options-homepage.php:15
 msgid "Destinations coup de cœur"
 msgstr "Favorite destinations"
 
@@ -211,6 +211,10 @@ msgid ""
 msgstr ""
 "Two continents, ten countries, one shared commitment: slow, respectful "
 "travel through the lands we pass through."
+
+#: template-parts/front-page/about-teaser.php:17
+msgid "Deux ou trois lignes de présentation ici."
+msgstr "Two or three lines of introduction here."
 
 #: inc/carbon-fields/term-meta-destination-country.php:28
 msgid "Devise"
@@ -236,8 +240,7 @@ msgstr "Email"
 msgid "En bref"
 msgstr "At a glance"
 
-#: template-parts/front-page/about-teaser.php:35
-#: template-parts/front-page/about-teaser.php:41
+#: template-parts/front-page/about-teaser.php:21
 msgid "En savoir plus"
 msgstr "Learn more"
 
@@ -246,7 +249,7 @@ msgid ""
 "Ex: SlowTravel, Nature, Heritage — affichés en pastilles sur la page pays."
 msgstr "E.g. SlowTravel, Nature, Heritage — shown as tags on the country page."
 
-#: page-destinations.php:14 taxonomy-destination.php:26
+#: taxonomy-destination.php:26 page-destinations.php:14
 msgid "Explorer le monde"
 msgstr "Explore the world"
 
@@ -262,7 +265,7 @@ msgstr "Close menu"
 msgid "Fil d'Ariane"
 msgstr "Breadcrumb"
 
-#: footer.php:13 taxonomy-destination.php:85
+#: taxonomy-destination.php:85 footer.php:13
 msgid "Guides destinations"
 msgstr "Destination guides"
 
@@ -304,16 +307,20 @@ msgstr "Instagram"
 msgid "Jour"
 msgstr "Day"
 
+#: inc/carbon-fields/block-gutemberg.php:12
+msgid "Jour de carnet"
+msgstr "Journal day"
+
 #: comments.php:80
 msgid "Laisser un mot"
 msgstr "Leave a comment"
 
-#: inc/carbon-fields/options-homepage.php:30
+#: inc/carbon-fields/options-homepage.php:29
 msgid "Laisser vide pour utiliser la description du terme."
 msgstr "Leave empty to use the term description."
 
-#: inc/carbon-fields/term-meta-destination-country.php:30
 #: template-parts/destination/country-intro.php:51
+#: inc/carbon-fields/term-meta-destination-country.php:30
 msgid "Langue(s)"
 msgstr "Language(s)"
 
@@ -349,8 +356,8 @@ msgstr "Legal notice"
 msgid "Menu"
 msgstr "Menu"
 
-#: inc/carbon-fields/post-meta-seo.php:19
 #: inc/carbon-fields/term-meta-destination-seo.php:31
+#: inc/carbon-fields/post-meta-seo.php:19
 msgid "Meta description"
 msgstr "Meta description"
 
@@ -365,10 +372,6 @@ msgstr "Display mode"
 #: inc/taxonomies.php:17
 msgid "Modifier la destination"
 msgstr "Edit destination"
-
-#: template-parts/front-page/about-teaser.php:29
-msgid "Moi, c'est Damien"
-msgstr "Hi I'm Damien"
 
 #: template-parts/destination/country-intro.php:41
 msgid "Monnaie"
@@ -426,18 +429,6 @@ msgstr "Share your experience or ask a question about the itinerary…"
 msgid "Pas de spam, seulement de l'inspiration brute et sauvage."
 msgstr "No spam, just raw, wild inspiration."
 
-#: patterns/guide-destination.php:3
-msgctxt "Pattern description"
-msgid ""
-"Ossature d'un guide destination : essentiel, accès, hébergement, activités, "
-"budget, ce que je referais, FAQ, renvois."
-msgstr ""
-
-#: patterns/guide-destination.php:3
-msgctxt "Pattern title"
-msgid "Guide destination"
-msgstr ""
-
 #: patterns/carnet-day.php:3
 msgctxt "Pattern title"
 msgid "Jour de carnet"
@@ -451,7 +442,7 @@ msgstr "Country"
 msgid "Population"
 msgstr "Population"
 
-#: functions.php:58
+#: functions.php:56
 msgid "Primary"
 msgstr "Primary"
 
@@ -480,6 +471,10 @@ msgstr "Prepare your trip"
 #: comments.php:94
 msgid "Publier"
 msgstr "Post comment"
+
+#: template-parts/front-page/about-teaser.php:16
+msgid "Qui suis-je ?"
+msgstr "Who am I?"
 
 #: taxonomy-destination.php:121
 msgid ""
@@ -548,8 +543,8 @@ msgstr "Reply from Damien"
 msgid "S'inscrire"
 msgstr "Subscribe"
 
-#: inc/carbon-fields/post-meta-seo.php:13
 #: inc/carbon-fields/term-meta-destination-seo.php:15
+#: inc/carbon-fields/post-meta-seo.php:13
 msgid "SEO"
 msgstr "SEO"
 
@@ -585,8 +580,8 @@ msgstr "Custom theme based on _s for the travel blog."
 msgid "Titre"
 msgstr "Title"
 
-#: inc/carbon-fields/post-meta-seo.php:16
 #: inc/carbon-fields/term-meta-destination-seo.php:27
+#: inc/carbon-fields/post-meta-seo.php:16
 msgid "Titre SEO"
 msgstr "SEO title"
 
@@ -609,10 +604,6 @@ msgstr "See all →"
 #: inc/taxonomies.php:14
 msgid "Toutes les destinations"
 msgstr "All destinations"
-
-#: functions.php:555
-msgid "Travel Dam's"
-msgstr ""
 
 #. Name of the theme
 msgid "Travel Dams"
@@ -697,10 +688,10 @@ msgid ""
 "site."
 msgstr "~60 characters. Leave empty to use the post title + site name."
 
-#: template-parts/page-suggestions.php:54 template-parts/related-posts.php:15
+#: template-parts/related-posts.php:15
 msgid "À lire aussi"
 msgstr "You might also like"
 
-#: footer.php:85 template-parts/front-page/about-teaser.php:27
+#: footer.php:85
 msgid "À propos"
 msgstr "About"
