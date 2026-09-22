@@ -8,26 +8,34 @@ if (carbon_get_post_meta($page_id, 'hide_suggestions')) {
 $picked = wp_list_pluck((array) carbon_get_post_meta($page_id, 'page_suggestions'), 'id');
 $ids = array_map('intval', $picked);
 
+
 // Fallback: most recent of each type
 if (!$ids) {
     $slugs = [TD_SLUG_CARNETS, TD_SLUG_DESTINATIONS_GUIDES, TD_SLUG_GUIDES];
 
     foreach ($slugs as $slug) {
-        $term = get_term_by('slug', $slug, 'category');
-        if (!$term) {
+        $terms = get_terms([
+            'taxonomy'   => 'category',
+            'slug'       => $slug,
+            'lang'       => '', // désactive le filtre de langue de Polylang
+            'hide_empty' => false,
+            'number'     => 1,
+        ]);
+
+        if (is_wp_error($terms) || ! $terms) {
             continue;
         }
 
-        $term_id = function_exists('pll_get_term') ? pll_get_term($term->term_id) : $term->term_id;
-        if (!$term_id) {
-            continue;
+        $term_id = function_exists('pll_get_term') ? pll_get_term($terms[0]->term_id) : $terms[0]->term_id;
+        if (! $term_id) {
+            continue; // la catégorie n'a pas encore de traduction EN
         }
 
         $latest = get_posts([
-            'cat' => $term_id,
+            'cat'            => $term_id,
             'posts_per_page' => 1,
-            'fields' => 'ids',
-            'post__not_in' => $ids
+            'fields'         => 'ids',
+            'post__not_in'   => $ids,
         ]);
         $ids = array_merge($ids, $latest);
     }
