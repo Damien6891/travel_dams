@@ -6,13 +6,18 @@
     gap: abs.spacer(5);
     grid-template-columns: 1fr;
 
+
+
     @include abs.mq('sm') {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    @include abs.mq('lg') {
-        grid-template-columns: repeat(3, 1fr);
+    &:not(.post-grid--two) {
+        @include abs.mq('lg') {
+            grid-template-columns: repeat(3, 1fr);
+        }
     }
+
 }
 
 // Grille asymétrique : 1re carte (feature) sur 2 colonnes, le reste en 1 colonne

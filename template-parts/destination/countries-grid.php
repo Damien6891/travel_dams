@@ -37,8 +37,9 @@ endif;
 </div>
 
 <div class="countries-grid" data-view-target="grid">
+
     <?php foreach ($countries as $country) :
-        $image_id = absint(carbon_get_term_meta($country->term_id, 'zone_image_id'));
+        $image_id = absint(carbon_get_term_meta($country->term_id, 'card_image'));
         $link     = get_term_link($country);
         if (is_wp_error($link)) {
             continue;

@@ -78,6 +78,15 @@
         opacity: 1;
       }
     }
+
+    .fi.country-flag {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      -o-object-fit: cover;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
   }
 
   &__country-image {

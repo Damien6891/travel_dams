@@ -4,16 +4,18 @@
  * Carte d'affichage d'un article — réutilisée dans toutes les grilles du site
  *
  * @var bool   $args['show_category_badge']    Afficher le badge de catégorie. Défaut : true.
- * @var bool   $args['show_destination_badge'] Afficher le badge destination (pays). Défaut : true.
  * @var string $args['variant']                'default' (carte blanche), 'photo' (texte sous l'image,
  *                                              voir ArticleCard) ou 'overlay' (texte incrusté sur l'image).
  * @var bool   $args['feature']                Carte "hero" en bento (occupe 2 colonnes). Défaut false.
+ * @var string|null $args['badge_label']        Affiche le badge avec le texte indiqué
  */
 
-$show_category_badge    = $args['show_category_badge'] ?? true;
-$show_destination_badge = $args['show_destination_badge'] ?? true;
 $variant                = $args['variant'] ?? 'default';
 $feature                = ! empty($args['feature']);
+$eyebrow                 = $args['eyebrow'] ?? null;
+$excerpt                 = $args['excerpt'] ?? null;
+$footer_content = $args['footer'] ?? null;
+$badge_label = $args['badge_label'] ?? null;
 
 $categories   = get_the_category();
 $destinations = get_the_terms(get_the_ID(), 'destination');
@@ -26,71 +28,43 @@ if ($feature) {
 
 <article id="post-<?php the_ID(); ?>" <?php post_class($classes); ?>>
 
-    <a href="<?php the_permalink(); ?>" class="content-card__thumbnail-link">
+    <div class="content-card__thumbnail">
         <?php if (has_post_thumbnail()) : ?>
-            <?php the_post_thumbnail('travel-dams-card', array('class' => 'content-card__thumbnail')); ?>
+            <?php the_post_thumbnail('travel-dams-card', array('class' => 'content-card__image')); ?>
         <?php else : ?>
-            <div class="content-card__thumbnail content-card__thumbnail--placeholder" aria-hidden="true"></div>
+            <div class="content-card__placeholder" aria-hidden="true"></div>
         <?php endif; ?>
 
-        <?php
-        // Sur les variantes photo, le pastille sur l'image affiche le pays plutôt
-        // que la catégorie (souvent redondante avec le titre de la section).
-        $badge_label = ('default' === $variant && $show_category_badge && ! empty($categories))
-            ? $categories[0]->name
-            : ((! empty($destinations) && ! is_wp_error($destinations)) ? $destinations[0]->name : '');
-        ?>
-
-
-        <?php if ($badge_label && $show_category_badge) : ?>
+        <?php if ($badge_label) : ?>
             <span class="badge badge--tag content-card__badge">
                 <?php echo esc_html($badge_label); ?>
             </span>
         <?php endif; ?>
-    </a>
+
+    </div>
 
     <div class="content-card__body">
-
-        <?php if ($show_destination_badge && 'default' === $variant && ! empty($destinations) && ! is_wp_error($destinations)) : ?>
-            <div class="content-card__destination">
-                <?php echo esc_html(implode(', ', wp_list_pluck($destinations, 'name'))); ?>
+        <?php if ($eyebrow) : ?>
+            <div class="content-card__eyebrow">
+                <?= $eyebrow ?>
             </div>
-        <?php elseif ('default' !== $variant) : ?>
-            <div class="content-card__destination">
-                <?php echo esc_html(get_the_date()); ?>
-            </div>
-        <?php endif; ?>
+        <?php endif ?>
 
         <h3 class="content-card__title">
             <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
         </h3>
 
-        <?php if ('default' === $variant) : ?>
+        <?php if ($excerpt) : ?>
             <div class="content-card__excerpt">
-                <?php echo esc_html(wp_trim_words(get_the_excerpt(), 20)); ?>
+                <?php echo esc_html(wp_trim_words($excerpt, 20)); ?>
             </div>
         <?php endif; ?>
 
-        <div class="content-card__date">
-            <?php if (in_category(TD_SLUG_CARNETS)) : ?>
-
-                <time datetime="<?php echo esc_html(carbon_get_post_meta(get_the_ID(), 'trip_start_date')) ?>">
-                    <?php echo date_i18n('j F', strtotime(carbon_get_post_meta(get_the_ID(), 'trip_start_date'))) ?>
-                    -
-                    <?php echo date_i18n('j F Y', strtotime(carbon_get_post_meta(get_the_ID(), 'trip_end_date'))) ?>
-                </time>
-
-
-            <?php else : ?>
-
-                <time class="" datetime="<?php echo esc_attr(get_the_date('c')); ?>">
-                    <?php echo esc_html(get_the_date()); ?>
-                </time>
-
-            <?php endif ?>
-        </div>
-
-
+        <?php if ($footer_content) : ?>
+            <div class="content-card__footer">
+                <span><?= $footer_content ?></span>
+            </div>
+        <?php endif ?>
 
     </div>
 

@@ -62,38 +62,45 @@
 .content-card {
   position: relative;
   // background-color: abs.$color-bg;
-  background-color: abs.$color-surface-card;
-  border-radius: abs.$border-radius;
-  overflow: hidden;
-  box-shadow: abs.$shadow-sm;
-  transition: box-shadow abs.$transition-base, transform abs.$transition-base;
+  // background-color: abs.$color-surface-card;
+  // border-radius: abs.$border-radius;
+  // overflow: hidden;
+  // box-shadow: abs.$shadow-sm;
+  // transition: box-shadow abs.$transition-base, transform abs.$transition-base;
 
   display: flex;
   flex-direction: column;
 
   &:hover,
   &:focus-within {
-    box-shadow: abs.$shadow-md;
-    transform: translateY(-2px);
+
+    // box-shadow: abs.$shadow-md;
+    // transform: translateY(-2px);
+    .content-card__image {
+      scale: 1.06;
+    }
   }
 
-  &__thumbnail-link {
-    position: relative;
-    display: block;
-  }
-
-  &__thumbnail,
-  &__thumbnail--placeholder {
-    display: block;
-    width: 100%;
-    aspect-ratio: 4 / 3; // aligné sur la taille travel-dams-card (400×300)
-  }
 
   &__thumbnail {
-    object-fit: cover;
+    position: relative;
+    display: block;
+    width: 100%;
+    // height: 100%;
+    aspect-ratio: 4 / 3; // aligné sur la taille travel-dams-card (400×300)
+    border-radius: 12px;
+    overflow: hidden;
   }
 
-  &__thumbnail--placeholder {
+  &__image,
+  &__placeholder {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    transition: scale .3s;
+  }
+
+  &__placeholder {
     background-color: abs.$color-bg-alt;
   }
 
@@ -101,40 +108,43 @@
     position: absolute;
     top: abs.spacer(2);
     left: abs.spacer(2);
-    padding: abs.spacer(1) abs.spacer(2);
-    background-color: abs.$color-primary;
-    color: abs.$color-text-inverse;
-    font-size: abs.$font-size-sm;
-    font-weight: abs.$font-weight-medium;
+    padding: 6px abs.spacer(2);
+    background-color: rgba(255, 255, 255, 0.8);
+    color: abs.$color-text;
+    font-size: abs.$font-size-label-xs;
+    font-weight: abs.$font-weight-semibold;
     border-radius: abs.$border-radius-pill;
   }
 
   &__body {
-    padding: abs.spacer(3);
+    padding-top: abs.spacer(3);
 
     display: flex;
     flex-direction: column;
-    height: 100%;
   }
 
-  &__destination {
-    font-size: abs.$font-size-sm;
-    font-weight: abs.$font-weight-medium;
-    color: abs.$color-secondary;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    margin-bottom: abs.spacer(1);
+  &__eyebrow {
+    font-family: abs.$font-family-label;
+    font-size: abs.spacer(2);
+    color: abs.$color-primary-light;
+    font-weight: abs.$font-weight-semibold;
   }
 
   &__title {
-    font-size: abs.$font-size-lg;
+    font-size: abs.$font-size-xl;
     font-weight: abs.$font-weight-bold;
     line-height: abs.$line-height-heading;
-    margin: 0 0 abs.spacer(2);
+    margin-block: abs.spacer(1);
 
     a {
       color: abs.$color-text;
       text-decoration: none;
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+      }
 
       &:hover {
         color: abs.$color-primary;
@@ -144,12 +154,12 @@
 
   &__excerpt {
     font-size: abs.$font-size-sm;
-    color: abs.$color-text-muted;
+    color: abs.$color-text-body;
     line-height: abs.$line-height-base;
     margin: 0 0 abs.spacer(2);
   }
 
-  &__date {
+  &__footer {
     display: block;
     font-family: abs.$font-family-label;
     font-size: abs.$font-size-label-s;
@@ -158,74 +168,40 @@
     margin-top: auto;
   }
 
-  // --- Variante "photo" : carte plein cadre avec scrim, utilisée pour les
-  // grilles éditoriales (ArticleCard du design system) plutôt que la carte
-  // blanche par défaut ci-dessus.
+  // Variante photo thumbnail bigger (height)
   &--photo {
-    background-color: transparent;
-    border-radius: abs.$border-radius;
-    box-shadow: none;
-
-    &:hover,
-    &:focus-within {
-      box-shadow: none;
-      transform: none;
-    }
-
-    .content-card__thumbnail-link {
-      position: relative;
-      border-radius: abs.$border-radius;
-      overflow: hidden;
+    .content-card__thumbnail {
       height: 340px;
-    }
-
-    .content-card__thumbnail,
-    .content-card__thumbnail--placeholder {
-      position: absolute;
-      inset: 0;
-      aspect-ratio: auto;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .content-card__thumbnail-link::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(28, 29, 30, 0.05) 0%, rgba(28, 29, 30, 0.65) 100%);
-    }
-
-    .content-card__badge {
-      z-index: 1;
-    }
-
-    .content-card__body {
-      padding: abs.spacer(3) 0 0;
-    }
-
-    .content-card__destination {
-      font-family: abs.$font-family-label;
-      letter-spacing: abs.$tracking-label;
+      aspect-ratio: unset;
     }
 
     .content-card__title {
-      font-family: abs.$font-family-heading;
-      font-size: 1.375rem;
-      font-weight: abs.$font-weight-normal;
+      font-size: abs.$font-size-h3;
+    }
+  }
+
+  // variant background: fond blanc
+  &--background {
+    background-color: abs.$color-surface-card;
+    border-radius: 16px;
+    overflow: hidden;
+
+    .content-card__thumbnail {
+      border-radius: unset;
     }
 
-    .content-card__date {
-      display: none;
+    .content-card__body {
+      padding: abs.spacer(4);
+      flex: 1 1 0;
+      gap: abs.spacer(2);
     }
 
-    // Carte "hero" en bento — occupe 2 colonnes + image plus haute
-    &.content-card--feature {
-      grid-column: span 2;
+    .content-card__title {
+      margin-block: unset;
+    }
 
-      .content-card__thumbnail-link {
-        height: 280px;
-      }
+    .content-card__excerpt {
+      margin: unset;
     }
   }
 
@@ -236,6 +212,10 @@
     position: relative; // ancre .content-card__body (position:absolute) sur la carte, pas un ancêtre plus haut
     background-color: transparent;
     box-shadow: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    // height: clamp(320px, 40vw, 400px);
 
     &:hover,
     &:focus-within {
@@ -243,25 +223,24 @@
       transform: none;
     }
 
-    .content-card__thumbnail-link {
+    .content-card__thumbnail,
+    .content-card__body {
+      grid-row: 1/2;
+      grid-column: 1/2;
+    }
+
+    .content-card__thumbnail {
       position: relative;
       display: block;
       border-radius: abs.$border-radius;
       overflow: hidden;
-      height: 220px;
+      // height: 220px;
+      height: clamp(320px, 40vw, 400px);
+      aspect-ratio: unset;
+
     }
 
-    .content-card__thumbnail,
-    .content-card__thumbnail--placeholder {
-      position: absolute;
-      inset: 0;
-      aspect-ratio: auto;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .content-card__thumbnail-link::after {
+    .content-card__thumbnail::after {
       content: '';
       position: absolute;
       inset: 0;
@@ -272,37 +251,25 @@
     }
 
     .content-card__body {
-      position: absolute;
       left: 0;
       right: 0;
       bottom: 0;
       z-index: 1;
       padding: abs.spacer(4);
-    }
-
-    .content-card__destination {
-      font-family: abs.$font-family-label;
-      color: rgba(242, 242, 242, 0.7);
-      letter-spacing: 0.5px;
+      align-self: end;
     }
 
     .content-card__title {
-      font-family: abs.$font-family-heading;
       color: abs.$color-text-inverse;
-      font-size: 1.1875rem;
 
-      // Le titre est enveloppé dans un <a> : la règle par défaut de
-      // .content-card__title a (couleur encre) l'emporterait sinon, car une
-      // couleur héritée du h3 perd toujours face à une déclaration explicite
-      // portée par l'élément lui-même.
       a {
         color: inherit;
       }
     }
 
-    .content-card__excerpt,
-    .content-card__date {
-      display: none;
+    .content-card__excerpt {
+      color: abs.$color-white;
+      opacity: .8;
     }
 
     &.content-card--feature {

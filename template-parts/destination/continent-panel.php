@@ -10,7 +10,7 @@
 /** @var WP_Term $zone */
 $zone = $args['zone'];
 
-$zone_image_id = absint(carbon_get_term_meta($zone->term_id, 'zone_image_id'));
+$zone_image_id = absint(carbon_get_term_meta($zone->term_id, 'card_image'));
 $zone_link     = get_term_link($zone);
 $countries     = get_terms(array(
     'taxonomy'   => 'destination',
@@ -50,14 +50,16 @@ $total_guides  = travel_dams_count_posts_for_destination($zone->term_id, TD_SLUG
 
     <div class="continent-panel__countries">
         <?php foreach ($countries as $country) :
-            $country_image_id = absint(carbon_get_term_meta($country->term_id, 'zone_image_id'));
+            $country_image_id = absint(carbon_get_term_meta($country->term_id, 'card_image'));
+            $country_code = (carbon_get_term_meta($country->term_id, 'country_code'));
             $country_link     = get_term_link($country);
             $carnets          = travel_dams_count_posts_for_destination($country->term_id, TD_SLUG_CARNETS);
             $guides           = travel_dams_count_posts_for_destination($country->term_id, TD_SLUG_GUIDES);
         ?>
             <a href="<?php echo esc_url(is_wp_error($country_link) ? '#' : $country_link); ?>" class="continent-panel__country">
                 <?php if ($country_image_id) : ?>
-                    <?php echo wp_get_attachment_image($country_image_id, 'thumbnail', false, array('class' => 'continent-panel__country-image')); ?>
+                    <!-- <?php echo wp_get_attachment_image($country_image_id, 'thumbnail', false, array('class' => 'continent-panel__country-image')); ?> -->
+                    <span class="fi fi-<?= $country_code ?> fis country-flag" aria-hidden="true"></span>
                 <?php endif; ?>
                 <span class="continent-panel__country-name"><?php echo esc_html($country->name); ?></span>
                 <?php if ($carnets || $guides) : ?>

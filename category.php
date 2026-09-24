@@ -35,6 +35,10 @@ $image_id = carbon_get_term_meta($current_category->term_id, 'category_cover_ima
                         get_template_part('template-parts/content', 'card', array(
                             'show_category_badge'    => false, // redondant : on est déjà sur cette catégorie
                             'show_destination_badge' => true,
+                            'variant' => 'background',
+                            'excerpt' => get_the_excerpt(),
+                            'footer' => td_format_date_range(carbon_get_post_meta(get_the_ID(), 'trip_start_date'), carbon_get_post_meta(get_the_ID(), 'trip_end_date')),
+                            'badge_label' => td_get_badge_label(get_the_ID())
                         ));
                     endwhile;
                     ?>

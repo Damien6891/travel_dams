@@ -36,7 +36,6 @@ $index = 0;
 ?>
 
 <section class="destination-section destination-section--<?php echo esc_attr($category_slug); ?>">
-
     <div class="section-header">
         <div>
             <span class="eyebrow badge badge--eyebrow-light"><?php esc_html_e('Histoires vécues', 'travel-dams'); ?></span>
@@ -45,14 +44,42 @@ $index = 0;
         <a href="<?php echo esc_url(get_term_link($destination_term)); ?>" class="section-link"><?php esc_html_e('Tout lire →', 'travel-dams'); ?></a>
     </div>
 
-    <div class="<?php echo $bento ? 'bento-grid' : 'post-grid'; ?>">
-        <?php while ($query->have_posts()) : $query->the_post(); ?>
-            <?php get_template_part('template-parts/content-card', null, $bento ? array(
-                'variant' => 'overlay',
-                'feature' => 0 === $index++,
-            ) : array('show_category_badge' => false)); ?>
-        <?php endwhile; ?>
-    </div>
+    <?php if ($category_slug === TD_SLUG_CARNETS) : ?>
+
+        <div class="<?php echo $bento ? 'bento-grid' : 'post-grid post-grid--two'; ?>">
+            <?php while ($query->have_posts()) : $query->the_post(); ?>
+                <?php get_template_part('template-parts/content-card', null,  array(
+                    'variant' => 'overlay',
+                    // 'feature' => 0 === $index++,
+                    'eyebrow' => td_format_date_range(
+                        carbon_get_post_meta(get_the_ID(), 'trip_start_date'),
+                        carbon_get_post_meta(get_the_ID(), 'trip_end_date')
+                    ),
+                    'excerpt' => get_the_excerpt(),
+                    'show_category_badge' => false,
+                    'show_destination_badge' => false
+                )) ?>
+            <?php endwhile; ?>
+        </div>
+
+    <?php else : ?>
+        <div class="<?php echo $bento ? 'bento-grid' : 'post-grid'; ?>">
+            <?php while ($query->have_posts()) : $query->the_post(); ?>
+                <?php get_template_part('template-parts/content-card', null,  array(
+                    'variant' => 'background',
+                    // 'feature' => 0 === $index++,
+                    'eyebrow' => td_format_date_range(
+                        carbon_get_post_meta(get_the_ID(), 'trip_start_date'),
+                        carbon_get_post_meta(get_the_ID(), 'trip_end_date')
+                    ),
+                    'excerpt' => get_the_excerpt(),
+                    'show_category_badge' => false,
+                    'show_destination_badge' => false
+                )) ?>
+            <?php endwhile; ?>
+        </div>
+
+    <?php endif ?>
 </section>
 
 <?php

@@ -33,9 +33,22 @@ if (! $carnets_query->have_posts()) {
 
         <div class="post-grid">
             <?php while ($carnets_query->have_posts()) : $carnets_query->the_post(); ?>
-                <?php get_template_part('template-parts/content-card', null, array('variant' => 'photo')); ?>
+
+                <?php
+                get_template_part(
+                    'template-parts/content-card',
+                    null,
+                    array(
+                        'variant' => 'photo',
+                        'eyebrow' => td_format_date_range(carbon_get_post_meta(get_the_ID(), 'trip_start_date'), carbon_get_post_meta(get_the_ID(), 'trip_end_date')),
+                        'show_destination_badge' => true,
+                        'badge_label' => td_get_country(get_the_ID())->name
+                    )
+                );
+                ?>
             <?php endwhile; ?>
         </div>
+
 
     </div>
 </section>
