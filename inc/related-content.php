@@ -146,14 +146,11 @@ function travel_dams_get_related_posts($post_id, $limit = 3)
 
     if ($context) {
         if ($context['country']) {
-            $related = travel_dams_query_related_by_term($context['country'], $post_id, 'guides-destinations', $limit);
-            // echo '<pre>';
-            // var_dump($context['country']);
-            // echo '</pre>';
+            $related = travel_dams_query_related_by_term($context['country'], $post_id, TD_SLUG_DESTINATIONS_GUIDES, $limit);
         }
 
         if (empty($related) && $context['country']) {
-            $related = travel_dams_query_related_by_term($context['country'], $post_id, 'carnets-de-voyage', $limit);
+            $related = travel_dams_query_related_by_term($context['country'], $post_id, TD_SLUG_CARNETS, $limit);
         }
 
         if (empty($related) && $context['zone']) {
