@@ -29,7 +29,7 @@ $block->set_inner_blocks(true)
 
         $date      = $fields['carnet_day_date'] ?? '';
         $formatted = $date ? date_i18n('j F', strtotime($date)) : '';
-        $day_number = $fields['carnet_day_number'];
+        $day_number = $fields['carnet_day_number'] ?? '';
 
 ?>
 
