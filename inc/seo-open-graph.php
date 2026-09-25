@@ -24,7 +24,7 @@
 
 function travel_dams_get_og_image_url()
 {
-    if (is_singular('post')) {
+    if (is_singular('post') || is_front_page() || is_page_template('page-destinations.php')) {
         $thumbnail_id = get_post_thumbnail_id(get_the_ID());
 
         if ($thumbnail_id) {
@@ -46,7 +46,16 @@ function travel_dams_get_og_image_url()
 }
 
 add_action('wp_head', function () {
-    if (is_singular('post')) {
+    if (is_front_page() || is_page_template('page-destinations.php')) {
+
+
+        $title       = travel_dams_get_seo_title(get_the_ID());
+        $description = travel_dams_get_seo_description(get_the_ID());
+        $url         = is_front_page()
+            ? travel_dams_absolute_url(home_url('/')) // seo-helpers.php
+            : travel_dams_absolute_url(get_permalink()); // seo-helpers.php
+        $type        = 'website';
+    } elseif (is_singular('post')) {
         $title       = travel_dams_get_seo_title(get_the_ID());
         $description = travel_dams_get_seo_description(get_the_ID());
         $url         = travel_dams_absolute_url(get_permalink()); // seo-helpers.php

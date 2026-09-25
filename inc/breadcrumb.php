@@ -18,7 +18,7 @@
  */
 
 /**
- * Lien vers la page hub des destinations (page-destination.php, slug
+ * Lien vers la page hub des destinations (page-destinations.php, slug
  * "destinations"), insérée entre Accueil et le premier niveau de
  * taxonomie — c'est le vrai point d'entrée de navigation vers les
  * destinations.
