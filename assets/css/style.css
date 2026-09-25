@@ -2772,11 +2772,11 @@ html {
 .site-main .entry-content {
   margin-bottom: 80px;
 }
-.site-main .entry-content a:not(.wp-block-button__link) {
+.site-main .entry-content a:not(.wp-block-button__link, .carnet-sommaire__item) {
   color: #f6b74d;
   text-decoration: underline;
 }
-.site-main .entry-content a:not(.wp-block-button__link):hover {
+.site-main .entry-content a:not(.wp-block-button__link, .carnet-sommaire__item):hover {
   color: #06a68e;
 }
 
