@@ -1941,10 +1941,15 @@ html {
   background-color: #efeee3;
   border-radius: 40px;
   padding: 80px 32px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 48px;
-  align-items: center;
+  display: grid;
+  grid-template-columns: minmax(0px, 1fr);
+  gap: clamp(32px, 4vw, 56px);
+  align-items: start;
+}
+@media (min-width: 992px) {
+  .favorites-section__panel {
+    grid-template-columns: minmax(0px, 1fr) minmax(0px, 2fr);
+  }
 }
 .favorites-section__intro {
   flex: 1 1 380px;
@@ -1964,52 +1969,64 @@ html {
   flex-direction: column;
   gap: 24px;
 }
+.favorites-section__gallery {
+  min-width: 0px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0px, 1fr));
+  gap: 14px;
+}
+@media (min-width: 992px) {
+  .favorites-section__gallery {
+    grid-template-columns: repeat(3, minmax(0px, 1fr));
+  }
+}
 .favorites-section__item {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  color: inherit;
-  text-decoration: none;
+  position: relative;
+  display: block;
+  aspect-ratio: 4/3;
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgb(220, 219, 207);
+  color: rgb(255, 255, 255);
+  isolation: isolate;
+}
+.favorites-section__item::after {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  background: linear-gradient(0deg, rgba(28, 29, 30, 0.82) 0%, rgba(28, 29, 30, 0) 60%);
+  pointer-events: none;
+  z-index: 0;
 }
 .favorites-section__item-image {
-  width: 64px;
-  height: 64px;
+  position: absolute;
+  inset: 0;
   border-radius: 8px;
   -o-object-fit: cover;
   object-fit: cover;
-  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
 }
 .favorites-section__item-body {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  padding: clamp(12px, 1.4vw, 16px);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 3px;
+  pointer-events: none;
+  z-index: 1;
 }
 .favorites-section__item-title {
   font-size: 1rem;
   font-weight: 500;
-  color: #1c1d1e;
+  color: #ffffff;
 }
 .favorites-section__item-desc {
   font-size: 0.8125rem;
-  color: #737873;
-}
-.favorites-section__gallery {
-  flex: 1 1 320px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-.favorites-section__gallery-image {
-  width: 100%;
-  height: 100%;
-  min-height: 120px;
-  -o-object-fit: cover;
-  object-fit: cover;
-  border-radius: 16px;
-}
-.favorites-section__gallery > :first-child {
-  grid-row: span 2;
-  min-height: 280px;
+  color: #ffffff;
 }
 
 .continent-panel {
@@ -2494,6 +2511,14 @@ html {
 .breadcrumb__current {
   color: currentColor;
   opacity: 0.7;
+}
+
+.link {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+.link:hover {
+  color: #06a68e;
 }
 
 .page-template-page-destinations .destinations-overview {

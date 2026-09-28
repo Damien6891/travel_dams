@@ -16,7 +16,7 @@ Container::make('theme_options', __('Accueil', 'travel-dams'))
         Field::make('complex', 'homepage_favorite_destinations', __('Destinations coup de cœur', 'travel-dams'))
             ->set_help_text(__('2 destinations mises en avant sur la page d\'accueil.', 'travel-dams'))
             ->set_min(0)
-            ->set_max(2)
+            ->set_max(6)
             ->add_fields(array(
                 Field::make('association', 'destination_term', __('Destination', 'travel-dams'))
                     ->set_types(array(
@@ -28,6 +28,7 @@ Container::make('theme_options', __('Accueil', 'travel-dams'))
                     ->set_max(1),
                 Field::make('text', 'description_override', __('Description (optionnel)', 'travel-dams'))
                     ->set_help_text(__('Laisser vide pour utiliser la description du terme.', 'travel-dams')),
+                Field::make('text', 'description_override_en', __('Descriptoin (EN)', 'travel-dams'))
             )),
     ))
     ->add_tab('À propos', array(

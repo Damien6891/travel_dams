@@ -1,0 +1,10 @@
+@use '../abstracts/' as abs;
+
+.link {
+    font-weight: abs.$font-weight-semibold;
+    font-size: abs.$font-size-sm;
+
+    &:hover {
+        color: abs.$color-primary-light;
+    }
+}

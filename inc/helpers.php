@@ -132,21 +132,41 @@ function travel_dams_get_homepage_favorites()
         return $favorites;
     }
 
+    $has_pll = function_exists('pll_get_term');
+    $lang = $has_pll ? pll_current_language('slug') : '';
+    $default_lang = $has_pll ? pll_default_language('slug') : '';
+
+    $override_key = (!$lang || $lang === $default_lang) ? 'description_override' : 'description_override_' . $lang;
+
+
+
     foreach ($rows as $row) {
-        $association = $row['destination_term'] ?? array();
-        if (empty($association[0]['id'])) {
+        $source_id = absint($row['destination_term'][0]['id'] ?? 0);
+
+        if (!$source_id) {
             continue;
         }
 
-        $term = get_term(absint($association[0]['id']), 'destination');
-        if (! $term || is_wp_error($term)) {
+        $term_id = $source_id;
+        if ($has_pll && $lang) {
+            $term_id = pll_get_term($source_id, $lang);
+
+            if (!$term_id) {
+                continue;
+            }
+        }
+
+        $term = get_term($term_id, 'destination');
+        if (!$term || is_wp_error($term)) {
             continue;
         }
+
+        $image_id = absint(carbon_get_term_meta($term_id, 'card_image')) ?: absint(carbon_get_term_meta($source_id, 'card_image'));
 
         $favorites[] = array(
-            'term'        => $term,
-            'image_id'    => absint(carbon_get_term_meta($term->term_id, 'zone_image_id')),
-            'description' => $row['description_override'] ?: $term->description,
+            'term' => $term,
+            'image_id' => $image_id,
+            'description' => ($row[$override_key] ?? '') ?: wp_trim_words($term->description, 6, '...')
         );
     }
 
@@ -328,4 +348,18 @@ function td_get_badge_label($post_id)
     }
 
     return $badge_label;
+}
+
+function td_get_destinations_page()
+{
+    $page = get_page_by_path('destinations')->ID;
+
+    if (!function_exists('pll_get_post')) {
+        return $page;
+    }
+
+    $page_id = pll_get_post($page);
+
+
+    return get_permalink($page_id);
 }
