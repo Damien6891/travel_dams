@@ -624,6 +624,8 @@ body.admin-bar .site-header {
   letter-spacing: 2px;
   text-transform: uppercase;
   white-space: nowrap;
+  border-radius: 999px;
+  padding: 6px 12px;
 }
 .badge--eyebrow-dark {
   display: inline-flex;
@@ -649,6 +651,12 @@ body.admin-bar .site-header {
   border-radius: 9999px;
   color: #ffffff;
   padding: 8px 16px;
+}
+.badge--secondary {
+  background: #f6b74d;
+}
+.badge--accent {
+  background: #06a68e;
 }
 
 .chip {
@@ -2619,6 +2627,181 @@ html {
 .about-teaser__image img {
   width: 100%;
   border-radius: 24px;
+}
+
+.guides-section {
+  padding-block-end: clamp(56px, 10vw, 96px);
+}
+.guides-section__panel {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 40px);
+  padding: clamp(32px, 6vw, 64px) clamp(24px, 5vw, 56px);
+  background: #354438;
+  border-radius: 40px;
+}
+.guides-section__panel .section-header {
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: start;
+  margin-bottom: unset;
+}
+.guides-section__panel .section-title {
+  margin: 0;
+  font-size: clamp(26px, 5vw, 36px);
+  line-height: 1.2;
+  color: #fff;
+  text-wrap: pretty;
+}
+.guides-section__panel .section-header__lead {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+}
+.guides-section__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-auto-rows: auto;
+  gap: 20px;
+}
+@media (min-width: 992px) {
+  .guides-section__grid {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    grid-auto-rows: 1fr;
+  }
+}
+.guides-section__item {
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  overflow: hidden;
+  background: #fbfaee;
+  border-radius: 24px;
+  color: #1c1d1e;
+  text-decoration: none;
+}
+@media (min-width: 992px) {
+  .guides-section__item {
+    grid-column: 2;
+  }
+}
+.guides-section__item:hover .guides-section__image, .guides-section__item:focus-visible .guides-section__image {
+  transform: scale(1.05);
+}
+.guides-section__item:hover .guides-section__item-title, .guides-section__item:focus-visible .guides-section__item-title {
+  color: #06a68e;
+}
+.guides-section__item:focus-visible {
+  outline: 2px solid #f6b74d;
+  outline-offset: 3px;
+}
+.guides-section__item-thumbnail {
+  position: relative;
+  flex: 0 0 40%;
+  min-height: 160px;
+  overflow: hidden;
+  background: #f5f4e8;
+}
+.guides-section__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.guides-section__item-body {
+  flex: 1 1 0%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: clamp(18px, 2.4vw, 26px);
+}
+.guides-section__item-eyebrow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.guides-section__item-country {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #737873;
+}
+.guides-section__item-title {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.3;
+  text-wrap: pretty;
+}
+.guides-section__item-desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #434843;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.guides-section__item--main {
+  flex-direction: column;
+  grid-row: auto;
+}
+@media (min-width: 992px) {
+  .guides-section__item--main {
+    grid-column: 1;
+    grid-row: 1/span 2;
+  }
+}
+.guides-section__item--main .guides-section__item-thumbnail {
+  flex: none;
+  aspect-ratio: 16/10;
+  min-height: 0;
+}
+.guides-section__item--main .guides-section__item-body {
+  flex: 1 1 0%;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: clamp(22px, 3vw, 32px);
+}
+.guides-section__item--main .guides-section__item-body::after {
+  margin-top: auto;
+  padding-top: 6px;
+  font-size: 14px;
+}
+.guides-section__item--main .guides-section__item-eyebrow {
+  gap: 10px;
+}
+.guides-section__item--main .guides-section__item-title {
+  font-size: clamp(22px, 2.6vw, 28px);
+  line-height: 1.25;
+}
+.guides-section__item--main .guides-section__item-desc {
+  font-size: 15px;
+  line-height: 1.65;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+@media (max-width: 480px) {
+  .guides-section__item:not(.guides-section__item--main) {
+    flex-direction: column;
+  }
+  .guides-section__item:not(.guides-section__item--main) .guides-section__item-thumbnail {
+    flex: none;
+    aspect-ratio: 16/9;
+    min-height: 0;
+  }
 }
 
 .country-intro {

@@ -9,6 +9,8 @@
   letter-spacing: abs.$tracking-eyebrow;
   text-transform: uppercase;
   white-space: nowrap;
+  border-radius: 999px;
+  padding: 6px abs.spacer(2);
 
   // Eyebrow superposé à une image sombre (hero, cartes photo) : pilule + bordure ambre
   &--eyebrow-dark {
@@ -41,6 +43,14 @@
     border-radius: abs.$border-radius-pill;
     color: abs.$color-text-inverse;
     padding: 8px 16px;
+  }
+
+  &--secondary {
+    background: abs.$color-secondary;
+  }
+
+  &--accent {
+    background: abs.$color-primary-light;
   }
 }
 

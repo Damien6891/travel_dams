@@ -28,3 +28,218 @@
         }
     }
 }
+
+// ==========================================================================
+// Guides section
+// ==========================================================================
+
+@mixin line-clamp($lines) {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.guides-section {
+    // background: abs.$color-bg-alt;
+    padding-block-end: clamp(56px, 10vw, 96px);
+
+    // ---- Panneau vert ----
+    &__panel {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(28px, 4vw, 40px);
+        padding: clamp(32px, 6vw, 64px) clamp(24px, 5vw, 56px);
+        background: abs.$color-primary;
+        border-radius: 40px;
+
+        // Header en clair sur fond sombre
+        .section-header {
+            max-width: 620px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            align-items: start;
+            margin-bottom: unset;
+        }
+
+        .section-title {
+            margin: 0;
+            font-size: clamp(26px, 5vw, 36px);
+            line-height: 1.2;
+            color: #fff;
+            text-wrap: pretty;
+        }
+
+        .section-header__lead {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(#fff, 0.78);
+        }
+    }
+
+    // ---- Grille ----
+    &__grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        grid-auto-rows: auto;
+        gap: 20px;
+
+        @include abs.mq('lg') {
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+            grid-auto-rows: 1fr;
+        }
+
+    }
+
+    // ---- Carte (version secondaire = horizontale) ----
+    &__item {
+        display: flex;
+        align-items: stretch;
+        min-width: 0;
+        overflow: hidden;
+        background: abs.$color-bg;
+        border-radius: 24px;
+        color: abs.$color-text;
+        text-decoration: none;
+
+        @include abs.mq('lg') {
+            grid-column: 2;
+        }
+
+        &:hover,
+        &:focus-visible {
+            .guides-section__image {
+                transform: scale(1.05);
+            }
+
+            .guides-section__item-title {
+                color: abs.$color-primary-light;
+            }
+        }
+
+        &:focus-visible {
+            outline: 2px solid abs.$color-secondary;
+            outline-offset: 3px;
+        }
+
+    }
+
+    &__item-thumbnail {
+        position: relative;
+        flex: 0 0 40%;
+        min-height: 160px;
+        overflow: hidden;
+        background: abs.$color-bg-alt;
+    }
+
+    &__image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    &__item-body {
+        flex: 1 1 0%;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 8px;
+        padding: clamp(18px, 2.4vw, 26px);
+    }
+
+    &__item-eyebrow {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    &__item-country {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: abs.$color-text-muted;
+    }
+
+    &__item-title {
+        margin: 0;
+        font-size: 18px;
+        line-height: 1.3;
+        text-wrap: pretty;
+    }
+
+    &__item-desc {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.55;
+        color: abs.$color-text-body;
+        @include line-clamp(2);
+    }
+
+
+    // ---- Carte principale (verticale, colonne gauche) ----
+    &__item--main {
+        flex-direction: column;
+        grid-row: auto;
+
+        @include abs.mq('lg') {
+            grid-column: 1;
+            grid-row: 1 / span 2;
+        }
+
+        .guides-section__item-thumbnail {
+            flex: none;
+            aspect-ratio: 16 / 10;
+            min-height: 0;
+        }
+
+        .guides-section__item-body {
+            flex: 1 1 0%;
+            justify-content: flex-start;
+            gap: 12px;
+            padding: clamp(22px, 3vw, 32px);
+
+            &::after {
+                margin-top: auto;
+                padding-top: 6px;
+                font-size: 14px;
+            }
+        }
+
+        .guides-section__item-eyebrow {
+            gap: 10px;
+        }
+
+        .guides-section__item-title {
+            font-size: clamp(22px, 2.6vw, 28px);
+            line-height: 1.25;
+        }
+
+        .guides-section__item-desc {
+            font-size: 15px;
+            line-height: 1.65;
+            @include line-clamp(3);
+        }
+
+    }
+
+    // ---- Petites cartes : image au-dessus sur très petit écran ----
+    @media (max-width: 480px) {
+        &__item:not(&__item--main) {
+            flex-direction: column;
+
+            .guides-section__item-thumbnail {
+                flex: none;
+                aspect-ratio: 16 / 9;
+                min-height: 0;
+            }
+        }
+    }
+}

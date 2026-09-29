@@ -14,7 +14,7 @@ use Carbon_Fields\Field;
 Container::make('theme_options', __('Accueil', 'travel-dams'))
     ->add_tab('Destination', array(
         Field::make('complex', 'homepage_favorite_destinations', __('Destinations coup de cœur', 'travel-dams'))
-            ->set_help_text(__('2 destinations mises en avant sur la page d\'accueil.', 'travel-dams'))
+            ->set_help_text(__('6 destinations mises en avant sur la page d\'accueil.', 'travel-dams'))
             ->set_min(0)
             ->set_max(6)
             ->add_fields(array(
@@ -30,6 +30,39 @@ Container::make('theme_options', __('Accueil', 'travel-dams'))
                     ->set_help_text(__('Laisser vide pour utiliser la description du terme.', 'travel-dams')),
                 Field::make('text', 'description_override_en', __('Descriptoin (EN)', 'travel-dams'))
             )),
+    ))
+    ->add_tab('Guides mis en avant', array(
+        // Field::make('complex', 'homepage_highlighted_guides_fr', 'Guides mis en avant')
+        //     // ->add_tab('test')
+        //     ->add_fields(array(
+        //         Field::make('association', 'highlighted_guides_fr', 'Guide')
+        //             ->set_types(array(
+        //                 array(
+        //                     'type' => 'post',
+        //                     'post_type' => 'post'
+        //                 )
+        //             ))
+        //             ->set_max(3)
+        //     ))
+        // ->add_fields('separator', 'EN')
+        Field::make('checkbox', 'homepage_show_highlighted_guides', 'Afficher les guides mis en avant'),
+        Field::make('association', 'homepage_highlighted_guides_fr', 'Guide mis en avant (FR)')
+            ->set_types(array(
+                array(
+                    'type' => 'post',
+                    'post_type' => 'post'
+                )
+            ))
+            ->set_max(3),
+        Field::make('separator', 'homepage_highlighted_guides_separator', 'Guide EN'),
+        Field::make('association', 'homepage_highlighted_guides_en', 'Guide mis en avant (EN)')
+            ->set_types(array(
+                array(
+                    'type' => 'post',
+                    'post_type' => 'post'
+                )
+            ))
+            ->set_max(3),
     ))
     ->add_tab('À propos', array(
         Field::make('separator', 'homepage_about_fr_separator', 'Français'),

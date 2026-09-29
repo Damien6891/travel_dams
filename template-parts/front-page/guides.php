@@ -44,7 +44,7 @@ $index = 0;
             ?>
                 <article class="guide-card guide-card--<?php echo esc_attr($tone); ?><?php echo ('dark' === $tone) ? ' guide-card--feature' : ''; ?>"
                     <?php if ('dark' === $tone && $thumb_url) : ?>
-                        style="--guide-card-bg: url('<?php echo esc_url($thumb_url); ?>');"
+                    style="--guide-card-bg: url('<?php echo esc_url($thumb_url); ?>');"
                     <?php endif; ?>>
 
                     <?php if ('panel' === $tone && $thumb_url) : ?>
@@ -52,20 +52,20 @@ $index = 0;
                             <?php the_post_thumbnail('thumbnail', array('class' => 'guide-card__side-image')); ?>
                         </div>
                         <div class="guide-card__main">
-                    <?php endif; ?>
+                        <?php endif; ?>
 
-                    <?php if ('dark' === $tone) : ?>
-                        <span class="badge badge--outline-dark guide-card__badge"><?php esc_html_e('Dossier spécial', 'travel-dams'); ?></span>
-                    <?php endif; ?>
+                        <?php if ('dark' === $tone) : ?>
+                            <span class="badge badge--outline-dark guide-card__badge"><?php esc_html_e('Dossier spécial', 'travel-dams'); ?></span>
+                        <?php endif; ?>
 
-                    <h3 class="guide-card__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                    <p class="guide-card__description"><?php echo esc_html(wp_trim_words(get_the_excerpt(), 18)); ?></p>
+                        <h3 class="guide-card__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                        <p class="guide-card__description"><?php echo esc_html(wp_trim_words(get_the_excerpt(), 18)); ?></p>
 
-                    <?php if ('light' === $tone || 'panel' === $tone) : ?>
-                        <a href="<?php the_permalink(); ?>" class="guide-card__link"><?php esc_html_e('Lire le guide →', 'travel-dams'); ?></a>
-                    <?php endif; ?>
+                        <?php if ('light' === $tone || 'panel' === $tone) : ?>
+                            <a href="<?php the_permalink(); ?>" class="guide-card__link"><?php esc_html_e('Lire le guide →', 'travel-dams'); ?></a>
+                        <?php endif; ?>
 
-                    <?php if ('panel' === $tone && $thumb_url) : ?>
+                        <?php if ('panel' === $tone && $thumb_url) : ?>
                         </div>
                     <?php endif; ?>
                 </article>

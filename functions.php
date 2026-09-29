@@ -648,6 +648,55 @@ function travel_dams_carnet_template($template)
 	return $template;
 }
 
+
+/**
+ * IDs des catégories "guides" dans une langue donnée.
+ */
+function travel_dams_get_guide_category_ids($lang)
+{
+	$source_ids = get_terms(array(
+		'taxonomy'   => 'category',
+		'slug'       => array('guides-destinations', 'guides-pratiques'),
+		'fields'     => 'ids',
+		'hide_empty' => false,
+		'lang'       => function_exists('pll_default_language') ? pll_default_language() : '',
+	));
+
+	if (is_wp_error($source_ids) || ! function_exists('pll_get_term')) {
+		return is_wp_error($source_ids) ? array() : $source_ids;
+	}
+
+	return array_filter(array_map(fn($id) => pll_get_term($id, $lang), $source_ids));
+}
+
+if (function_exists('pll_languages_list')) {
+	foreach (pll_languages_list(array('fields' => 'slug')) as $lang) {
+		add_filter(
+			"carbon_fields_association_field_options_homepage_highlighted_guides_{$lang}_post_post",
+			function ($args) use ($lang) {
+				$args['lang']      = $lang; // ignore le filtre de langue de la barre d'admin
+				$args['tax_query'] = array(array(
+					'taxonomy' => 'category',
+					'field'    => 'term_id',
+					'terms'    => travel_dams_get_guide_category_ids($lang) ?: array(0),
+				));
+				return $args;
+			}
+		);
+	}
+}
+
+function travel_dams_get_homepage_guides()
+{
+	$lang  = function_exists('pll_current_language') ? pll_current_language('slug') : 'fr';
+	$items = carbon_get_theme_option('homepage_highlighted_guides_' . $lang);
+
+	return array_values(array_filter(array_map(
+		fn($item) => get_post(absint($item['id'])),
+		$items ?: array()
+	), fn($post) => $post && $post->post_status === 'publish'));
+}
+
 /**
  * debug
  */

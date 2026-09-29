@@ -4,7 +4,7 @@
  * Slugs de référence (français) des catégories piliers du thème.
  * Une seule source de vérité, réutilisée pour les WP_Query et les liens.
  */
-define('TD_SLUG_CARNETS', 'carnets-de-voyage'); // vérifie le slug exact en admin
+define('TD_SLUG_CARNETS', 'carnets-de-voyage');
 define('TD_SLUG_GUIDES', 'guides-pratiques');
 define('TD_SLUG_DESTINATIONS_GUIDES', 'guides-destinations');
 
