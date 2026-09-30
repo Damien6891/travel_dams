@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Travel Dams\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-22 22:04+0000\n"
+"POT-Creation-Date: 2026-09-30 10:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -17,8 +17,8 @@ msgstr ""
 "X-Domain: travel-dams"
 
 #. 1: carnets, 2: guides
-#: template-parts/destination/continent-panel.php:68
-#: template-parts/destination/countries-grid.php:59
+#: template-parts/destination/continent-panel.php:70
+#: template-parts/destination/countries-grid.php:60
 #, php-format
 msgid "%1$d CARNETS · %2$d GUIDES"
 msgstr ""
@@ -43,14 +43,14 @@ msgstr ""
 msgid "%1$s – %2$s · %3$s"
 msgstr ""
 
-#: inc/carbon-fields/options-homepage.php:17
-msgid "2 destinations mises en avant sur la page d'accueil."
-msgstr ""
-
 #: inc/carbon-fields/term-meta-destination-country.php:26
 msgid ""
 "2 lettres minuscules, ex: th (Thaïlande), lk (Sri Lanka), am (Arménie). "
 "Référence : iso.org."
+msgstr ""
+
+#: inc/carbon-fields/options-homepage.php:17
+msgid "6 destinations mises en avant sur la page d'accueil."
 msgstr ""
 
 #: inc/breadcrumb.php:56 inc/carbon-fields/options-homepage.php:14
@@ -65,12 +65,16 @@ msgstr ""
 msgid "Ajouter une destination"
 msgstr ""
 
-#: category.php:55
+#: category.php:59
 msgid "Aucun article pour le moment."
 msgstr ""
 
 #: template-parts/destination/countries-grid.php:22
 msgid "Aucune destination pour le moment dans cette zone."
+msgstr ""
+
+#: front-page.php:25
+msgid "Blog voyage · Sac à dos · Petit budget"
 msgstr ""
 
 #: inc/carbon-fields/term-meta-destination-country.php:29
@@ -92,22 +96,12 @@ msgstr ""
 msgid "Carnets de voyage"
 msgstr ""
 
-#: template-parts/front-page/favorites.php:25
-msgid ""
-"Certains lieux ne se visitent pas seulement, ils se ressentent. Voici les "
-"terres qui ont marqué notre esprit cette saison par leur beauté brute."
-msgstr ""
-
 #: functions.php:563
 msgid "Chapeau (carnet)"
 msgstr ""
 
 #: inc/carbon-fields/term-meta-destination-country.php:25
 msgid "Code pays (ISO 3166-1 alpha-2)"
-msgstr ""
-
-#: front-page.php:31
-msgid "Commencer l'aventure →"
 msgstr ""
 
 #. 1: comment count number, 2: title.
@@ -167,6 +161,18 @@ msgstr ""
 msgid "Dernières Aventures"
 msgstr ""
 
+#: template-parts/front-page/favorites.php:25
+msgid ""
+"Des pays traversés en sac à dos, parfois en quelques jours, parfois pendant "
+"un mois. Chacun avec son carnet, et bientôt ses guides."
+msgstr ""
+
+#: front-page.php:28
+msgid ""
+"Des récits de routard, souvent seul, parfois à deux, en Asie et en Europe. "
+"Et des guides pour voyager simplement, sans se ruiner."
+msgstr ""
+
 #: template-parts/front-page/carnets.php:29
 msgid ""
 "Des récits immersifs écrits sur le terrain, capturant l'essence même du "
@@ -181,6 +187,10 @@ msgstr ""
 msgid "Description du pays"
 msgstr ""
 
+#: inc/carbon-fields/options-homepage.php:31
+msgid "Descriptoin (EN)"
+msgstr ""
+
 #: inc/taxonomies.php:12 inc/carbon-fields/options-homepage.php:21
 msgid "Destination"
 msgstr ""
@@ -189,10 +199,6 @@ msgstr ""
 #: footer.php:56 footer.php:57 page-destinations.php:3 inc/taxonomies.php:11
 #: inc/taxonomies.php:21
 msgid "Destinations"
-msgstr ""
-
-#: template-parts/front-page/favorites.php:23
-msgid "Destinations Coup de Cœur"
 msgstr ""
 
 #: inc/carbon-fields/options-homepage.php:16
@@ -243,8 +249,8 @@ msgstr ""
 msgid "Explorer le monde"
 msgstr ""
 
-#: front-page.php:27
-msgid "Explorez l'Inconnu"
+#: template-parts/front-page/favorites.php:23
+msgid "Explorer par destination"
 msgstr ""
 
 #: header.php:66
@@ -257,6 +263,10 @@ msgstr ""
 
 #: footer.php:13 taxonomy-destination.php:85
 msgid "Guides destinations"
+msgstr ""
+
+#: template-parts/front-page/guides-v2.php:20
+msgid "Guides pour préparer son voyage"
 msgstr ""
 
 #: template-parts/destination/guides-list.php:35
@@ -276,7 +286,7 @@ msgstr ""
 msgid "Hero image destination"
 msgstr ""
 
-#: template-parts/destination/content-section.php:42
+#: template-parts/destination/content-section.php:41
 msgid "Histoires vécues"
 msgstr ""
 
@@ -291,6 +301,12 @@ msgstr ""
 
 #: footer.php:93
 msgid "Instagram"
+msgstr ""
+
+#: template-parts/front-page/guides-v2.php:22
+msgid ""
+"Itinéraires, budget, hébergement : ce que j'aurais aimé savoir avant de "
+"partir, tiré de mes propres voyages."
 msgstr ""
 
 #: inc/carbon-fields/block-gutemberg.php:18
@@ -310,12 +326,6 @@ msgstr ""
 msgid "Langue(s)"
 msgstr ""
 
-#: front-page.php:28
-msgid ""
-"Le voyage lent pour les âmes curieuses. Découvrez des récits authentiques au "
-"cœur des paysages les plus préservés de la planète."
-msgstr ""
-
 #: comments.php:93
 msgid "Les commentaires sont relus avant publication."
 msgstr ""
@@ -332,6 +342,10 @@ msgstr ""
 msgid "Lire le guide →"
 msgstr ""
 
+#: front-page.php:31
+msgid "Lire les carnets"
+msgstr ""
+
 #: footer.php:122
 msgid "Mentions légales"
 msgstr ""
@@ -340,6 +354,7 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
+#: inc/carbon-fields/post-meta-seo-pages.php:51
 #: inc/carbon-fields/post-meta-seo.php:19
 #: inc/carbon-fields/term-meta-destination-seo.php:31
 msgid "Meta description"
@@ -367,14 +382,6 @@ msgstr ""
 
 #: inc/taxonomies.php:20
 msgid "Nom de la nouvelle destination"
-msgstr ""
-
-#: front-page.php:36
-msgid "Nos destinations"
-msgstr ""
-
-#: front-page.php:26
-msgid "Nouvel article saisonnier"
 msgstr ""
 
 #: inc/carbon-fields/block-gutemberg.php:19
@@ -460,7 +467,7 @@ msgstr ""
 msgid "Promis, nous n'envoyons que de la poésie, pas de spam."
 msgstr ""
 
-#: category.php:46
+#: category.php:50
 msgid "Précédent"
 msgstr ""
 
@@ -484,7 +491,7 @@ msgstr ""
 msgid "Recevez nos chroniques d'%s chaque mois"
 msgstr ""
 
-#: front-page.php:52
+#: front-page.php:58
 msgid "Recevez nos chroniques sauvages"
 msgstr ""
 
@@ -512,7 +519,7 @@ msgstr ""
 msgid "Rejoindre la chronique"
 msgstr ""
 
-#: front-page.php:51 page-destinations.php:63
+#: front-page.php:57 page-destinations.php:63
 #: template-parts/sections/newsletter.php:18
 msgid "Rejoindre le cercle"
 msgstr ""
@@ -537,6 +544,7 @@ msgstr ""
 msgid "S'inscrire"
 msgstr ""
 
+#: inc/carbon-fields/post-meta-seo-pages.php:38
 #: inc/carbon-fields/post-meta-seo.php:13
 #: inc/carbon-fields/term-meta-destination-seo.php:15
 msgid "SEO"
@@ -554,7 +562,7 @@ msgstr ""
 msgid "Subscribe"
 msgstr ""
 
-#: category.php:47
+#: category.php:51
 msgid "Suivant"
 msgstr ""
 
@@ -574,6 +582,7 @@ msgstr ""
 msgid "Titre"
 msgstr ""
 
+#: inc/carbon-fields/post-meta-seo-pages.php:47
 #: inc/carbon-fields/post-meta-seo.php:16
 #: inc/carbon-fields/term-meta-destination-seo.php:27
 msgid "Titre SEO"
@@ -585,7 +594,7 @@ msgid ""
 "stress et de manière responsable."
 msgstr ""
 
-#: template-parts/destination/content-section.php:45
+#: template-parts/destination/content-section.php:44
 msgid "Tout lire →"
 msgstr ""
 
@@ -611,7 +620,7 @@ msgstr ""
 msgid "Un commentaire sur &ldquo;%1$s&rdquo;"
 msgstr ""
 
-#: front-page.php:53
+#: front-page.php:59
 msgid ""
 "Une fois par mois, recevez une dose d'inspiration, des récits inédits et des "
 "conseils exclusifs directement dans votre boîte mail."
@@ -619,6 +628,10 @@ msgstr ""
 
 #: page-destinations.php:64
 msgid "Une nouvelle destination chaque saison"
+msgstr ""
+
+#: front-page.php:36
+msgid "Voir les destinations"
 msgstr ""
 
 #: template-parts/front-page/guides.php:75
@@ -658,6 +671,7 @@ msgstr ""
 msgid "Zone parente :"
 msgstr ""
 
+#: inc/carbon-fields/post-meta-seo-pages.php:52
 #: inc/carbon-fields/post-meta-seo.php:20
 msgid ""
 "~155 caractères. Laisser vide pour générer automatiquement à partir de "
@@ -681,7 +695,12 @@ msgid ""
 "site."
 msgstr ""
 
-#: template-parts/page-suggestions.php:54 template-parts/related-posts.php:15
+#: inc/carbon-fields/post-meta-seo-pages.php:48
+msgid ""
+"~60 caractères. Laisser vide pour utiliser le titre de la page + nom du site."
+msgstr ""
+
+#: template-parts/page-suggestions.php:62 template-parts/related-posts.php:15
 msgid "À lire aussi"
 msgstr ""
 
