@@ -344,6 +344,9 @@ add_action('wp_head', 'travel_dams_tarteaucitron_init', 1);
  */
 function travel_dams_travelpayouts_tarteaucitron_service()
 {
+	if ('production' !== wp_get_environment_type()) {
+		return;
+	}
 ?>
 	<script data-no-defer="1">
 		tarteaucitron.services.travelpayouts = {
