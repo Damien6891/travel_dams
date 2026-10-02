@@ -84,6 +84,11 @@
         { "slug": "80", "name": "80px", "size": "80px" },
         { "slug": "96", "name": "96px", "size": "96px" }
       ]
+    },
+    "blocks": {
+      "core/image": {
+        " lightbox": {"enabled": true, "allowEditing": true}
+      }
     }
   },
   "styles" : {

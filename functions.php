@@ -303,6 +303,40 @@ function travel_dams_scripts()
 }
 add_action('wp_enqueue_scripts', 'travel_dams_scripts');
 
+add_action('init', function () {
+	register_block_style('core/image', [
+		'name'  => 'caption-overlay',
+		'label' => __('Légende sur l\'image', 'travel_dams'),
+	]);
+});
+
+/** ADD caption on image and texte color */
+add_action('enqueue_block_editor_assets', function () {
+	wp_enqueue_script(
+		'travel-dams-image-caption-color',
+		get_template_directory_uri() . '/assets/js/image-caption-color.js',
+		['wp-hooks', 'wp-compose', 'wp-element', 'wp-blocks', 'wp-block-editor', 'wp-components', 'wp-i18n'],
+		travel_dams_asset_version('/assets/js/image-caption-color.js'),
+		true
+	);
+});
+
+add_filter('render_block_core/image', function ($content, $block) {
+	$slug = $block['attrs']['tdCaptionColor'] ?? '';
+	if (! $slug) {
+		return $content;
+	}
+
+	$p = new WP_HTML_Tag_Processor($content);
+	if ($p->next_tag('figure')) {
+		$style = (string) $p->get_attribute('style');
+		$style = $style ? rtrim($style, '; ') . ';' : '';
+		$p->set_attribute('style', $style . '--td-caption-color:var(--wp--preset--color--' . sanitize_key($slug) . ')');
+	}
+	return $p->get_updated_html();
+}, 10, 2);
+/** */
+
 add_action('enqueue_block_assets', function () {
 	wp_enqueue_style(
 		'travel-dams-fonts',

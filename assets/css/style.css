@@ -2253,11 +2253,6 @@ html {
   border-radius: 12px;
 }
 
-.wp-block-image ~ p,
-.wp-block-gallery ~ p {
-  margin-top: 1rem;
-}
-
 .wp-block-image.alignfull img {
   width: 100%;
   max-height: 600px;
@@ -2265,6 +2260,29 @@ html {
   object-fit: cover;
   -o-object-position: center;
   object-position: center;
+}
+
+.wp-block-image figcaption,
+.wp-block-image .wp-element-caption {
+  color: var(--td-caption-color, inherit);
+}
+.wp-block-image.is-style-caption-overlay {
+  position: relative;
+}
+.wp-block-image.is-style-caption-overlay img {
+  display: block;
+}
+.wp-block-image.is-style-caption-overlay figcaption,
+.wp-block-image.is-style-caption-overlay .wp-element-caption {
+  position: absolute;
+  inset: auto 0 0 0;
+  margin: 0;
+  padding: 2.5rem 1rem 0.75rem;
+  color: var(--td-caption-color, #fff);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent);
+  pointer-events: none;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
 .wp-block-video {

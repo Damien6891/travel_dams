@@ -57,6 +57,39 @@ const jsEntries = {
   main: ['src/js/main.js']
 };
 
+// Scripts chargés uniquement dans l'éditeur Gutenberg (enqueue_block_editor_assets).
+// Pas de reload BrowserSync : rafraîchir l'éditeur à la main (évite de perdre un brouillon).
+const editorEntries = {
+  'image-caption-color': ['src/js/admin/image-caption-color.js']
+};
+
+// Fabrique une tâche par entrée → un fichier modifié ne recompile que son bundle.
+function buildEntry(name, files) {
+  const task = () =>
+    gulp
+      .src(files)
+      .pipe(plumber())
+      .pipe(sourcemaps.init())
+      .pipe(concat(`${name}.js`))
+      .pipe(terser())
+      .pipe(sourcemaps.write('.'))
+      .pipe(gulp.dest(paths.js.dest));
+
+  task.displayName = `scripts:${name}`; // nom lisible dans les logs Gulp
+  return task;
+}
+
+const toTasks = (entries) =>
+  Object.entries(entries).map(([name, files]) => ({ files, task: buildEntry(name, files) }));
+
+const frontTasks = toTasks(jsEntries);
+const editorTasks = toTasks(editorEntries);
+
+// Pas de browserSync.stream() ici : le JS déclenche un rechargement complet
+// du navigateur (voir watchFiles), contrairement au CSS qui s'injecte à chaud.
+const scripts = gulp.parallel(...frontTasks.map((e) => e.task));
+const editorScripts = gulp.parallel(...editorTasks.map((e) => e.task));
+
 function styles() {
   return gulp
     .src(paths.scss.main)
@@ -75,22 +108,22 @@ function styles() {
 
 
 
-function scripts() {
-  const streams = Object.entries(jsEntries).map(([name, files]) => {
-    return gulp
-      .src(files)
-      .pipe(plumber())
-      .pipe(sourcemaps.init())
-      .pipe(concat(`${name}.js`))
-      .pipe(terser())
-      .pipe(sourcemaps.write('.'))
-      .pipe(gulp.dest(paths.js.dest));
-  });
+// function scripts() {
+//   const streams = Object.entries(jsEntries).map(([name, files]) => {
+//     return gulp
+//       .src(files)
+//       .pipe(plumber())
+//       .pipe(sourcemaps.init())
+//       .pipe(concat(`${name}.js`))
+//       .pipe(terser())
+//       .pipe(sourcemaps.write('.'))
+//       .pipe(gulp.dest(paths.js.dest));
+//   });
 
-  // Pas de browserSync.stream() ici : le JS déclenche un rechargement complet
-  // du navigateur (voir watchFiles), contrairement au CSS qui s'injecte à chaud.
-  return merge(streams);
-}
+//   // Pas de browserSync.stream() ici : le JS déclenche un rechargement complet
+//   // du navigateur (voir watchFiles), contrairement au CSS qui s'injecte à chaud.
+//   return merge(streams);
+// }
 
 function serve(done) {
   browserSync.init({
@@ -109,16 +142,24 @@ function reload(done) {
 
 function watchFiles() {
   gulp.watch(paths.scss.watch, styles); // injection à chaud (voir styles())
-  gulp.watch(paths.js.watch, gulp.series(scripts, reload)); // compile puis reload complet
+
+  // Un watcher par entrée front : compile ce bundle seul, puis reload complet
+  frontTasks.forEach(({ files, task }) => gulp.watch(files, gulp.series(task, reload)));
+
+  // Scripts éditeur : compile seul, sans reload
+  editorTasks.forEach(({ files, task }) => gulp.watch(files, task));
+
+  // gulp.watch(paths.js.watch, gulp.series(scripts, reload)); // compile puis reload complet
   gulp.watch(paths.php.watch, reload); // reload complet
 }
 
 const vendor = gulp.parallel(copyFlagIcons, copyTarteaucitron);
-const build = gulp.parallel(styles, scripts);
+const build = gulp.parallel(styles, scripts, editorScripts);
 const dev = gulp.series(build, serve, watchFiles);
 
 exports.styles = styles;
 exports.scripts = scripts;
+exports.scripts = editorScripts;
 // exports.copyFlagIcons = copyFlagIcons;
 
 exports.vendor = vendor;
