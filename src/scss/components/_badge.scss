@@ -25,7 +25,7 @@
 
   // Eyebrow simple sur fond clair : pas de pilule, juste le texte tracké
   &--eyebrow-light {
-    color: abs.$color-accent-teal;
+    color: abs.$color-primary-xlight;
   }
 
   // Tag posé sur une image (catégorie, pays) : pilule blanche opaque, texte sombre
@@ -50,7 +50,7 @@
   }
 
   &--accent {
-    background: abs.$color-primary-light;
+    background: abs.$color-primary-xlight;
   }
 }
 

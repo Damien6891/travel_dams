@@ -65,16 +65,19 @@ $spacers: (
 // Palette Travel Dam's — issue du design system (tokens/colors.css)
 // forêt (primaire), ambre (accent CTA), teal (accent secondaire)
 $color-primary: #354438; // forest-700 — header, panneaux sombres
-$color-primary-light: #06a68e; // teal-500 — accent secondaire (dates, liens "lire plus")
+$color-primary-xlight: #06a68e; // teal-500 — accent secondaire (dates, liens "lire plus")
+$color-primary-light: #256B60; // teal-500 — accent secondaire (dates, liens "lire plus")
 $color-primary-dark: #1c1d1e; // forest-900 / ink — footer, panneaux les plus sombres
 
 $color-secondary: #f6b74d; // amber-500 — CTA, liens au survol, eyebrows sur fond sombre
+$color-secondary-dark: #A0501A; // amber-500 — CTA, liens au survol, eyebrows sur fond sombre
 $color-accent-teal: #06a68e; // alias explicite de $color-primary-light
 
 $color-white: #ffffff;
 
 $color-text: #1c1d1e; // ink — titres
-$color-text-body: #434843; // forest-500 — paragraphes
+// $color-text-body: #434843; // forest-500 — paragraphes
+$color-text-body: #2B2B2B; // forest-500 — paragraphes
 $color-text-muted: #737873; // forest-300 — méta, légendes
 $color-text-inverse: #ffffff;
 
