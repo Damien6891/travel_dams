@@ -57,7 +57,7 @@ $total_guides  = travel_dams_count_posts_for_destination($zone->term_id, TD_SLUG
             $guides           = travel_dams_count_posts_for_destination($country->term_id, TD_SLUG_GUIDES);
         ?>
             <a href="<?php echo esc_url(is_wp_error($country_link) ? '#' : $country_link); ?>" class="continent-panel__country">
-                <?php if ($country_image_id) : ?>
+                <?php if ($country_code) : ?>
                     <!-- <?php echo wp_get_attachment_image($country_image_id, 'thumbnail', false, array('class' => 'continent-panel__country-image')); ?> -->
                     <span class="fi fi-<?= $country_code ?> fis country-flag" aria-hidden="true"></span>
                 <?php endif; ?>
