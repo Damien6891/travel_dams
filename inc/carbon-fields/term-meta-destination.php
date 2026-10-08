@@ -12,5 +12,7 @@ Container::make('term_meta', __('Détails destination', 'travel-dams'))
     ->where('term_taxonomy', '=', 'destination')
     ->add_fields(array(
         Field::make('image', 'hero_image', __('Hero image destination', 'travel-dams')),
+        Field::make('text', 'hero_image_alt_text', ('Texte alternatif'))
+            ->set_help_text('Texte alternatif pour image de couverture'),
         Field::make('image', 'card_image', __('Image afficher dans la carte', 'travel-dams'))
     ));

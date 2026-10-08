@@ -23,6 +23,7 @@ $hero_byline   = $args['byline'] ?? '';
 $hero_ctas     = $args['ctas'] ?? array();
 $hero_tag      = tag_escape(travel_dams_get_hero_title_tag());
 $context       = $args['context'] ?? 'default';
+$hero_image_alt = $args['image_alt'] ?? '';
 
 // If taxonomy destination country
 $country_map = $args['country_map'] ?? null;
@@ -38,7 +39,7 @@ if ($hero_image_id) {
 <section class="<?php echo esc_attr(implode(' ', $classes)); ?>">
     <?php if ($hero_image_id) : ?>
         <div class="hero__background">
-            <?php echo wp_get_attachment_image($hero_image_id, 'hero'); ?>
+            <?php echo wp_get_attachment_image($hero_image_id, 'hero', false, $hero_image_alt ? ['alt' => $hero_image_alt] : []); ?>
         </div>
     <?php endif; ?>
 
@@ -75,7 +76,8 @@ if ($hero_image_id) {
     <?php if ($country_map && file_exists($country_map)) : ?>
         <div class="hero__map hero__map--">
             <?= file_get_contents($country_map) ?>
-            <!-- <?php echo str_replace('preserveAspectRatio="xMidYMid meet"', 'preserveAspectRatio="xMidYMid slice"', file_get_contents($country_map)); ?> -->
+            <?php // echo str_replace('preserveAspectRatio="xMidYMid meet"', 'preserveAspectRatio="xMidYMid slice"', file_get_contents($country_map)); 
+            ?>
         </div>
 
     <?php endif ?>
