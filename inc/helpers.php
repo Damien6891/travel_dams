@@ -44,6 +44,38 @@ function travel_dams_get_pillar_link($reference_slug)
     return is_wp_error($link) ? '' : $link;
 }
 
+function td_get_guides_category()
+{
+    $args = array(
+        'taxonomy'   => 'category',
+        'slug'       => TD_SLUG_GUIDES,
+        'hide_empty' => false,
+        'number'     => 1,
+    );
+
+    // On cherche le terme dans la langue par défaut (celle du slug)
+    if (function_exists('pll_default_language')) {
+        $args['lang'] = pll_default_language();
+    }
+
+    $terms = get_terms($args);
+    if (empty($terms) || is_wp_error($terms)) {
+        return null;
+    }
+
+    $term = $terms[0];
+
+    // On récupère sa traduction dans la langue courante
+    if (function_exists('pll_get_term')) {
+        $translated_id = pll_get_term($term->term_id);
+        if ($translated_id) {
+            $term = get_term($translated_id, 'category');
+        }
+    }
+
+    return $term;
+}
+
 /**
  * Vérifie si un post appartient à une catégorie (ou à l'une de ses traductions Polylang).
  *

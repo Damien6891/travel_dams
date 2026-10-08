@@ -90,5 +90,13 @@ blockquote {
   text-transform: uppercase;
   letter-spacing: $tracking-eyebrow;
   font-size: $font-size-label-s;
-  font-weight: $font-weight-bold;
+  // font-weight: $font-weight-bold;
+
+  &--accent {
+    color: $color-primary-xlight;
+  }
+
+  &--muted {
+    color: $color-text-muted;
+  }
 }

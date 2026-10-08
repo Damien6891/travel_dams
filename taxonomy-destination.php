@@ -63,10 +63,11 @@ if (!$is_zone) {
         </div>
     <?php endif; ?>
 
-    <div class="container ">
-        <!-- <div class="container container--wide"> -->
+    <!-- <div class="container "> -->
+    <!-- <div class="container container--wide"> -->
 
-        <?php if ($is_zone) : ?>
+    <?php if ($is_zone) : ?>
+        <div class="container">
 
             <?php get_template_part('template-parts/destination/countries-grid', null, array('zone' => $current_term)); ?>
 
@@ -75,9 +76,10 @@ if (!$is_zone) {
                 /* translators: %s: nom de la zone */
                 'title' => sprintf(__('Derniers articles en %s', 'travel-dams'), $current_term->name),
             )); ?>
+        </div>
+    <?php else : ?>
 
-        <?php else : ?>
-
+        <div class="container">
             <?php get_template_part('template-parts/destination/country-intro', null, array('destination_term' => $current_term)); ?>
 
             <?php
@@ -100,13 +102,20 @@ if (!$is_zone) {
                 );
             endforeach;
             ?>
+        </div>
 
-            <?php get_template_part('template-parts/destination/guides-list', null, array(
+
+        <?php
+        get_template_part(
+            'template-parts/destination/guides-list',
+            null,
+            array(
                 'destination_term' => $current_term,
-            )); ?>
-
-        <?php endif; ?>
-    </div>
+            )
+        );
+        ?>
+    <?php endif; ?>
+    <!-- </div> -->
 
     <!-- <div class="container container--wide">
         <?php get_template_part('template-parts/sections/newsletter', null, $is_zone ? array(
