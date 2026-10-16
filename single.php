@@ -58,12 +58,12 @@ if ($is_carnet) {
 	while (have_posts()) :
 		the_post();
 
-		get_template_part('template-parts/content', get_post_type());
+		if (td_in_category(TD_SLUG_GUIDES) || td_in_category(TD_SLUG_DESTINATIONS_GUIDES)) {
+			get_template_part('template-parts/content', 'guide');
+		} else {
+			get_template_part('template-parts/content', get_post_type());
+		}
 
-
-	// if ($is_carnet) {
-	// 	get_template_part('template-parts/carnet-share');
-	// }
 
 	endwhile; // End of the loop.
 	?>

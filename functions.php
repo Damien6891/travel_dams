@@ -269,6 +269,15 @@ function travel_dams_scripts()
 		);
 	}
 
+	if (is_single() && !has_category(travel_dams_get_carnet_category_id())) {
+		wp_enqueue_script(
+			'travel-dams-summary',
+			get_template_directory_uri() . '/assets/js/summary.js',
+			array(),
+			travel_dams_asset_version('/assets/js/summary.js'),
+			true
+		);
+	}
 
 	if (is_single() && has_category(travel_dams_get_carnet_category_id())) {
 		wp_enqueue_script(
@@ -520,6 +529,7 @@ require get_template_directory() . '/inc/class-travel-dams-nav-walker.php';
 require get_template_directory() . '/inc/custom-header.php';
 
 require get_template_directory() . '/inc/helpers.php';
+require get_template_directory() . '/inc/helpers/terms.php';
 require get_template_directory() . '/inc/related-content.php';
 
 /**
@@ -546,6 +556,8 @@ require get_template_directory() . '/inc/comments.php';
 /** Modify query carnets de voyages by trip date */
 require get_template_directory() . '/inc/query-modifications.php';
 
+/** Sommaire guide destination && guide pratique */
+require_once get_theme_file_path('/inc/summary.php');
 // Contourne un changement de comportement de Gutenberg (~2026) qui verrouille
 // automatiquement les patterns non synchronisés en mode "contenu seul" à l'insertion,
 // empêchant l'ajout de nouveaux blocs (ex: images) dans le pattern "Jour de carnet".

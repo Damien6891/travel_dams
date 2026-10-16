@@ -10,37 +10,6 @@
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 
-/**
- * Résout l'ID du terme de référence (slug FR), puis récupère l'ID
- * correspondant dans chaque langue active via Polylang.
- */
-function travel_dams_get_carnets_term_ids()
-{
-    $term = get_term_by('slug', TD_SLUG_CARNETS, 'category');
-
-    // Bypass du filtre de langue Polylang au cas où le contexte admin le restreindrait.
-    if (! $term) {
-        $terms = get_terms(array(
-            'taxonomy'   => 'category',
-            'slug'       => TD_SLUG_CARNETS,
-            'lang'       => '',
-            'hide_empty' => false,
-            'number'     => 1,
-        ));
-        $term = $terms[0] ?? null;
-    }
-
-    if (! $term) {
-        return array();
-    }
-
-    if (function_exists('pll_get_term_translations')) {
-        return array_values(pll_get_term_translations($term->term_id));
-    }
-
-    return array($term->term_id);
-}
-
 $carnets_term_ids = travel_dams_get_carnets_term_ids();
 
 if (! empty($carnets_term_ids)) {

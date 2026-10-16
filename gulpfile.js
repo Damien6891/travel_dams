@@ -54,6 +54,7 @@ const jsEntries = {
   header: ['src/js/header.js'],
   'destination-archive': ['src/js/destination-archive.js'],
   carnet: ['src/js/carnet.js'],
+  summary: ['src/js/summary.js'],
   main: ['src/js/main.js']
 };
 
