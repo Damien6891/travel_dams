@@ -49,6 +49,19 @@ function travel_dams_get_destinations_hub_link()
     );
 }
 
+/**
+ * Titre affiché dans le fil d'Ariane : champ breadcrumb_title (Carbon Fields)
+ * s'il est rempli, sinon titre de l'article.
+ */
+function travel_dams_get_breadcrumb_post_title($post_id)
+{
+    $short_title = function_exists('carbon_get_post_meta')
+        ? trim((string) carbon_get_post_meta($post_id, 'breadcrumb_title'))
+        : '';
+
+    return $short_title !== '' ? $short_title : get_the_title($post_id);
+}
+
 function travel_dams_get_breadcrumb_trail()
 {
     $trail = array(
@@ -144,7 +157,10 @@ function travel_dams_get_breadcrumb_trail()
             }
         }
 
-        $trail[] = array('title' => get_the_title($post_id), 'url' => null);
+        $trail[] = array(
+            'title' => travel_dams_get_breadcrumb_post_title($post_id),
+            'url'   => null,
+        );
 
         return $trail;
     }
