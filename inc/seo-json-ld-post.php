@@ -56,7 +56,7 @@ add_action('wp_head', function () {
         ),
         'publisher'        => array(
             '@type' => 'Organization',
-            'name'  => get_bloginfo('name'),
+            'name'  => html_entity_decode(get_bloginfo('name')),
         ),
         'mainEntityOfPage' => array(
             '@type' => 'WebPage',
