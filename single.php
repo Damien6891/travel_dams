@@ -54,6 +54,11 @@ if ($is_carnet) {
 	))
 	?>
 
+	<div class="container">
+		<?php travel_dams_the_breadcrumb() ?>
+	</div>
+
+
 	<?php
 	while (have_posts()) :
 		the_post();
