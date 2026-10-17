@@ -16,6 +16,8 @@ $end           = carbon_get_post_meta($post_id, 'trip_end_date');
 $hero_image    = carbon_get_post_meta($post_id, 'hero_image');
 $carnets_cat   = travel_dams_get_pillar_term_id(TD_SLUG_CARNETS);
 $is_carnet     = $carnets_cat && has_category($carnets_cat, $post_id);
+$image_alt = carbon_get_post_meta($post_id, 'cover_alt');
+
 
 $hero_eyebrow = '';
 $hero_byline  = '';
@@ -50,7 +52,8 @@ if ($is_carnet) {
 		'title'   => get_the_title(),
 		'byline'  => $hero_byline,
 		'image_id' => $hero_image ?: get_post_thumbnail_id(),
-		'subtitle' => ''
+		'subtitle' => '',
+		'image_alt' => $image_alt
 	))
 	?>
 
