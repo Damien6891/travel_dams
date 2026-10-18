@@ -25,7 +25,12 @@
 function travel_dams_get_og_image_url()
 {
     if (is_singular('post') || is_front_page() || is_page_template('page-destinations.php')) {
-        $thumbnail_id = get_post_thumbnail_id(get_the_ID());
+
+        if (td_in_category(TD_SLUG_CARNETS)) {
+            $thumbnail_id = carbon_get_post_meta(get_the_ID(), 'hero_image') ?: get_post_thumbnail_id(get_the_ID());
+        } else {
+            $thumbnail_id = get_post_thumbnail_id(get_the_ID());
+        }
 
         if ($thumbnail_id) {
             return travel_dams_absolute_url(wp_get_attachment_image_url($thumbnail_id, 'large')); // seo-helpers.php
