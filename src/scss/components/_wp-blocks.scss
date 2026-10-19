@@ -49,6 +49,7 @@
             pointer-events: none; // le clic passe à l'image → lightbox
             border-bottom-left-radius: v.$border-radius;
             border-bottom-right-radius: v.$border-radius;
+            text-align: center;
         }
     }
 }
