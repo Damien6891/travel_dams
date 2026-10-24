@@ -1,11 +1,11 @@
 @use '../abstracts/variables' as v;
 
-.wp-block-image:not(.alignfull) {
-    img {
-        border-radius: v.$border-radius;
+// .wp-block-image:not(.alignfull) {
+//     img {
+//         border-radius: v.$border-radius;
 
-    }
-}
+//     }
+// }
 
 // .wp-block-image,
 // .wp-block-gallery {
@@ -14,6 +14,11 @@
 //         margin-top: 1rem;
 //     }
 // }
+.wp-block-gallery.has-nested-images figure.wp-block-image:has(figcaption) {
+    border-radius: var(--wp--preset--border-radius--medium);
+    overflow: hidden;
+}
+
 
 .wp-block-image.alignfull {
     img {

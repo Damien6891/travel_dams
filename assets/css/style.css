@@ -2256,8 +2256,9 @@ html {
   margin: 0;
 }
 
-.wp-block-image:not(.alignfull) img {
-  border-radius: 12px;
+.wp-block-gallery.has-nested-images figure.wp-block-image:has(figcaption) {
+  border-radius: var(--wp--preset--border-radius--medium);
+  overflow: hidden;
 }
 
 .wp-block-image.alignfull img {

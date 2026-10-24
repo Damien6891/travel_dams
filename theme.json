@@ -15,7 +15,7 @@
         { "slug": "primary-light",   "name": "Primaire claire",   "color": "#256B60" },
         { "slug": "primary-dark",   "name": "Primaire foncée",   "color": "#1c1d1e" },
         { "slug": "secondary", "name": "Secondaire", "color": "#f6b74d" },
-        { "slug": "secondary", "name": "Secondaire dark", "color": "#A0501A" },
+        { "slug": "secondary-dark", "name": "Secondaire dark", "color": "#A0501A" },
         { "slug": "bg", "name": "Background", "color": "#fbfaee" },
         { "slug": "bg-alt", "name": "Background alt", "color": "#f5f4e8" },
         { "slug": "bg-panel", "name": "Background light", "color": "#efeee3" },
@@ -73,7 +73,7 @@
       },
     "spacing" : {
       "defaultSpacingSizes": false,
-      "spapcingScale": { "steps": 0},
+      "spacingScale": { "steps": 0},
       "units": ["px", "rem", "%", "vw"],
       "spacingSizes": [
         { "slug": "8", "name": "8px", "size": "8px" },
@@ -89,7 +89,8 @@
     },
     "blocks": {
       "core/image": {
-        " lightbox": {"enabled": true, "allowEditing": true}
+        "lightbox": {"enabled": false, "allowEditing": true},
+        "border": { "radius": false }
       }
     }
   },
@@ -114,6 +115,12 @@
         "spacing" : {
           "margin" : { "bottom" : "1rem", "top": 0}
         }
+      },
+      "core/image": {
+        "border" : {
+          "radius": "var:preset|border-radius|medium"
+        },
+        "css": "&.alignfull img { border-radius: 0; }"
       }
     }
   }
