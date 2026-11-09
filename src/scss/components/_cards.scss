@@ -160,7 +160,10 @@
   }
 
   &__footer {
-    display: block;
+    // display: block;
+    display: flex;
+    flex-direction: column;
+    gap: abs.spacer(1);
     font-family: abs.$font-family-label;
     font-size: abs.$font-size-label-s;
     color: abs.$color-text-muted;

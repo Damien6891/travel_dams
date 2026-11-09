@@ -23,7 +23,7 @@ $image_id = carbon_get_theme_option('homepage_about_image');
             </div>
 
             <div class="about-teaser__content">
-                <span class="eyebrow badge badge--eyebrow-light">
+                <span class="eyebrow eyebrow--accent">
                     <?= __('À propos', 'travel-dams') ?>
                 </span>
                 <h2 class="section-title"><?php esc_html_e('Moi, c\'est Damien', 'travel-dams'); ?></h2>

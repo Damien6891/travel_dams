@@ -134,6 +134,7 @@ blockquote {
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 0.6875rem;
+  font-weight: 700;
 }
 .eyebrow--accent,
 .label-grotesk--accent {
@@ -882,7 +883,9 @@ body.admin-bar .site-header {
   margin: 0 0 12px;
 }
 .content-card__footer {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   font-family: "Space Grotesk", sans-serif;
   font-size: 0.6875rem;
   color: #737873;

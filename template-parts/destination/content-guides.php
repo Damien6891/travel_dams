@@ -41,7 +41,7 @@ if (! $query->have_posts()) {
 
     <div class="section-header">
         <div>
-            <span class="eyebrow badge badge--eyebrow-light"><?php esc_html_e('Histoires vécues', 'travel-dams'); ?></span>
+            <span class="eyebrow eyebrow--accent"><?php esc_html_e('Histoires vécues', 'travel-dams'); ?></span>
             <h2 class="destination-section__title"><?php echo esc_html($section_title); ?></h2>
         </div>
         <!-- <a href="<?php echo esc_url(get_term_link($destination_term)); ?>" class="section-link"><?php esc_html_e('Tout lire →', 'travel-dams'); ?></a> -->
