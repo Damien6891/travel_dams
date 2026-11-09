@@ -11,7 +11,6 @@ $current_term = get_queried_object();
 $is_zone      = (0 === $current_term->parent); // pas de parent = c'est une zone
 $image_id = carbon_get_term_meta($current_term->term_id, 'hero_image');
 $long_description = carbon_get_term_meta($current_term->term_id, 'country_description');
-$image_alt = carbon_get_term_meta($current_term->term_id, 'hero_image_alt_text');
 $country_map = null;
 // $country_code = carbon_get_term_meta($destination_term->term_id, 'country_code');
 if (!$is_zone) {
@@ -28,34 +27,13 @@ if (!$is_zone) {
         'title'    => $current_term->name,
         'subtitle' => $current_term->description,
         'image_id' => $image_id ? absint($image_id) : 0,
-        'country_map' => $country_map,
-        'image_alt' => $image_alt
+        'country_map' => $country_map
     ))
     ?>
 
     <div class="container">
         <?php travel_dams_the_breadcrumb() ?>
     </div>
-
-    <!-- <?php if (!$is_zone) : ?>
-        <div class="container">
-            <div class="country">
-                <div class="country__infos">
-                    <ul>
-                        <li>
-                            <p><?= __('Pays', 'travel-dams') ?></p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="country__description">
-                    <?= wpautop($long_description) ?>
-                </div>
-            </div>
-
-        </div>
-        <?= wpautop($long_description) ?>
-    <?php endif ?> -->
-
 
     <?php if ($is_zone && ! empty($current_term->description)) : ?>
         <div class="container container--narrow">
@@ -65,11 +43,9 @@ if (!$is_zone) {
         </div>
     <?php endif; ?>
 
-    <!-- <div class="container "> -->
-    <!-- <div class="container container--wide"> -->
+    <div class="container container--wide">
 
-    <?php if ($is_zone) : ?>
-        <div class="container">
+        <?php if ($is_zone) : ?>
 
             <?php get_template_part('template-parts/destination/countries-grid', null, array('zone' => $current_term)); ?>
 
@@ -78,64 +54,79 @@ if (!$is_zone) {
                 /* translators: %s: nom de la zone */
                 'title' => sprintf(__('Derniers articles en %s', 'travel-dams'), $current_term->name),
             )); ?>
-        </div>
-    <?php else : ?>
 
-        <div class="container">
+        <?php else : ?>
+
             <?php get_template_part('template-parts/destination/country-intro', null, array('destination_term' => $current_term)); ?>
 
             <?php
-            $pillars = array(
-                TD_SLUG_DESTINATIONS_GUIDES => __('Guides destinations', 'travel-dams'),
-                TD_SLUG_CARNETS   => __('Carnets de voyage', 'travel-dams'),
-            );
+            // $pillars = array(
+            //     TD_SLUG_DESTINATIONS_GUIDES => __('Guides destinations', 'travel-dams'),
+            //     TD_SLUG_CARNETS   => __('Carnets de voyage', 'travel-dams'),
+            // );
 
-            foreach ($pillars as $category_slug => $section_title) :
+            // // TEMPLATE PARTS FOR DESTINATION GUIDE AND CARNETS
+            // foreach ($pillars as $category_slug => $section_title) :
 
-                get_template_part(
-                    'template-parts/destination/content-section',
-                    null,
-                    array(
-                        'destination_term' => $current_term,
-                        'category_slug'    => $category_slug,
-                        'section_title'    => $section_title,
-                        // 'bento'            => TD_SLUG_CARNETS === $category_slug,
-                    )
-                );
-            endforeach;
+            //     get_template_part(
+            //         'template-parts/destination/content-section',
+            //         null,
+            //         array(
+            //             'destination_term' => $current_term,
+            //             'category_slug'    => $category_slug,
+            //             'section_title'    => $section_title,
+            //             // 'bento'            => TD_SLUG_CARNETS === $category_slug,
+            //         )
+            //     );
+            // endforeach;
             ?>
-        </div>
 
-
-        <?php
-        get_template_part(
-            'template-parts/destination/guides-list',
-            null,
-            array(
+            <?php get_template_part('template-parts/destination/content-guides', null, array(
                 'destination_term' => $current_term,
-            )
-        );
-        ?>
-    <?php endif; ?>
-    <!-- </div> -->
+                'category_slug'    => array(TD_SLUG_DESTINATIONS_GUIDES, TD_SLUG_GUIDES),
+                'section_title'    => __('Guides ', 'travel-dams'),
+                'posts_per_page'   => 6,
+            )); ?>
 
-    <!-- <div class="container container--wide">
-        <?php get_template_part('template-parts/sections/newsletter', null, $is_zone ? array(
-            'eyebrow'     => __('Restez connectés', 'travel-dams'),
-            /* translators: %s: nom de la zone */
-            'title'       => sprintf(__("Recevez nos chroniques d'%s chaque mois", 'travel-dams'), $current_term->name),
-            'disclaimer'  => __("Pas de spam, seulement de l'inspiration brute et sauvage.", 'travel-dams'),
-            'tone'        => 'forest',
-        ) : array(
-            'eyebrow'     => __('Rejoindre la chronique', 'travel-dams'),
-            'title'       => __('Rejoignez la Chronique', 'travel-dams'),
-            'description' => __('Recevez chaque mois nos carnets de voyage secrets et nos guides exclusifs pour explorer le monde autrement.', 'travel-dams'),
-            'disclaimer'  => __("Promis, nous n'envoyons que de la poésie, pas de spam.", 'travel-dams'),
-            'tone'        => 'darkest',
-            'layout'      => 'split',
-        )); ?>
-    </div> -->
+            <?php
+            // GET CARNETS 
+            get_template_part(
+                'template-parts/destination/content-section',
+                null,
+                array(
+                    'destination_term' => $current_term,
+                    'category_slug'    => TD_SLUG_CARNETS,
+                    'section_title'    => __('Carnets de voyage', 'travel-dams'),
+                    // 'bento'            => TD_SLUG_CARNETS === $category_slug,
+                )
+            );
+            ?>
+
+            <?php // ONLY PRATICAL GUIDES (TRAVEL TIPS) 
+            //get_template_part('template-parts/destination/guides-list', null, array('destination_term' => $current_term,)); 
+            ?>
+
+        <?php endif; ?>
+    </div>
+
+    <?php
+    // NEWSLETTER
+    // get_template_part('template-parts/sections/newsletter', null, $is_zone ? array(
+    //     'eyebrow'     => __('Restez connectés', 'travel-dams'),
+    //     /* translators: %s: nom de la zone */
+    //     'title'       => sprintf(__("Recevez nos chroniques d'%s chaque mois", 'travel-dams'), $current_term->name),
+    //     'disclaimer'  => __("Pas de spam, seulement de l'inspiration brute et sauvage.", 'travel-dams'),
+    //     'tone'        => 'forest',
+    // ) : array(
+    //     'eyebrow'     => __('Rejoindre la chronique', 'travel-dams'),
+    //     'title'       => __('Rejoignez la Chronique', 'travel-dams'),
+    //     'description' => __('Recevez chaque mois nos carnets de voyage secrets et nos guides exclusifs pour explorer le monde autrement.', 'travel-dams'),
+    //     'disclaimer'  => __("Promis, nous n'envoyons que de la poésie, pas de spam.", 'travel-dams'),
+    //     'tone'        => 'darkest',
+    //     'layout'      => 'split',
+    // )); 
+    ?>
 
 </main>
 
-<?php get_footer(); ?>
+<?php get_footer() ?>

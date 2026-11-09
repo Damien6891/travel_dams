@@ -52,6 +52,10 @@
   &--accent {
     background: abs.$color-primary-xlight;
   }
+
+  &--light {
+    background: abs.$color-panel;
+  }
 }
 
 // Chip générique — pilule bordée, sans fond (hashtags #SlowTravel, stats destination)

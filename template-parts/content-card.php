@@ -12,31 +12,41 @@
 
 $variant                = $args['variant'] ?? 'default';
 $feature                = ! empty($args['feature']);
-$eyebrow                 = $args['eyebrow'] ?? null;
-$excerpt                 = $args['excerpt'] ?? null;
-$footer_content = $args['footer'] ?? null;
-$badge_label = $args['badge_label'] ?? null;
+$eyebrow                = $args['eyebrow'] ?? null;
+$excerpt                = $args['excerpt'] ?? null;
+$footer_content         = $args['footer'] ?? null;
+$badge_label            = $args['badge_label'] ?? null;
+$badge_style            = $args['badge_style'] ?? null;
+$highlighted            = $args['highlighted'] ?? false;
+$showHighlighted        = $args['show_highlighted'] ??  false;
+$title                  = carbon_get_post_meta(get_the_ID(), 'breadcrumb_title') ?: get_the_title();
+$pastilles = carbon_get_post_meta(get_the_ID(), 'td_pastilles');
 
-$categories   = get_the_category();
+// $categories   = get_the_category();
 $destinations = get_the_terms(get_the_ID(), 'destination');
 
 $classes = array('content-card', 'content-card--' . $variant);
 if ($feature) {
     $classes[] = 'content-card--feature';
 }
+
+if ($highlighted) {
+    $classes[] = 'content-card--highlighted';
+}
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class($classes); ?>>
 
     <div class="content-card__thumbnail">
         <?php if (has_post_thumbnail()) : ?>
-            <?php the_post_thumbnail('travel-dams-card', array('class' => 'content-card__image')); ?>
+            <?php the_post_thumbnail($highlighted ? 'medium' : 'travel-dams-card', array('class' => 'content-card__image')); ?>
         <?php else : ?>
             <div class="content-card__placeholder" aria-hidden="true"></div>
         <?php endif; ?>
 
         <?php if ($badge_label) : ?>
-            <span class="badge badge--tag content-card__badge">
+            <span class="badge <?= $badge_style ? 'badge--' . $badge_style : 'badge--tag' ?> content-card__badge">
                 <?php echo esc_html($badge_label); ?>
             </span>
         <?php endif; ?>
@@ -44,6 +54,7 @@ if ($feature) {
     </div>
 
     <div class="content-card__body">
+
         <?php if ($eyebrow) : ?>
             <div class="content-card__eyebrow">
                 <?= $eyebrow ?>
@@ -51,7 +62,7 @@ if ($feature) {
         <?php endif ?>
 
         <h3 class="content-card__title">
-            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+            <a href="<?php the_permalink(); ?>"><?= $title ?></a>
         </h3>
 
         <?php if ($excerpt) : ?>
@@ -60,11 +71,24 @@ if ($feature) {
             </div>
         <?php endif; ?>
 
-        <?php if ($footer_content) : ?>
+        <?php if ($footer_content || !empty($pastilles)) : ?>
             <div class="content-card__footer">
-                <span><?= $footer_content ?></span>
+                <?php if ($footer_content) : ?>
+                    <span><?= $footer_content ?></span>
+                <?php endif ?>
+
+                <?php if (!empty($pastilles)) : ?>
+                    <div class="badges">
+                        <?php foreach ($pastilles as $pastille) : ?>
+                            <span class="badge badge--light ">
+                                <?php echo esc_html($pastille['label']); ?>
+                            </span>
+                        <?php endforeach ?>
+                    </div>
+                <?php endif ?>
             </div>
         <?php endif ?>
+
 
     </div>
 

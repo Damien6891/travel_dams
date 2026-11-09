@@ -109,7 +109,7 @@
     top: abs.spacer(2);
     left: abs.spacer(2);
     padding: 6px abs.spacer(2);
-    background-color: rgba(255, 255, 255, 0.8);
+    // background-color: rgba(255, 255, 255, 0.8);
     color: abs.$color-text;
     font-size: abs.$font-size-label-xs;
     font-weight: abs.$font-weight-semibold;
@@ -166,6 +166,18 @@
     color: abs.$color-text-muted;
 
     margin-top: auto;
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: abs.spacer(1);
+    }
+
+    .badge {
+      font-family: abs.$font-family-base;
+      letter-spacing: unset;
+      text-transform: unset;
+    }
   }
 
   // Variante photo thumbnail bigger (height)

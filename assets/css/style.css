@@ -665,6 +665,9 @@ body.admin-bar .site-header {
 .badge--accent {
   background: #06a68e;
 }
+.badge--light {
+  background: #efeee3;
+}
 
 .chip {
   display: inline-block;
@@ -838,7 +841,6 @@ body.admin-bar .site-header {
   top: 12px;
   left: 12px;
   padding: 6px 12px;
-  background-color: rgba(255, 255, 255, 0.8);
   color: #1c1d1e;
   font-size: 0.625rem;
   font-weight: 600;
@@ -885,6 +887,16 @@ body.admin-bar .site-header {
   font-size: 0.6875rem;
   color: #737873;
   margin-top: auto;
+}
+.content-card__footer .badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.content-card__footer .badge {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  letter-spacing: unset;
+  text-transform: unset;
 }
 .content-card--photo .content-card__thumbnail {
   height: 340px;
@@ -1666,6 +1678,41 @@ body.admin-bar .site-header {
   color: #2B2B2B;
   margin: 0;
   max-width: 480px;
+}
+
+.section--guides {
+  margin-bottom: 64px;
+}
+.section--guides .content-card__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.section--guides .content-card--highlighted {
+  order: -1;
+}
+@media (min-width: 576px) {
+  .section--guides .content-card--highlighted {
+    grid-column: 1/-1;
+    flex-direction: row;
+    max-height: 420px;
+  }
+  .section--guides .content-card--highlighted .content-card__thumbnail {
+    width: 50%;
+  }
+  .section--guides .content-card--highlighted .content-card__body {
+    width: 50%;
+  }
+  .section--guides .content-card--highlighted .content-card__title {
+    font-size: 2rem;
+  }
+  .section--guides .content-card--highlighted .content-card__excerpt {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 768px) {
+  .section--guides .content-card--highlighted .content-card__thumbnail {
+    width: 60%;
+  }
 }
 
 .post-grid {

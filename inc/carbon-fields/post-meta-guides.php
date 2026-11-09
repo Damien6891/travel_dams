@@ -23,5 +23,8 @@ if (! empty($guides_term_ids)) {
                         'value' => true
                     )
                 )),
+            Field::make('checkbox', 'highlighted_post', __('À la une', 'travel-dams'))
+                ->set_help_text(__('Un article mis à la une apparaitra en haut et plus gros dans les pages destinatoion', 'travel-dams'))
+
         ));
 }
