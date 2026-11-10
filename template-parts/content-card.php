@@ -67,7 +67,9 @@ if ($highlighted) {
 
         <?php if ($excerpt) : ?>
             <div class="content-card__excerpt">
-                <?php echo esc_html(wp_trim_words($excerpt, 20)); ?>
+                <?php echo esc_html($excerpt); ?>
+                <?php //echo esc_html(wp_trim_words($excerpt, 20)); 
+                ?>
             </div>
         <?php endif; ?>
 
