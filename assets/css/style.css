@@ -1182,6 +1182,8 @@ body.admin-bar .site-header {
   height: 100%;
   -o-object-fit: cover;
   object-fit: cover;
+  -o-object-position: center;
+  object-position: center;
 }
 .hero__background::after {
   content: "";
@@ -1287,7 +1289,7 @@ body.admin-bar .site-header {
   margin-inline: auto;
 }
 .hero--destination {
-  min-height: 90vh;
+  min-height: clamp(320px, 60svh, 520px);
 }
 .hero--zone {
   min-height: clamp(420px, 60vw, 520px);

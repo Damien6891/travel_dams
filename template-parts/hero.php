@@ -15,6 +15,7 @@
  */
 
 $hero_image_id = $args['image_id'] ?? travel_dams_get_hero_image_id();
+$hero_image_position = $args['hero_image_position'] ?? null;
 $hero_title    = $args['title'] ?? travel_dams_get_hero_title();
 // $hero_subtitle = $args['subtitle'] ?? travel_dams_get_hero_title();
 $hero_subtitle = $args['subtitle'] ?? '';
@@ -28,18 +29,31 @@ $hero_image_alt = $args['image_alt'] ?? '';
 // If taxonomy destination country
 $country_map = $args['country_map'] ?? null;
 
+$hero_image_attrs = [
+    // 'class'         => 'hero__image',
+    'fetchpriority' => 'high',
+    'loading'       => false,
+];
+
 $classes = array('hero', 'hero--' . $context);
 if ($hero_image_id) {
     $classes[] = 'hero--has-image';
 }
 
+if ($hero_image_alt) {
+    $hero_image_attrs['alt'] = $hero_image_alt;
+}
+
+if ($hero_image_position && 'center' !== $hero_image_position) {
+    $hero_image_attrs['style'] = 'object-position: center ' . $hero_image_position . ';';
+}
 
 ?>
 
 <section class="<?php echo esc_attr(implode(' ', $classes)); ?>">
     <?php if ($hero_image_id) : ?>
         <div class="hero__background">
-            <?php echo wp_get_attachment_image($hero_image_id, 'hero', false, $hero_image_alt ? ['alt' => $hero_image_alt] : []); ?>
+            <?php echo wp_get_attachment_image($hero_image_id, 'hero', false, $hero_image_attrs); ?>
         </div>
     <?php endif; ?>
 
