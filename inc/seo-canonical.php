@@ -22,5 +22,5 @@ add_action('wp_head', function () {
         $link = trailingslashit($link) . user_trailingslashit('page/' . $paged, 'paged');
     }
 
-    echo '<link rel="canonical" ref="' . esc_url($link) . '" />' . "\n";
+    echo '<link rel="canonical" href="' . esc_url($link) . '" />' . "\n";
 }, 5);
