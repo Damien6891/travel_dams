@@ -45,7 +45,9 @@ endif;
             continue;
         }
         $carnets = travel_dams_count_posts_for_destination($country->term_id, TD_SLUG_CARNETS);
-        $guides  = travel_dams_count_posts_for_destination($country->term_id, TD_SLUG_GUIDES);
+        $travel_tips  = travel_dams_count_posts_for_destination($country->term_id, TD_SLUG_GUIDES);
+        $destination_guides  = travel_dams_count_posts_for_destination($country->term_id, TD_SLUG_DESTINATIONS_GUIDES);
+        $total_guides = $travel_tips + $destination_guides;
     ?>
         <a href="<?php echo esc_url($link); ?>" class="country-card">
             <?php if ($image_id) : ?>
@@ -59,7 +61,7 @@ endif;
                         /* translators: 1: carnets, 2: guides */
                         esc_html__('%1$d CARNETS · %2$d GUIDES', 'travel-dams'),
                         $carnets,
-                        $guides
+                        $total_guides
                     );
                     ?>
                 </span>
