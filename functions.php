@@ -461,6 +461,20 @@ function travel_dams_get_hero_image_id()
 	return apply_filters('travel_dams_hero_image_id', $image_id);
 }
 
+function travel_dams_get_hero_alt()
+{
+	if (is_category() || is_tax()) {
+		$term = get_queried_object();
+		return (string) carbon_get_term_meta($term->term_id, 'hero_image_alt_text');
+	}
+
+	//   if ( is_singular() ) {
+	//     return (string) carbon_get_post_meta( get_the_ID(), 'td_featured_alt' );
+	// }
+
+	return '';
+}
+
 function travel_dams_get_hero_title()
 {
 	if (is_front_page()) {

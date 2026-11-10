@@ -28,6 +28,7 @@ if (!$is_zone) {
         'title'    => $current_term->name,
         'subtitle' => $current_term->description,
         'image_id' => $image_id ? absint($image_id) : 0,
+        'image_alt' => travel_dams_get_hero_alt(),
         'country_map' => $country_map,
         'hero_image_position' => $image_position
     ))
