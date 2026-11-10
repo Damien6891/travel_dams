@@ -39,7 +39,7 @@ endif;
 <div class="countries-grid" data-view-target="grid">
 
     <?php foreach ($countries as $country) :
-        $image_id = absint(carbon_get_term_meta($country->term_id, 'card_image'));
+        $image_id = carbon_get_term_meta($country->term_id, 'card_image') ? absint(carbon_get_term_meta($country->term_id, 'card_image')) : absint(carbon_get_term_meta($country->term_id, 'hero_image'));
         $link     = get_term_link($country);
         if (is_wp_error($link)) {
             continue;
