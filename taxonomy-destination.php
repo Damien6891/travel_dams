@@ -34,7 +34,7 @@ if (!$is_zone) {
     ))
     ?>
 
-    <div class="container">
+    <div class="container container--wide">
         <?php travel_dams_the_breadcrumb() ?>
     </div>
 
