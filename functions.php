@@ -762,5 +762,53 @@ function travel_dams_get_homepage_guides()
 }
 
 /**
+ * Add secondary title to posts table
+ */
+add_filter('manage_post_posts_columns', function ($columns) {
+	$nouvelles_colonnes = array();
+
+	foreach ($columns as $cle => $valeur) {
+		$nouvelles_colonnes[$cle] = $valeur;
+
+		// Dès qu'on croise la colonne principale 'title', on insère la nôtre juste après
+		if ($cle === 'title') {
+			$nouvelles_colonnes['secondary_title_col'] = 'Titre secondaire';
+		}
+	}
+
+	return $nouvelles_colonnes;
+});
+
+add_action('manage_posts_custom_column', function ($column_name, $post_ID) {
+
+	if ($column_name === 'secondary_title_col') {
+		$secondary_title = carbon_get_post_meta($post_ID, 'secondary_title');
+
+		if (!empty($secondary_title)) {
+			echo esc_html($secondary_title);
+		} else {
+			echo '<em style="color: #aaa;">Aucun</em>';
+		}
+	}
+}, 10, 2);
+
+// Ajuster la largeur des colonnes dans l'administration
+add_action('admin_head', function () {
+	$screen = get_current_screen();
+
+	// On s'assure de n'appliquer ce CSS que sur la liste de tous les articles
+	if ($screen && $screen->id === 'edit-post') {
+		echo '<style>
+            .wp-list-table .column-secondary_title_col {
+                max-width: 50px;
+            }
+            .wp-list-table .column-title {
+                width: 15%;
+            }
+        </style>';
+	}
+});
+
+/**
  * debug
  */

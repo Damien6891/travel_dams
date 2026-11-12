@@ -22,3 +22,11 @@ Container::make('post_meta', "Alt de l'image mise en avant")
             ])
             ->set_header_template('<%- label %>')
     ));
+
+/** @disregard P1013 */
+Container::make('post_meta', "Titre secondaire")
+    ->where('post_type', '=', 'post')
+    ->set_context('side')
+    ->add_fields(array(
+        Field::make('text', 'secondary_title', 'TItre fomat LAS-01')
+    ));
