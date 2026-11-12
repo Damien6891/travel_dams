@@ -809,6 +809,42 @@ add_action('admin_head', function () {
 	}
 });
 
+//  Inclure le champ Carbon Fields "titre_secondaire" dans la recherche de l'admin
+add_action('pre_get_posts', function ($query) {
+	// On agit uniquement dans l'administration, sur la requête principale, lors d'une recherche sur les articles
+	if (!is_admin() || !$query->is_main_query() || !$query->is_search() || $query->get('post_type') !== 'post') {
+		return;
+	}
+
+	// Jointure avec la table des métadonnées (wp_postmeta)
+	add_filter('posts_join', function ($join) {
+		global $wpdb;
+		$join .= " LEFT JOIN {$wpdb->postmeta} AS cf_meta ON ({$wpdb->posts}.ID = cf_meta.post_id AND cf_meta.meta_key = '_secondary_title')";
+		return $join;
+	});
+
+	// Modification de la clause WHERE pour chercher aussi dans la valeur du champ
+	add_filter('posts_where', function ($where) {
+		global $wpdb;
+		$search_term = get_query_var('s');
+		if (!empty($search_term)) {
+			$like = '%' . $wpdb->esc_like($search_term) . '%';
+			$where = preg_replace(
+				"/\(\s*{$wpdb->posts}.post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
+				"({$wpdb->posts}.post_title LIKE $1) OR (cf_meta.meta_value LIKE '" . esc_sql($like) . "')",
+				$where
+			);
+		}
+		return $where;
+	});
+
+	// Éviter les doublons dans les résultats
+	add_filter('posts_distinct', function ($distinct) {
+		return 'DISTINCT';
+	});
+});
+
+
 /**
  * debug
  */
